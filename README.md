@@ -6,7 +6,7 @@ title: "R for Plant Pathologists"
 -->
 
 
-An introduction to R written by Drs. Sydney E. Everhart and Zhian N. Kamvar and edited by Nikita Gambhir
+An introduction to R for plant pathologists written by Drs. Sydney E. Everhart and Zhian N. Kamvar and edited by Nikita Gambhir
 
 This repository is intended to serve as an additional resource for short 
 workshops given at Univeristy of Nebraska and The 2018 International Congress of Plant Pathology Meeting. The source code can be found at 
@@ -14,7 +14,7 @@ https://github.com/everhartlab/IntroR_Workshop.
 
 ## About 
 
-This introduction to R is designed to be a companion to a workshop lasting 3 
+This introduction to R is designed to be a companion to a workshop lasting 4 
 hours introducing plant pathologists to the basics of R by using a 
 [real world stripe rust example]. 
 
