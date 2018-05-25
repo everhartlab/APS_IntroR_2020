@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Intro to R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Workshop
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="installation.html">Before the Workshop (Installation)</a>
+    </li>
+    <li>
+      <a href="Part1-Introduction.html">Part 1: Introduction to R</a>
+    </li>
+    <li>
+      <a href="Part2-Analysis.html">Part 2: First Analysis</a>
+    </li>
+    <li>
+      <a href="Part3-Visualization.html">Part 3: Reshaping and Visualization</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    About
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="data.html">Data Sets</a>
+    </li>
+    <li>
+      <a href="about.html">About This Site</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Links
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="quiz.html">Workshop Quizzes</a>
+    </li>
+    <li>
+      <a href="https://goo.gl/forms/oDBV8WPXg7DlsS4C3">Exit Survey</a>
+    </li>
+    <li>
+      <a href="refs.html">Useful Tools/Links/References</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="lets-practice" class="section level1">
+<h1>Let’s Practice!</h1>
+<p>In this section we will cover:</p>
+<ol style="list-style-type: decimal">
+<li>Working directories</li>
+<li>Reading in data</li>
+<li>Finding help</li>
+<li>Basic data manipulation (renaming, subsetting, rotating)</li>
+</ol>
+<div id="part-i-working-directories" class="section level2">
+<h2>Part I: Working Directories</h2>
+<p>A working directory is the folder on your computer where you are currently working. You can find out your current working directory by typing <code>getwd()</code></p>
+<pre class="r"><code>&gt; getwd()</code></pre>
+<pre><code>[1] &quot;/Users/zhian/Documents/Everhart/IntroR&quot;</code></pre>
+<p>If you’ve downloaded and un-zipped this directory to your desktop, you might see something like <code>/Users/&lt;yourname&gt;/Desktop/IntroR</code>. This is the default place where R will begin reading and writing files. For example, you can use the function <code>list.files()</code> to view the files in your current working directory. These are the same files that we downloaded earlier. If you’re using Rstudio, you can compare the file list with the “Files” tab in the bottom right panel.</p>
+<p>In order to use <code>list.files()</code>, we should provide it with a file path. We can provide it a “.”, which means “here” to most computer programs.</p>
+<pre class="r"><code>&gt; list.files(&quot;.&quot;)</code></pre>
+<pre><code> [1] &quot;analysis.R&quot;            &quot;data&quot;                 
+ [3] &quot;docs&quot;                  &quot;IntroR.Rproj&quot;         
+ [5] &quot;LICENSE&quot;               &quot;Makefile&quot;             
+ [7] &quot;Part1-Introduction.R&quot;  &quot;Part2-Analysis.R&quot;     
+ [9] &quot;Part3-Visualization.R&quot; &quot;parts.gif&quot;            
+[11] &quot;README.md&quot;            </code></pre>
+<p>You can see that the first entry in here is “data”. This is where we’ve placed the fungicide example data.</p>
+<pre class="r"><code>&gt; list.files(&quot;data&quot;)</code></pre>
+<pre><code>[1] &quot;FungicideExample.csv&quot; &quot;README.md&quot;           </code></pre>
+</div>
+<div id="part-ii-reading-in-data" class="section level2">
+<h2>Part II: Reading in Data</h2>
+<p>We can use the <code>read.table()</code> function to read these data in to R. It’s important to remember that while in R, these data are simply a copy kept <em>in memory</em>, not on the disk, so we don’t have to worry too much about accidentally deleting the data :).</p>
+<p>So, how do we actually USE the <code>read.table()</code> function? A good first step to figuring out how you can use a function is to look at it’s help page. The way you can do that is by typing either help(“function_name”) or ?function_name.</p>
+<pre class="r"><code>&gt; stop(&quot;
++ 
++      Type ?read.table and answer these three questions:
++      
++      1. What does it do? (Description)
++      2. What are the first three arguments and their defaults? (Usage/Arguments)
++      3. What does it return? (Value)
++      
++      &quot;)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): 
+
+     Type ?read.table and answer these three questions:
+     
+     1. What does it do? (Description)
+     2. What are the first three arguments and their defaults? (Usage/Arguments)
+     3. What does it return? (Value)
+     
+     </code></pre>
+<p>In order to read our data into R, we will need to provide three things:</p>
+<ol style="list-style-type: decimal">
+<li>The path to the data set : data/FungicideExample.csv</li>
+<li>If the first row are column names : yes</li>
+<li>The separator for each cell in the data : comma</li>
+</ol>
+<p>Now that we have these elements, we can read the data into a variable, which we can call “fungicide”. Once we do this, we can check the dimensions to make sure that we have all of the data.</p>
+<pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/FungicideExample.csv&quot;, header = TRUE, sep = &quot;,&quot;)
+&gt; nrow(fungicide)</code></pre>
+<pre><code>[1] 9</code></pre>
+<pre class="r"><code>&gt; ncol(fungicide)</code></pre>
+<pre><code>[1] 7</code></pre>
+<p>We can print the data to screen by simply typing its name</p>
+<pre class="r"><code>&gt; fungicide</code></pre>
+<pre><code>  Julian.Date TwentyOneThirtySevenWheat TwentyOneThirtySevenWheat.trt
+1          97                      0.00                          0.00
+2         104                      0.00                          0.00
+3         111                      0.00                          0.00
+4         118                      0.00                          0.00
+5         125                      0.00                          0.00
+6         132                      0.00                          0.00
+7         139                      2.34                          1.81
+8         146                      7.56                          7.89
+9         154                     28.78                         15.04
+  CutterWheat CutterWheat.Trt JaggerWheat JaggerWheat.Trt
+1        0.00            0.00        0.00            0.00
+2        0.00            0.00        0.00            0.00
+3        0.00            0.00        0.00            0.00
+4        0.00            0.00        0.00            0.00
+5        0.00            0.00        0.00            0.00
+6        0.00            0.00        0.00            0.00
+7        1.15            1.79        1.85            2.27
+8        3.62            2.40        6.92            5.00
+9       17.89            6.21       47.39           20.17</code></pre>
+<p>We can also use the <code>str()</code> function (short for “structure”) to have a broad overview of what our data looks like. This is useful for data frames with many columns.</p>
+<pre class="r"><code>&gt; str(fungicide)</code></pre>
+<pre><code>&#39;data.frame&#39;:   9 obs. of  7 variables:
+ $ Julian.Date                  : int  97 104 111 118 125 132 139 146 154
+ $ TwentyOneThirtySevenWheat    : num  0 0 0 0 0 ...
+ $ TwentyOneThirtySevenWheat.trt: num  0 0 0 0 0 ...
+ $ CutterWheat                  : num  0 0 0 0 0 ...
+ $ CutterWheat.Trt              : num  0 0 0 0 0 0 1.79 2.4 6.21
+ $ JaggerWheat                  : num  0 0 0 0 0 ...
+ $ JaggerWheat.Trt              : num  0 0 0 0 0 ...</code></pre>
+</div>
+<div id="part-iii-finding-the-right-tool-for-the-job" class="section level2">
+<h2>Part III: Finding the right tool for the job</h2>
+<p>The data presented here are from <a href="http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/StripeRust.aspx" class="uri">http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/StripeRust.aspx</a> and consist of three cultivars of wheat treated with different fungicides Jagger wheat is a succeptible variety whereas Cutter and 2137 are both resistant varieties. It is assumed that the fungicide will only be able to prevent new infections for two weeks after applicaton. With these data, we want to answer the following questions:</p>
+<ol style="list-style-type: decimal">
+<li>How does the size of the fungicide effect compare to the effect of cultivar?</li>
+<li>Would it be the same as cultivar?</li>
+</ol>
+<p>To answer these questions, we will use the summary statistic, Area Under the Disease Progress Curve (AUDPC).</p>
+<p>So, how do you calculate this? You could code the trapezoid rule yourself, OR you could find a package that was designed for this.</p>
+<pre class="r"><code>&gt; stop(&quot;
++ 
++     Do an internet search for AUDPC in R. What did you find?
++ 
++     &quot;)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): 
+
+    Do an internet search for AUDPC in R. What did you find?
+
+    </code></pre>
+<p>The first thing that likely popped up was the function <code>audpc()</code> in the <em>agricolae</em> package. If we want to use it, we can download the package to our computer with the function <code>install.packages()</code>. This will install a package from CRAN and place it into your R <em>Library</em>. Where is your R library? Type <code>.libPaths()</code> to find out!</p>
+<pre class="r"><code>&gt; .libPaths()
+&gt; 
+&gt; install.packages(&quot;agricolae&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
+<p>Now that we have the <em>agricolae</em> package installed, we can load into our R workspace using the <code>library()</code> function, which looks in our library and loads the functions and data sets within that package. You can find out about what functions are avialable with help(package = “agricolae”).</p>
+<p>To accomplish our task, however, we need to find out how to use the <code>audpc()</code> function. First we should load the agricolae package</p>
+<pre class="r"><code>&gt; library(&quot;agricolae&quot;)</code></pre>
+<p>Now we can look up help for <code>audpc()</code></p>
+<pre class="r"><code>&gt; ?audpc</code></pre>
+<p>This function will take in a data frame of severity and a vector of dates. Since our vector of dates is in the first column, we will need to manipulate the data frame by subsetting.</p>
+<pre class="r"><code>&gt; jdate &lt;- fungicide$Julian.Date # this is also the first column
+&gt; jdate</code></pre>
+<pre><code>[1]  97 104 111 118 125 132 139 146 154</code></pre>
+<pre class="r"><code>&gt; fungicide.audpc &lt;- audpc(evaluation = fungicide[, -1], dates = jdate, type = &quot;relative&quot;)</code></pre>
+<pre><code>Error:
+The number of dates of evaluation 
+must agree with the number of evaluations</code></pre>
+<p>Well this doesn’t look good. What can this error message mean? Let’s take a look at the audpc help page one more time; this time, we’ll look at the Examples section. Try to copy and paste the code one line at a time and see what happens. Check the evaluaton data relative to the dates and see how it’s relevant.</p>
+<pre class="r"><code>&gt; stop(&quot;
++ 
++      Stop and look at the examples from ?audpc.
++      
++      &quot;)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): 
+
+     Stop and look at the examples from ?audpc.
+     
+     </code></pre>
+<p>We can see from example 3, that the data must be arranged where dates are in separate columns. We need to transpose our data. To do this, we can use the <code>t()</code> function:</p>
+<pre class="r"><code>&gt; t(fungicide[, -1])</code></pre>
+<pre><code>                              [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+TwentyOneThirtySevenWheat        0    0    0    0    0    0 2.34 7.56
+TwentyOneThirtySevenWheat.trt    0    0    0    0    0    0 1.81 7.89
+CutterWheat                      0    0    0    0    0    0 1.15 3.62
+CutterWheat.Trt                  0    0    0    0    0    0 1.79 2.40
+JaggerWheat                      0    0    0    0    0    0 1.85 6.92
+JaggerWheat.Trt                  0    0    0    0    0    0 2.27 5.00
+                               [,9]
+TwentyOneThirtySevenWheat     28.78
+TwentyOneThirtySevenWheat.trt 15.04
+CutterWheat                   17.89
+CutterWheat.Trt                6.21
+JaggerWheat                   47.39
+JaggerWheat.Trt               20.17</code></pre>
+<p>Now we can plug this into the <code>audpc()</code> function:</p>
+<pre class="r"><code>&gt; fungicide.audpc &lt;- audpc(evaluation = t(fungicide[, -1]), dates = jdate, type = &quot;relative&quot;)
+&gt; fungicide.audpc</code></pre>
+<pre><code>    TwentyOneThirtySevenWheat TwentyOneThirtySevenWheat.trt 
+                  0.033017544                   0.023158772 
+                  CutterWheat               CutterWheat.Trt 
+                  0.018729825                   0.009714035 
+                  JaggerWheat               JaggerWheat.Trt 
+                  0.044633333                   0.023521053 </code></pre>
+<p>This gives us a vector with the AUDPC values per treatment. The vector format does not make it particularly easy to compare the effect of cultivar or treatment. A better format to store these data would be in a table. Since all the values are numeric, we can place them into a matrix using the <code>matrix()</code> function. We are going to put the samples in rows and experiments in columns.</p>
+<pre class="r"><code>&gt; fungicide.res &lt;- matrix(fungicide.audpc, nrow = 3, ncol = 2, byrow = TRUE)
+&gt; fungicide.res</code></pre>
+<pre><code>           [,1]        [,2]
+[1,] 0.03301754 0.023158772
+[2,] 0.01872982 0.009714035
+[3,] 0.04463333 0.023521053</code></pre>
+<p>We have our result, but there are no labels for the rows and columns. Notice how we selected <code>byrow = TRUE</code>. This means that the matrix was filled row by row. So the first two elements of the vector would go in the first row, the next two would go in the second, and so on and so forth.</p>
+<pre class="r"><code>&gt; names(fungicide.audpc)[1:2]</code></pre>
+<pre><code>[1] &quot;TwentyOneThirtySevenWheat&quot;     &quot;TwentyOneThirtySevenWheat.trt&quot;</code></pre>
+<pre class="r"><code>&gt; names(fungicide.audpc)[3:4]</code></pre>
+<pre><code>[1] &quot;CutterWheat&quot;     &quot;CutterWheat.Trt&quot;</code></pre>
+<pre class="r"><code>&gt; names(fungicide.audpc)[5:6]</code></pre>
+<pre><code>[1] &quot;JaggerWheat&quot;     &quot;JaggerWheat.Trt&quot;</code></pre>
+<p>Since this is a small matrix, we can easily name these rows and columns ourselves using the <code>rownames()</code> and <code>colnames()</code> functions.</p>
+<pre class="r"><code>&gt; rownames(fungicide.res) &lt;- c(&quot;2137&quot;, &quot;Cutter&quot;, &quot;Jagger&quot;)
+&gt; colnames(fungicide.res) &lt;- c(&quot;Control&quot;, &quot;Treated&quot;)
+&gt; fungicide.res</code></pre>
+<pre><code>          Control     Treated
+2137   0.03301754 0.023158772
+Cutter 0.01872982 0.009714035
+Jagger 0.04463333 0.023521053</code></pre>
+<p>If we wanted to use these data as a table in a paper, we should export it to a csv file. We do this using the function <code>write.table()</code></p>
+<pre class="r"><code>&gt; dir.create(&quot;results&quot;)
+&gt; write.table(fungicide.res, file = &quot;results/audpc.csv&quot;, sep = &quot;,&quot;, 
++             col.names = NA,
++             row.names = TRUE)</code></pre>
+</div>
+</div>
+
+<br>
+<center>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+</center>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

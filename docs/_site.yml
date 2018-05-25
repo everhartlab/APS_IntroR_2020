@@ -1,0 +1,42 @@
+name: "R in Plant Pathology"
+output_dir: "."
+navbar:
+  title: "Intro to R"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Workshop"
+      menu:
+        - text: "Before the Workshop (Installation)"
+          href: installation.html
+        - text: "Part 1: Introduction to R"
+          href: Part1-Introduction.html
+        - text: "Part 2: First Analysis"
+          href: Part2-Analysis.html
+        - text: "Part 3: Reshaping and Visualization"
+          href: Part3-Visualization.html
+    - text: "About"
+      menu:
+        - text: "Data Sets"
+          href: data.html
+        - text: "About This Site"
+          href: about.html
+    - text: "Links"
+      menu:
+        - text: "Workshop Quizzes"
+          href: quiz.html
+        - text: "Exit Survey"
+          href: https://goo.gl/forms/oDBV8WPXg7DlsS4C3
+        - text: "Useful Tools/Links/References"
+          href: refs.html
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+    toc_depth: 2
+    theme: cerulean
+    highlight: textmate
+    include:
+      after_body: footer.html
+    css: styles.css

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Intro to R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Workshop
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="installation.html">Before the Workshop (Installation)</a>
+    </li>
+    <li>
+      <a href="Part1-Introduction.html">Part 1: Introduction to R</a>
+    </li>
+    <li>
+      <a href="Part2-Analysis.html">Part 2: First Analysis</a>
+    </li>
+    <li>
+      <a href="Part3-Visualization.html">Part 3: Reshaping and Visualization</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    About
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="data.html">Data Sets</a>
+    </li>
+    <li>
+      <a href="about.html">About This Site</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Links
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="quiz.html">Workshop Quizzes</a>
+    </li>
+    <li>
+      <a href="https://goo.gl/forms/oDBV8WPXg7DlsS4C3">Exit Survey</a>
+    </li>
+    <li>
+      <a href="refs.html">Useful Tools/Links/References</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="part-3-data-transformation-and-plotting" class="section level1">
+<h1>Part 3: Data Transformation and Plotting</h1>
+<p>So far we have covered:</p>
+<ul>
+<li>data types in R</li>
+<li>reading in data</li>
+<li>subsetting data</li>
+<li>reading documentation</li>
+<li>using functions</li>
+<li>saving data</li>
+</ul>
+<p>Of course, we haven’t used one of R’s most powerful assets: graphics. This section is dedicated to creating a plot from the data. While R has very powerful default plotting functions, we will be using the “ggplot2” package for three reasons:</p>
+<ol style="list-style-type: decimal">
+<li>It relies on a consistent “grammar of graphics” that gives a clear relationship between the data and the visualization</li>
+<li>It requires consistently “tidy” data, with one row per observaion</li>
+<li>It’s quite popular with the kids nowadays</li>
+</ol>
+<p>We will additionally include a supplementary file for creating plots in the default plotting system for those who are curious.</p>
+<div id="expected-outcomes" class="section level2">
+<h2>Expected Outcomes</h2>
+<p>After this section, you should have the tools to:</p>
+<ol style="list-style-type: decimal">
+<li>create a simple plot in ggplot2</li>
+<li>reshape data (aka pivot and unpivot)</li>
+<li>save plots</li>
+</ol>
+<p>Again, since this is a three hour workshop, we do not expect mastery, but this at least should give you a starting point. With that in mind, let’s get started!</p>
+</div>
+<div id="packages" class="section level2">
+<h2>Packages</h2>
+<p>For the tasks in this example, we will load the “tidyverse” package. This will load six packages (see <a href="https://tidyverse.tidyverse.org" class="uri">https://tidyverse.tidyverse.org</a>):</p>
+<ul>
+<li>ggplot2, for data visualisation.</li>
+<li>dplyr, for data manipulation.</li>
+<li>tidyr, for data tidying.</li>
+<li>readr, for data import.</li>
+<li>purrr, for functional programming.</li>
+<li>tibble, for tibbles, a modern re-imagining of data frames.</li>
+</ul>
+<p>We will be using the <em>ggplot2</em> and <em>tidyr</em> packages</p>
+<pre class="r"><code>&gt; library(&quot;tidyverse&quot;)</code></pre>
+<pre><code>Loading tidyverse: ggplot2
+Loading tidyverse: tibble
+Loading tidyverse: tidyr
+Loading tidyverse: readr
+Loading tidyverse: purrr
+Loading tidyverse: dplyr</code></pre>
+<pre><code>Conflicts with tidy packages ----------------------------------------------</code></pre>
+<pre><code>filter(): dplyr, stats
+lag():    dplyr, stats</code></pre>
+</div>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>We will be using the same data as before, but we will introduce a new function for reading in data from the <em>readr</em> package called <code>read_csv()</code>. This avoids conversion of characters (strings) to factors, provides better error messages, and is generally more efficient.</p>
+<pre class="r"><code>&gt; fungicide &lt;- read_csv(&quot;data/FungicideExample.csv&quot;)</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  Julian.Date = col_integer(),
+  TwentyOneThirtySevenWheat = col_double(),
+  TwentyOneThirtySevenWheat.trt = col_double(),
+  CutterWheat = col_double(),
+  CutterWheat.Trt = col_double(),
+  JaggerWheat = col_double(),
+  JaggerWheat.Trt = col_double()
+)</code></pre>
+<pre class="r"><code>&gt; fungicide</code></pre>
+<pre><code># A tibble: 9 x 7
+  Julian.Date TwentyOneThirtySevenWheat TwentyOneThirtySevenWheat.trt
+        &lt;int&gt;                     &lt;dbl&gt;                         &lt;dbl&gt;
+1          97                      0.00                          0.00
+2         104                      0.00                          0.00
+3         111                      0.00                          0.00
+4         118                      0.00                          0.00
+5         125                      0.00                          0.00
+6         132                      0.00                          0.00
+7         139                      2.34                          1.81
+8         146                      7.56                          7.89
+9         154                     28.78                         15.04
+# ... with 4 more variables: CutterWheat &lt;dbl&gt;, CutterWheat.Trt &lt;dbl&gt;,
+#   JaggerWheat &lt;dbl&gt;, JaggerWheat.Trt &lt;dbl&gt;</code></pre>
+<p>Note that this looks slightly different than the data frame we saw earlier. Never fear, this is still a data frame. We can confirm this with <code>is.data.frame()</code>:</p>
+<pre class="r"><code>&gt; is.data.frame(fungicide)</code></pre>
+<pre><code>[1] TRUE</code></pre>
+<p>It’s also a “tibble”, which is a form of data frame that gives more information about your data (e.g. what kind of data the columns are).</p>
+</div>
+<div id="reshaping-data" class="section level2">
+<h2>Reshaping Data</h2>
+<p>At some point in time, you will need to reshape/rearrange data in R. This is a fact of life. Doing this in R is advantageous for three reasons:</p>
+<ol style="list-style-type: decimal">
+<li>your original data is in tact</li>
+<li>you have a trail of self-documenting changes</li>
+<li>your future self will tank you</li>
+</ol>
+<p>In order to use our data with ggplot2, we need to make sure it is in a “tidy” form where we have one observation per row. We currently have six observations per row. Thus, we will need to reshape this data from this:</p>
+<pre><code>  Julian.Date TwentyOneThirtySevenWheat TwentyOneThirtySevenWheat.trt CutterWheat CutterWheat.Trt JaggerWheat JaggerWheat.Trt
+1         139                      2.34                          1.81        1.15            1.79        1.85            2.27
+2         146                      7.56                          7.89        3.62            2.40        6.92            5.00
+3         154                     28.78                         15.04       17.89            6.21       47.39           20.17</code></pre>
+<p>to this:</p>
+<pre><code>  Experiment Julian.Date                  Cultivar Severity
+1    control         139 TwentyOneThirtySevenWheat     2.34
+2    control         146 TwentyOneThirtySevenWheat     7.56
+3    control         154 TwentyOneThirtySevenWheat    28.78
+4    control         139               CutterWheat     1.15
+5    control         146               CutterWheat     3.62
+6    control         154               CutterWheat    17.89
+7    control         139               JaggerWheat     1.85
+8    control         146               JaggerWheat     6.92
+9    control         154               JaggerWheat    47.39
+10 treatment         139 TwentyOneThirtySevenWheat     1.81
+11 treatment         146 TwentyOneThirtySevenWheat     7.89
+12 treatment         154 TwentyOneThirtySevenWheat    15.04
+13 treatment         139               CutterWheat     1.79
+14 treatment         146               CutterWheat     2.40
+15 treatment         154               CutterWheat     6.21
+16 treatment         139               JaggerWheat     2.27
+17 treatment         146               JaggerWheat     5.00
+18 treatment         154               JaggerWheat    20.17</code></pre>
+<pre class="r"><code>&gt; stop(&quot;
++       Discussion: What are the differences between the two data frames above?
++       How can we get from one data frame to the other?
++     &quot;)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): 
+      Discussion: What are the differences between the two data frames above?
+      How can we get from one data frame to the other?
+    </code></pre>
+<p>There are several ways of creating the tidy data frame; we will show one here, but there are others that we will discuss during the workshop.</p>
+<p>The process we will demonstrate takes three steps:</p>
+<ol style="list-style-type: decimal">
+<li>subset control and treatment data into separate data frames</li>
+<li>collect each record into a single row with the <em>tidyr</em> function <code>gather()</code> (This is also known as “unpivot” in Excel: <a href="http://www.excel-university.com/unpivot-excel-data/" class="uri">http://www.excel-university.com/unpivot-excel-data/</a>).</li>
+<li>combine the two data frames and create a new column called “Experiment” with the <em>dplyr</em> function <code>bind_rows()</code></li>
+</ol>
+<div id="step-1-subset-data" class="section level3">
+<h3>Step 1: Subset data</h3>
+<p>Subset control and treatmend data into separate data frames. Since we have a data frame, we will use matrix-like subsetting.</p>
+<pre class="r"><code>&gt; control   &lt;- fungicide[, c(1, 2, 4, 6)]
+&gt; treatment &lt;- fungicide[, c(1, 3, 5, 7)]</code></pre>
+<p>Now we have two separate data frames with 4 columns each, but still we have three observations per row.</p>
+<pre class="r"><code>&gt; stop(&quot;
++       Would this approach work for a different data set? Why or why not?
++      &quot;)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): 
+      Would this approach work for a different data set? Why or why not?
+     </code></pre>
+</div>
+<div id="step-2-tidy-data" class="section level3">
+<h3>Step 2: Tidy data</h3>
+<p>Now that we have our experiments in separate tables, we can reshape each table into tidy format by using <em>tidyr</em>’s <code>gather()</code>. This will “gather” all of the data that are spread across columns into single rows. Users of excel might be familiar with this operation as “unpivot”.</p>
+<p>In order to do this, we will need to specify three things:</p>
+<ul>
+<li>A new column name to specify where the data came from (key)</li>
+<li>A new column name to specify what the data represents (value)</li>
+<li>The columns to include (or exclude)</li>
+</ul>
+<p>I often find the key/value syntax confusing and have to look at the examples in the help page for <code>gather()</code>.</p>
+<pre class="r"><code>&gt; stop(&quot;
++       Look at the examples for gather and determine what the names of the
++       key and value columns should be for our data.
++       (hint: you can use example(gather) to run them automatically).
++     &quot;)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): 
+      Look at the examples for gather and determine what the names of the
+      key and value columns should be for our data.
+      (hint: you can use example(gather) to run them automatically).
+    </code></pre>
+<p>Now that we have our keys and values, we can plug them into <code>gather()</code>.</p>
+<blockquote>
+<p>Note, however, this uses “bare” names (names that are not between quotation marks) to specify columns. This is a feature of the tidyverse to make typing easier, but does not necessarily work outside of the tidyverse.</p>
+</blockquote>
+<p>To avoid typing all of the columns we want to collapse, we’ll simply specify the column that we don’t want to collapse, which is Julian.Date. This is done by placing a minus (-) symbol in front of it.</p>
+<pre class="r"><code>&gt; con.tidy &lt;- gather(data = control, key = Cultivar, value = Severity, -Julian.Date)
+&gt; con.tidy</code></pre>
+<pre><code># A tibble: 27 x 3
+   Julian.Date                  Cultivar Severity
+         &lt;int&gt;                     &lt;chr&gt;    &lt;dbl&gt;
+ 1          97 TwentyOneThirtySevenWheat     0.00
+ 2         104 TwentyOneThirtySevenWheat     0.00
+ 3         111 TwentyOneThirtySevenWheat     0.00
+ 4         118 TwentyOneThirtySevenWheat     0.00
+ 5         125 TwentyOneThirtySevenWheat     0.00
+ 6         132 TwentyOneThirtySevenWheat     0.00
+ 7         139 TwentyOneThirtySevenWheat     2.34
+ 8         146 TwentyOneThirtySevenWheat     7.56
+ 9         154 TwentyOneThirtySevenWheat    28.78
+10          97               CutterWheat     0.00
+# ... with 17 more rows</code></pre>
+<p>Note that we can easily get back our original data by using the <code>spread()</code> function, which is the opposite of <code>gather()</code>:</p>
+<pre class="r"><code>&gt; spread(data = con.tidy, key = Cultivar, value = Severity)</code></pre>
+<pre><code># A tibble: 9 x 4
+  Julian.Date CutterWheat JaggerWheat TwentyOneThirtySevenWheat
+*       &lt;int&gt;       &lt;dbl&gt;       &lt;dbl&gt;                     &lt;dbl&gt;
+1          97        0.00        0.00                      0.00
+2         104        0.00        0.00                      0.00
+3         111        0.00        0.00                      0.00
+4         118        0.00        0.00                      0.00
+5         125        0.00        0.00                      0.00
+6         132        0.00        0.00                      0.00
+7         139        1.15        1.85                      2.34
+8         146        3.62        6.92                      7.56
+9         154       17.89       47.39                     28.78</code></pre>
+<p>This was simply to demonstrate that with tidy data, it’s possible to reshape it in most any way possible.</p>
+<p>Now we can tidy our treatment data. But first, because we want to combine this data with our control, we want to make sure that the values in the “Cultivar” column are the same. Currently we have the following columns in our treatment data.</p>
+<pre class="r"><code>&gt; colnames(treatment)</code></pre>
+<pre><code>[1] &quot;Julian.Date&quot;                   &quot;TwentyOneThirtySevenWheat.trt&quot;
+[3] &quot;CutterWheat.Trt&quot;               &quot;JaggerWheat.Trt&quot;              </code></pre>
+<p>If we take a look at these column names, we can see that they all end in .Trt, except for the second column, which ends in .trt. Because R is case-sensitive, it will see .trt and .Trt as two different things. To avoid this problem, we will simply replace the column names of the treatment to those of the control.</p>
+<pre class="r"><code>&gt; colnames(control)</code></pre>
+<pre><code>[1] &quot;Julian.Date&quot;               &quot;TwentyOneThirtySevenWheat&quot;
+[3] &quot;CutterWheat&quot;               &quot;JaggerWheat&quot;              </code></pre>
+<pre class="r"><code>&gt; colnames(treatment) &lt;- colnames(control)
+&gt; treatment</code></pre>
+<pre><code># A tibble: 9 x 4
+  Julian.Date TwentyOneThirtySevenWheat CutterWheat JaggerWheat
+        &lt;int&gt;                     &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+1          97                      0.00        0.00        0.00
+2         104                      0.00        0.00        0.00
+3         111                      0.00        0.00        0.00
+4         118                      0.00        0.00        0.00
+5         125                      0.00        0.00        0.00
+6         132                      0.00        0.00        0.00
+7         139                      1.81        1.79        2.27
+8         146                      7.89        2.40        5.00
+9         154                     15.04        6.21       20.17</code></pre>
+<p>Now we can tidy our treatment data.</p>
+<pre class="r"><code>&gt; trt.tidy &lt;- gather(data = treatment, key = Cultivar, value = Severity, -Julian.Date)</code></pre>
+</div>
+<div id="step-3-combining-experiments" class="section level3">
+<h3>Step 3: combining experiments</h3>
+<p>We can combine the treatments by using the <em>dplyr</em> function <code>bind_rows()</code>, which takes any number of data frames and places them on top of one another. It takes an optional argument, <code>.id</code> (note the “.”) that specifies a separate column to create identifying the source data frame.</p>
+<pre class="r"><code>&gt; fungicide.tidy &lt;- bind_rows(control = con.tidy, fungicide = trt.tidy, .id = &quot;Experiment&quot;)
+&gt; fungicide.tidy</code></pre>
+<pre><code># A tibble: 54 x 4
+   Experiment Julian.Date                  Cultivar Severity
+        &lt;chr&gt;       &lt;int&gt;                     &lt;chr&gt;    &lt;dbl&gt;
+ 1    control          97 TwentyOneThirtySevenWheat     0.00
+ 2    control         104 TwentyOneThirtySevenWheat     0.00
+ 3    control         111 TwentyOneThirtySevenWheat     0.00
+ 4    control         118 TwentyOneThirtySevenWheat     0.00
+ 5    control         125 TwentyOneThirtySevenWheat     0.00
+ 6    control         132 TwentyOneThirtySevenWheat     0.00
+ 7    control         139 TwentyOneThirtySevenWheat     2.34
+ 8    control         146 TwentyOneThirtySevenWheat     7.56
+ 9    control         154 TwentyOneThirtySevenWheat    28.78
+10    control          97               CutterWheat     0.00
+# ... with 44 more rows</code></pre>
+<p>We’ve gone to the work to tidy up the data; let’s save it to our disk so that we can easily reuse it later.</p>
+<pre class="r"><code>&gt; write_csv(fungicide.tidy, path = &quot;data/FungicideTidy.csv&quot;)</code></pre>
+<p>We have our data in a tidy format so we can now use this to create a visualization using ggplot2.</p>
+</div>
+</div>
+<div id="visualizing-data" class="section level2">
+<h2>Visualizing Data</h2>
+<pre class="r"><code>&gt; stop(&quot;
++       What visualization might be appropriate for these data?
++       What should be on the axes?
++       Should we use lines, points, bars, boxplots, etc?
++     &quot;)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): 
+      What visualization might be appropriate for these data?
+      What should be on the axes?
+      Should we use lines, points, bars, boxplots, etc?
+    </code></pre>
+<p>If you haven’t taken the time to address the questions above, do so now.</p>
+<div id="what-is-ggplot2" class="section level3">
+<h3>What is ggplot2</h3>
+<p>The package <em>ggplot2</em> is built off of the “grammar of graphics” in which visualizations are build layer by layer, starting with the coordinate plane and then adding geometric elements like lines, dots, bars, etc, and assigning metadata to values like color or shape.</p>
+<p>The advantage of ggplot2 over R’s native plotting is that the plots are saved as R objects and can be modified by adding layers or even replacing data. This tutorial will begin to scratch the surface of how to use ggplot2, but to get a better idea of what is possible, you can browse the resources at <a href="http://ggplot2.tidyverse.org/#learning-ggplot2" class="uri">http://ggplot2.tidyverse.org/#learning-ggplot2</a> or examine the code of colleagues (e.g. Alejandro Rojas: <a href="https://github.com/alejorojas2/Rojas_Survey_Phytopath_2016" class="uri">https://github.com/alejorojas2/Rojas_Survey_Phytopath_2016</a>).</p>
+<p>It is important to note that, like everything else in the tidyverse, ggplot2 uses “bare” column names, meaning that you do not need to put quotation marks when specifying a column.</p>
+</div>
+</div>
+<div id="creating-our-plot" class="section level2">
+<h2>Creating our plot</h2>
+<blockquote>
+<p>Note: if you are reading this script after attending the workshop, the plot may look different due to the interactive nature of the workshop. This is indtended as an example.</p>
+</blockquote>
+<p>Before we begin, we should become familiar with two functions:</p>
+<ul>
+<li><code>ggplot()</code> this function creates a ggplot object from a data set.</li>
+<li><code>aes()</code> this function is a general way to specify what parts of the ggplot should be mapped to variables in your data.</li>
+</ul>
+<div id="creating-the-base-of-the-ggplot" class="section level3">
+<h3>Creating the base of the ggplot</h3>
+<p>To create our ggplot with nothing on it, we should specify two things:</p>
+<ol style="list-style-type: decimal">
+<li>The data set (fungicide.tidy)</li>
+<li>The mapping of the x and y coordinates (from the data set, using aes)</li>
+</ol>
+<pre class="r"><code>&gt; fungicide.plot &lt;- ggplot(data = fungicide.tidy, mapping = aes(x = Julian.Date, y = Severity))</code></pre>
+<p>If everything worked, you should see nothing. This is because ggplot2 returns an R object. This object contains the instructions for creating the visualization. When you print this object, the plot is created:</p>
+<pre class="r"><code>&gt; fungicide.plot</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Now you should see a plot with nothing on it where the x and y axes are labeled “Julian.Date” and “Severity”, respectively.</p>
+<p>To break down what the above function did, it first took in the data set <code>fungicide.tidy</code> and then mapped the x and y aesthetics to the Julian.Date and Severity columns. Effectively, this told ggplot how big our canvas needs to be in order to display our data, but currently, it doesn’t know HOW we want to display our data; we need to give it a specific geometry.</p>
+</div>
+<div id="adding-a-geometry-layer" class="section level3">
+<h3>Adding a geometry layer</h3>
+<p>All functions that add geometries to data start with <code>geom_</code>, so if we wanted the data to be displayed as a line showing the increase of severity over time, we would use <code>geom_line()</code>. If we wanted to show the data displayed as points, we can use <code>geom_point()</code>. We can also specify the color and shape of these geometries using <code>aes()</code>.</p>
+<p>To add a geometry or anything to a ggplot object, we can just use the <code>+</code> symbol. Here, we will add lines to the plot coloring them by Cultivar and differing the line type by Experiment</p>
+<blockquote>
+<p>Note: From here on out, I will be wrapping all commands with parentheses. This allows the result of the assignment to be displayed automatically.</p>
+</blockquote>
+<pre class="r"><code>&gt; (fungicide.plot &lt;- fungicide.plot + geom_line(mapping = aes(color = Cultivar, lty = Experiment)))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Now you can see that we not only have lines on our plot displaying the data, but we also have automatic legends. To highlight the time intervals, we can also add points to the plot by using <code>geom_point()</code>. Note that we don’t need to add any aesthetics to these since they are simply reenforcing the lines.</p>
+<pre class="r"><code>&gt; (fungicide.plot &lt;- fungicide.plot + geom_point())</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We now have a fully functional and informative plot using only three lines of code! Producing a visualization of your data can be an extremely useful tool for analysis because it can allow you to see if there are any strange patterns or spurious correlations in your variables.</p>
+</div>
+<div id="question" class="section level3">
+<h3>Question</h3>
+<p>Now we can address the questions from Sparks et al. (2008):</p>
+<ol style="list-style-type: decimal">
+<li>How does the size of the fungicide effect compare to the effect of resistance? Would it be the same as resistance?</li>
+<li>Since the fungicide typically is only active for two weeks after application, after looking at your graph, when do you think the fungicide was applied?</li>
+</ol>
+<p>Of course, this plot is not quite publication ready. For one thing, it’s a bit too crowded and would cost a small fortune to include a color figure in a journal. We need to add some customization.</p>
+</div>
+</div>
+<div id="preparing-a-publication-ready-plot" class="section level2">
+<h2>Preparing a publication-ready plot</h2>
+<p>In contrast to the above section, where layers are added to the plot, we are now manipulating the aesthetics of the plot in how the data and labels are displayed.</p>
+<p>First let’s deal with the fact that this plot is over-crowded. We can separate our data into different “facets” based on a given variable. For example, we can create three plots separated by cultivar by using the <code>facet_wrap()</code> function and giving a formula (which contains a ~):</p>
+<pre class="r"><code>&gt; (fungicide.plot &lt;- fungicide.plot + facet_wrap(~Cultivar))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>This is much clearer, but instead of having three panels side by side, we want them in a column. We can specify the number of columns by using <code>ncol</code>. Again, because we are manipulating how the plot is displayed and not adding layers, we can simply re-call this function</p>
+<pre class="r"><code>&gt; (fungicide.plot &lt;- fungicide.plot + facet_wrap(~Cultivar, ncol = 1))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="axis-labels" class="section level3">
+<h3>Axis labels</h3>
+<p>We also need to update the axis labels. This is easily done with <code>xlab()</code> and <code>ylab()</code>:</p>
+<pre class="r"><code>&gt; (fungicide.plot &lt;- fungicide.plot + xlab(&quot;Calendar Date (Julian)&quot;))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>&gt; (fungicide.plot &lt;- fungicide.plot + ylab(&quot;Disease Severity&quot;))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-22-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The labels are now okay, but it’s still not publication-ready. The font is too small, the background should have no gridlines and the axis text needs to be darker.</p>
+</div>
+<div id="adjusting-look-and-feel-theme" class="section level3">
+<h3>Adjusting Look and Feel (theme)</h3>
+<p>The first thing we can do is change the default theme from <code>theme_grey()</code> to <code>theme_bw()</code>. We will simultaneously set the base size of the font to be 16pt.</p>
+<pre class="r"><code>&gt; (fungicide.plot &lt;- fungicide.plot + theme_bw(base_size = 16))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>There are many different default themes available for ggplot2 objects that change many aspects of the look and feel. The <em>ggthemes</em> contains many popular themes such as fivethirtyeight and economist. Of course, as it is, the plot is still not ready for publication. For one, the legend is taking up to much horizontal realestate and the size of the plot is cutting off TwentyOneThirtySevenWheat.</p>
+<p>To adjust granular aspects of the theme, we can use the <code>theme()</code> function, which contains a whopping 71 different options all related to the layout of the non-data aspects of the plot.</p>
+<pre class="r"><code>&gt; stop(&quot;
++       Look at ?theme and figure out one of the following:
++       1. change the aspect ratio of the panels
++       2. remove the background grid in the panels
++       3. change the placement of the legend
++       4. change the orientation of the legend
++       &quot;)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): 
+      Look at ?theme and figure out one of the following:
+      1. change the aspect ratio of the panels
+      2. remove the background grid in the panels
+      3. change the placement of the legend
+      4. change the orientation of the legend
+      </code></pre>
+<p>When we inspect the help page of the <code>theme()</code> function, we can find out how to adjust several parameters to make out plot look acceptable:</p>
+<pre class="r"><code>&gt; (fungicide.plot &lt;- fungicide.plot + theme(aspect.ratio = 1/3))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>&gt; (fungicide.plot &lt;- fungicide.plot + theme(legend.position = &quot;bottom&quot;))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-25-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>&gt; (fungicide.plot &lt;- fungicide.plot + theme(legend.direction = &quot;vertical&quot;))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-25-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>&gt; (fungicide.plot &lt;- fungicide.plot + theme(panel.grid = element_blank()))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-25-4.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="putting-it-all-together" class="section level3">
+<h3>Putting it all together</h3>
+<p>Because we can add information to a plot with the <code>+</code> symbol, we can add all of the elements in one go. Let’s combine what we have above, but removing the points and the color of the lines since these are redundant.</p>
+<pre class="r"><code>&gt; fungicide.plot &lt;- ggplot(fungicide.tidy, aes(x = Julian.Date, y = Severity)) +
++   geom_line(aes(lty = Experiment), size = 1) +
++   facet_wrap(~Cultivar, ncol = 1) +
++   theme_bw(base_size = 16) +
++   theme(aspect.ratio = 1/3) +
++   theme(legend.position = &quot;bottom&quot;) +
++   theme(legend.direction = &quot;vertical&quot;) +
++   theme(panel.grid = element_blank()) +
++   xlab(&quot;Calendar Date (Julian)&quot;) +
++   ylab(&quot;Disease Severity&quot;)
+&gt; fungicide.plot</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="saving-your-plot" class="section level3">
+<h3>Saving your plot</h3>
+<p>Now that we have our plot finished, we can save it with the <code>ggsave()</code> function, which allows us to save it as a pdf, png, svg, eps, etc. file.</p>
+<pre class="r"><code>&gt; ggsave(filename = &quot;results/figure1.pdf&quot;, width = 88, units = &quot;mm&quot;)</code></pre>
+<pre><code>Saving 88 x 178 mm image</code></pre>
+</div>
+</div>
+</div>
+
+<br>
+<center>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+</center>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

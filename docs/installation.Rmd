@@ -1,0 +1,89 @@
+---
+title: "Before The Workshop"
+---
+
+Workshop Outcomes
+-----------------
+
+In this workshop, we expect to present enough information to get you started on 
+your way to learning R. Because this is a three hour workshop, our goal is to 
+demonstrate a simple analysis in R, emphasizing problem solving and 
+troubleshooting. By the end of the workshop you should have just enough
+background to be able to learn more.
+
+Required Materials
+------------------
+
+Again, because this is a three hour workshop, we ask that you come prepared with
+a laptop that has the most recent versions of [R] and [RStudio] installed, and
+our [workshop materials] downloaded to your Desktop. **We cannot provide service
+for installation the day of the workshop. Those who are not prepared for the 
+workshop may be asked to give up their seat to those on the waitlist**.
+
+### Installation
+
+Even if you already have [R] installed on your system, you really should make
+sure its up to date. This ensures that there are no problems due to outdated
+software. For more details about installing [R], [RStudio], and keeping
+everything up to date, UBC's [STAT545] page is an excellent resource.
+
+ - [R]
+ - [RStudio]
+ - [Workshop Materials] (zip file; unzip to Desktop)
+ - (Once you've installed R) packages "[tidyverse]" and "[agricolae]"
+
+### Verification
+
+Once you have installed [R], we should verify that you have the correct version.
+
+ 1. Open R (or RStudio) on your computer
+ 2. Enter the following in the R console after the `>`    
+        
+        R.version.string == "R version 3.4.0 (2017-04-21)"
+        
+ 3. Make sure the result is **`[1] TRUE`**    
+    (If the result is `[1] FALSE`, please quit R and try the installation again)
+ 
+ 
+### Workshop Materials
+
+Our [workshop materials] is a zip file that contains a folder called 
+`IntroR-master/` with the folowing structure:
+
+```
+.
+├── IntroR.Rproj
+├── LICENSE
+├── Makefile
+├── Part1-Introduction.R
+├── Part2-Analysis.R
+├── Part3-Visualization.R
+├── README.md
+├── data/
+│   ├── FungicideExample.csv
+│   └── README.md
+└── docs/
+    └── ...
+```
+
+We are providing the R scripts for the workshop. We will be live-coding these
+scripts, and **we encourage you to follow along by creating your own R scripts**
+so that you can get comfortable typing these commands. For those who feel the
+pace is too fast, or are unable to type the commands, feel free to execute the
+code in these scripts to follow along.
+
+### Installing Packages
+
+To install [tidyverse] and [agricolae] to your system, open R and type:
+
+```{r, eval = FALSE}
+install.packages(c("tidyverse", "agricolae"), repos = "https://cran.rstudio.com")
+```
+
+
+[stat545]: http://stat545.com/block000_r-rstudio-install.html
+[R]: https://cloud.r-project.org/
+[RStudio]: https://www.rstudio.com/products/rstudio/download/
+[Workshop Materials]: https://github.com/everhartlab/IntroR/archive/master.zip
+[agricolae]: http://tarwi.lamolina.edu.pe/~fmendiburu/
+[tidyverse]: http://tidyverse.org/
