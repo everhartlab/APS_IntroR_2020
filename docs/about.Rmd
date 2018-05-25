@@ -4,4 +4,4 @@ title: "About This Website"
 
 This website was built using R and Rmarkdown.
 
-Github: https://github.com/everhartlab/IntroR
+Github: https://github.com/everhartlab/IntroR_Workshop
