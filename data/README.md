@@ -1,0 +1,43 @@
+# Fungicide Example
+
+These data were downloaded from http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Documents/FungicideExample.csv
+on 2017-05-08 16:21:06 CDT.
+
+## Background
+
+This [data set] is part of a suggested excercise from the APS Education Center
+[Disease Progress Over Time] case study on [stripe rust] (Sparks et al, 2008)
+
+## Description
+
+Quoted directly from [Sparks et al, 2008][Disease Progress Over Time]:
+
+> The effects of disease resistance and fungicide applications on wheat leaf
+> rust disease progress can be evaluated using the AUDPC. Typically resistance is
+> the best way to control foliar diseases in wheat such as stripe rust and leaf
+> rust (caused by Puccinia triticina). The following example, based on field data
+> from Kansas (Sparks and Stack, unpublished), illustrates the difference in
+> disease severity for a variety susceptible to leaf rust, Jagger, and the
+> resistant cultivars 2137 and Cutter. The last sample date was June 3, after
+> which the plants were senescing. Using the methods from previous examples,
+> create a way to compare disease levels on the three varieties of wheat.
+>
+> Timing is critical if a fungicide application is used to control wheat leaf
+> rust. Typically the assumption can be made that the fungicide will be effective
+> for only two weeks after application, preventing new infections during that
+> time. Label restrictions prohibit the application of a fungicide after flowering
+> has occurred. The critical protection period for wheat is the two weeks after
+> flowering when the head is filling. Loss of photosynthetic area at this time
+> will result in the greatest yield losses. Once this two week period has passed,
+> losses to any new infections are much less severe.
+
+# References
+
+Sparks, A.H., P.D. Esker, M. Bates, W. Dall' Acqua, Z. Guo, V. Segovia, S.D.
+Silwal, S. Tolos, and K.A. Garrett, 2008. Ecology and Epidemiology in R: Disease
+Progress over Time. The Plant Health Instructor. 
+[DOI:10.1094/PHI-A-2008-0129-02][Disease Progress Over Time].
+
+[data set]: https://github.com/everhartlab/IntroR/blob/master/data/FungicideExample.csv
+[Disease Progress Over Time]: http://dx.doi.org/10.1094/PHI-A-2008-0129-02
+[stripe rust]: http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/AUDPC.aspx "Using the area under the disease progress curve to compare disease severity"
