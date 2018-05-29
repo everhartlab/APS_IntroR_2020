@@ -86,54 +86,61 @@ str(fungicide)
 # Part III: Finding the right tool for the job
 # --------------------------------------------
 # 
-# The dummy data presented here consist of disease severity measured on two  
-# cultivars (S-susceptible and R-resistant) treated with two fungicides separately  
-# and in combination. With these data, we want to answer the following questions:
+# The dummy data presented here consist of disease severity and yield measured on 
+# a corn culitvar treated with a new fungicide. This trial was conducted to measure
+# the efficacy of the fungicide against two different fungi (A and B). The experiment   
+# was laid out as a Completely Randomized Design. With these data, we want to answer 
+# the following questions:
 # 
-#  1. How does the size of the fungicide effect compare to the effect of
-#     cultivar? 
-#  2. Which is the most effective fungicide treatment?
+#  1. Is the fungicide effective against both the fungi? 
+#  2. Which fungus is more destructive when untreated?
 # 
-#
+# We want to use the function `aov` for doing ANOVA.
+?aov
+
 # One Way Anova (Completely Randomized Design)
-fit_1 <- aov(formula=Severity ~ Treatment, data=fungicide)
+fit_dat <- aov(formula=Severity ~ Treatment, data=fungicide)
 summary(fit_1)
 
-# Randomized Block Design (B is the blocking factor) 
-# fit_2 <- aov(Severity ~ Treatment + Cultivar, data=fungicide)
-# summary(fit_2)
-
+# Since two fungi are being tested, ANOVA should be performed separately for the two
+# data. For that, we first have to create separate data frames for data associated
+# with the two fungi. We learned basic data manipulation in Part 1. Here, we will 
+# introduce advanced data manipulation.
 
 library("dplyr")
 
 #filter
-Boston_dat <- fungicide %>% 
-  filter(City == "Boston")
+fungusA_dat <- fungicide %>% 
+  filter(Fungus == "A")
 
-Chicago_dat <- fungicide %>% 
-  filter(City == "Chicago")
+fungusB_dat <- fungicide %>% 
+  filter(Fungus == "B")
 
-fit_2 <- aov(formula=Severity ~ Treatment, data=Boston_dat)
-summary(fit_2)
+fit_fungusA_dat <- aov(formula=Severity ~ Treatment, data=fungusA_dat)
+summary(fit_2) # not effective
 
-fit_3 <- aov(formula=Severity ~ Treatment, data=Chicago_dat)
-summary(fit_3)
+fit_fungusB_dat <- aov(formula=Severity ~ Treatment, data=fungusB_dat)
+summary(fit_3) # effective
 
-#group_by, mutate, summarise
-trial_dat <- fungicide %>% 
-  group_by(Treatment) %>% 
-  mutate(Mean = mean(Severity))
+#group_by, summarise
+effect_fungus <- fungicide %>% 
+  filter(Treatment != "Fungicide") %>% 
+  group_by(Fungus) %>% 
+  summarise(Mean_Severity = mean(Severity), Mean_Yield = mean(Yield_bu_per_acre))
 
-trial_dat_2 <- fungicide %>% 
-  group_by(Treatment, City) %>% 
-  mutate(Mean = mean(Severity))
+# Suppose this data is sent to somebody in Japan and they want to analyze yield data
+# but want to convert it to kg/ha from bu/acre. How should they proceed?
 
-trial_dat_3 <- fungicide %>% 
-  group_by(Treatment, City) %>% 
-  summarise(Mean = mean(Severity))
-
+# select, mutate
 yield_dat <- fungicide %>% 
-  select(Treatment, Rep, City, Yield_bu_per_acre) %>% 
-  mutate(Yield_kg_per_ha = Yield_bu_per_acre*62.77)
+  select(Treatment, Rep, Fungus, Yield_bu_per_acre) %>% 
+  mutate(Yield_kg_per_ha = Yield_bu_per_acre*62.77) %>% 
+  select(Treatment, Rep, Fungus, Yield_kg_per_ha)
 
+# If we wanted to use these data as a table in a paper, we should export it to a
+# csv file. We do this using the function `write.table()`
 
+dir.create("results")
+write.table(yield_dat, file = "results/yield_data.csv", sep = ",", 
+            col.names = NA,
+            row.names = TRUE)
