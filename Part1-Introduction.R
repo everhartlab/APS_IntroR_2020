@@ -6,9 +6,10 @@
 #  [[  How does R understand data?  ]]
 # 
 #  1. How to use this script and R
-#  2. Creating objects
+#  2. Creating objects and using logicals
 #  3. Sequences and vectors (1-D)
-#  4. Data frames
+#  4. Data frames, basic data manipulation (subsetting, renaming, joining), 
+#     and finding help for functions
 #  
 # Part 1: How to use this R script
 # -------------------------------
@@ -76,9 +77,9 @@ pi^2   # this does the same thing because ^ is, here, interpreted as "taken to t
 # in order to create them. R interprets the less than symbol and dash as
 # "assign".  So we need to do the following:
 
-a <- 5   # assign the number 5 to a
-b <- 1   # assign number 1 to b
-c <- 3   # assign 3 to c
+a <- 5  # assign the number 5 to a
+b <- 1  # assign number 1 to b
+c = 3   # we can also use `=` to assign 3 to c
 
 # As you are assigning these numbers to objects, they appear in your environment
 # (top right).  These objects are not being saved to a hard drive, they are
@@ -111,6 +112,31 @@ answer
 # What would you get if you multiplied answer by 2?
 
 answer*2
+
+# We can also use logical operations in R.  The answer to a logical question is
+# always TRUE or FALSE.
+
+a > b # Is `a` greater than `b`? # You can look at the Values on your right to
+      # check the answer.
+b > 10 # Is `b` greater than 10?
+b + c > a # Is `b + c` greater than `a`? R will first evaluate the algebraic
+          # operation (`+`) and then evaluate the logical operation (`>`).
+          # So, we don't need to use `(b+c) > a`
+a = 7 
+
+# Oops! We did not get any answer. What went wrong? Let's print `a`.
+
+a
+
+# `a = 7` changed the value of `a` to '7'.  So, how do we find if `a` is
+# equal to '7'?
+
+a == 7 # We need to put two '=' signs to check equality.
+
+a != 7 # Is `a` not equal to '7'?
+
+a & b > c # Are both `a` and `b` greater than c?
+a | b > c # Is either `a` or `b` greater than c?
 
 # The examples above dealt with numeric values assigned to objects.  We can also
 # store character data in objects.  We need to place the character data (words,  
@@ -295,7 +321,7 @@ length(day)
 length(month)
 length(year)
 
-# Part 4: Data frames
+# Part 4: Data frames, basic data manipulation, and finding help for functions
 # --------------------
 # 
 # Remember that our goal here is to create a table with the columns "month",
@@ -357,8 +383,7 @@ June$year
 
 head(June)  # if this didn't work, double-check that you spelled the object name correctly
 
-# Now that we have our table, the question becomes, how the heck do we inspect
-# different elements?
+# Now that we have our table, the question becomes, how do we inspect different elements?
 # 
 # Just like we can inspect the 27th element in the `day` vector using `day[27]`,
 # we can also use the brackets to subset a table, the only catch is that we have
@@ -369,6 +394,8 @@ head(June)  # if this didn't work, double-check that you spelled the object name
 June[27, 1] # day
 June[27, "month"] # you can use characters when the elements are named!
 June[27, 3] # year
+June[27, -3] # here `-` means all columns except the third (year)
+June[27, -2] # day and year
 
 # If we don't specify a dimension, R will give us the entire contents of that
 # dimension. Let's look at the row that contains today's date:
@@ -441,13 +468,13 @@ head(summer)
 tail(summer)
 
 # We now have a new object summer that contains only numeric data. Let's revise
-# this object so that it uses names for the month instead of numbers and so that
-# we know what day of the week it is. We want it to look like this:
+# this object so that it uses names for the month instead of numbers.  We want
+# it to look like this:
 # ```
-#   day   month   year  wkday
-#   1     "June"   2018  "Mon"
-#   2     "June"   2018  "Tues"
-#   3     "June"   2018  "Wed"
+#   day   month   year  
+#   1     "June"   2018  
+#   2     "June"   2018  
+#   3     "June"   2018
 #   ...
 # ```
 # 
@@ -470,10 +497,17 @@ summer[-c(1:31), "month"] # July
 # We can use the `ifelse()` function to replace the values in our column.  How 
 # do we use this function?  A good first step to figuring out how you can use a 
 # function is to look at its help page.  The way you can do that is by typing  
-# either `help("function_name")` or `?function_name`.  Let's type `?ifelse` to 
-# find out.
+# either `help("function_name")` or `?function_name`.  
 
-?ifelse
+stop("
+
+     Type ?ifelse and answer these three questions:
+     
+     1. What does it do? (Description)
+     2. What are the first three arguments and their defaults? (Usage/Arguments)
+     3. What does it return? (Value)
+     
+     ")
 
 # This function produces a new vector based on a condition specified for another
 # vector.  If the month is 6, then it's June, otherwise, we call it July:
@@ -484,9 +518,19 @@ summer$month <- ifelse(summer$month == 6, yes = "June", no = "July")
 # > Notice that we had to use `==` to indicate equality. This is so that R 
 # > doesn't get confused and assume we are using the argument assignment, `=`.
 # 
-# Let's inspect summer now. 
+# Now, let's inspect summer. 
 
 str(summer)
 head(summer)
-class(summer)
+
+# Let's change first letter of every column name to uppercase i.e., replace  
+# "day" with "Day" and so on.  We can do this using `colnames()` function.
+
+colnames(summer) # Current column names
+
+colnames(summer) <- c("Day", "Month", "Year") # New column names
+
+# Let's inspect summer again. 
+str(summer)
+head(summer)
 

@@ -14,12 +14,11 @@
 # Of course, we haven't used one of R's most powerful assets: graphics. This 
 # section is dedicated to creating a plot from the data. While R has very
 # powerful default plotting functions, we will be using the "ggplot2" package
-# for three reasons:
+# for two reasons:
 # 
 #  1. It relies on a consistent "grammar of graphics" that gives a clear
 #     relationship between the data and the visualization 
 #  2. It requires consistently "tidy" data, with one row per observaion 
-#  3. It's quite popular with the kids nowadays
 # 
 # We will additionally include a supplementary file for creating plots in the
 # default plotting system for those who are curious.
@@ -29,9 +28,8 @@
 # 
 # After this section, you should have the tools to:
 # 
-#  1. create a simple plot in ggplot2
-#  2. reshape data (aka pivot and unpivot)
-#  3. save plots
+#  1. Create a simple plot in ggplot2
+#  2. Save plots
 # 
 # Again, since this is a four hour workshop, we do not expect mastery, but this
 # at least should give you a starting point. With that in mind, let's get 
@@ -124,7 +122,7 @@ stop("
 # 
 # 
 # 
-# Creating our plot
+# Part 1: Creating our plot
 # -----------------
 # 
 # > Note: if you are reading this script after attending the workshop, the plot
@@ -311,7 +309,7 @@ fungicide.plot
 # 
 # 
 # 
-# ### Saving your plot
+# Part 2: Saving your plot
 # 
 # Now that we have our plot finished, we can save it with the `ggsave()`
 # function, which allows us to save it as a pdf, png, svg, eps, etc. file. 

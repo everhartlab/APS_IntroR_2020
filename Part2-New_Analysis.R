@@ -6,11 +6,11 @@
 # 
 #  1. Working directories
 #  2. Reading in data
-#  3. Finding help
-#  4. Basic data manipulation (renaming, subsetting, rotating)
+#  3. Using an appropriate function to analyze data
+#  4. Advanced data manipulation (filter, select, group_by, mutate)
 #  
 #  
-# Part I: Working Directories
+# Part 1: Working Directories
 # ---------------------------
 # 
 # A working directory is the folder on your computer where you are currently
@@ -36,7 +36,7 @@ list.files(".")
 
 list.files("data")
 
-# Part II: Reading in Data
+# Part 2: Reading in Data
 # ------------------------
 # 
 # 
@@ -47,20 +47,11 @@ list.files("data")
 # 
 # So, how do we actually USE the `read.table()` function? 
 
-stop("
-     
-     Type ?read.table and answer these three questions:
-     
-     1. What does it do? (Description)
-     2. What are the first three arguments and their defaults? (Usage/Arguments)
-     3. What does it return? (Value)
-     
-     ")
-
+?read.table
 
 # In order to read our data into R, we will need to provide three things:
 # 
-#  1. The path to the data set                 : data/FungicideExample.csv
+#  1. The path to the data set                 : data/fungicide_dat.csv
 #  2. If the first row are column names        : yes
 #  3. The separator for each cell in the data  : comma
 # 
@@ -83,7 +74,7 @@ fungicide
 str(fungicide)
 
 
-# Part III: Finding the right tool for the job
+# Part 3: Finding the right tool for the job
 # --------------------------------------------
 # 
 # The dummy data presented here consist of disease severity and yield measured on 
@@ -107,6 +98,8 @@ summary(fit_1)
 # with the two fungi. We learned basic data manipulation in Part 1. Here, we will 
 # introduce advanced data manipulation.
 
+# Part 4: Advanced data manipulation (filter, select, group_by, mutate)
+
 library("dplyr")
 
 #filter
@@ -122,6 +115,7 @@ summary(fit_2) # not effective
 fit_fungusB_dat <- aov(formula=Severity ~ Treatment, data=fungusB_dat)
 summary(fit_3) # effective
 
+#describe how logical work.. in ppt
 #group_by, summarise
 effect_fungus <- fungicide %>% 
   filter(Treatment != "Fungicide") %>% 
