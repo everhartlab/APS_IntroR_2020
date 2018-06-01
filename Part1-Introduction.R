@@ -9,10 +9,10 @@
 #  2. Creating objects and using logicals
 #  3. Sequences and vectors (1-D)
 #  4. Data frames, basic data manipulation (subsetting, renaming, joining), 
-#     and finding help for functions
+#     and finding help for using functions
 #  
 # Part 1: How to use this R script
-# -------------------------------
+# ---------------------------------
 # 
 # A script is a text document that contains instructions and commands The # 
 # symbol is used to leave comments, which R will not try to interpret as a 
@@ -64,8 +64,8 @@ pi*pi
 pi^2   # this does the same thing because ^ is, here, interpreted as "taken to the exponent"
 
 # 
-# Part 2: Creating objects 
-# -------------------------
+# Part 2: Creating objects and using logicals
+# --------------------------------------------
 # 
 # Objects are like shortcuts.  They are a way to store data without having to 
 # re-type them.  By virtue, objects are only created once something has been 
@@ -116,10 +116,10 @@ answer*2
 # We can also use logical operations in R.  The answer to a logical question is
 # always TRUE or FALSE.
 
-a > b # Is `a` greater than `b`? # You can look at the Values on your right to
+a > b # Is `a` greater than `b`?  You can look at the Values on your right to
       # check the answer.
 b > 10 # Is `b` greater than 10?
-b + c > a # Is `b + c` greater than `a`? R will first evaluate the algebraic
+b + c > a # Is `b + c` greater than `a`?  R will first evaluate the algebraic
           # operation (`+`) and then evaluate the logical operation (`>`).
           # So, we don't need to use `(b+c) > a`
 a = 7 
@@ -321,8 +321,8 @@ length(day)
 length(month)
 length(year)
 
-# Part 4: Data frames, basic data manipulation, and finding help for functions
-# --------------------
+# Part 4: Data frames, basic data manipulation, and finding help for using functions
+# -----------------------------------------------------------------------------------
 # 
 # Remember that our goal here is to create a table with the columns "month",
 # "day", and "year". First, here's a quick reminder of what we want this to
@@ -499,18 +499,11 @@ summer[-c(1:31), "month"] # July
 # function is to look at its help page.  The way you can do that is by typing  
 # either `help("function_name")` or `?function_name`.  
 
-stop("
-
-     Type ?ifelse and answer these three questions:
-     
-     1. What does it do? (Description)
-     2. What are the first three arguments and their defaults? (Usage/Arguments)
-     3. What does it return? (Value)
-     
-     ")
+?ifelse
 
 # This function produces a new vector based on a condition specified for another
-# vector.  If the month is 6, then it's June, otherwise, we call it July:
+# vector.  If the month is 6, we want it to be replaced with June, otherwise, we 
+# it should be replaced with July:
 
 ifelse(summer$month == 6, yes = "June", no = "July")
 summer$month <- ifelse(summer$month == 6, yes = "June", no = "July")

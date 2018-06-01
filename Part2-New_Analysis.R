@@ -6,8 +6,8 @@
 # 
 #  1. Working directories
 #  2. Reading in data
-#  3. Using an appropriate function to analyze data
-#  4. Advanced data manipulation (filter, select, group_by, mutate)
+#  3. Advanced data manipulation (filter, select, group_by, mutate)
+#  4. Finding the right tool for the job
 #  
 #  
 # Part 1: Working Directories
@@ -73,68 +73,148 @@ fungicide
 
 str(fungicide)
 
+# The dummy data presented here consists of yield (measured in bu/acre) and disease
+# severity (measured on a scale of 1 to 10) of a corn culitvar treated with two
+# fungicides. This trial was conducted to measure the efficacy of the two fungicides 
+# to manage disease. The experiment was laid out as a Completely Randomized Design. 
 
-# Part 3: Finding the right tool for the job
-# --------------------------------------------
-# 
-# The dummy data presented here consist of disease severity and yield measured on 
-# a corn culitvar treated with a new fungicide. This trial was conducted to measure
-# the efficacy of the fungicide against two different fungi (A and B). The experiment   
-# was laid out as a Completely Randomized Design. With these data, we want to answer 
-# the following questions:
-# 
-#  1. Is the fungicide effective against both the fungi? 
-#  2. Which fungus is more destructive when untreated?
-# 
-# We want to use the function `aov` for doing ANOVA.
-?aov
+# Part 3: Advanced data manipulation (filter, select, group_by, mutate)
+# ----------------------------------------------------------------------
+# The package 'dplyr' provides functions for easy and advanced data manipulation.
+# If we want to use it, we can download the package to our computer with the 
+# function `install.packages()`. This will install a package from CRAN and place
+# it into your R *Library*.
 
-# One Way Anova (Completely Randomized Design)
-fit_dat <- aov(formula=Severity ~ Treatment, data=fungicide)
-summary(fit_1)
+install.packages("dplyr")
 
-# Since two fungi are being tested, ANOVA should be performed separately for the two
-# data. For that, we first have to create separate data frames for data associated
-# with the two fungi. We learned basic data manipulation in Part 1. Here, we will 
-# introduce advanced data manipulation.
-
-# Part 4: Advanced data manipulation (filter, select, group_by, mutate)
+# To load this package, we can use the function `library()`.
 
 library("dplyr")
 
-#filter
-fungusA_dat <- fungicide %>% 
-  filter(Fungus == "A")
+# So, how can we convert yield data from bu/acre to kg/ha ?
+#
+# We can do it similar to what we did in Part 1.
 
-fungusB_dat <- fungicide %>% 
-  filter(Fungus == "B")
+# fungicide$Yield_kg_per_ha <- fungicide$Yield_bu_per_acre*62.77
 
-fit_fungusA_dat <- aov(formula=Severity ~ Treatment, data=fungusA_dat)
-summary(fit_2) # not effective
+# We can also use the function `mutate()` from 'dplyr'. This adds a new variable 
+# using the existing variables. The usage of this function is as: 
+# mutate(data, new_variable_name = calculation_based_upon_existing_variables)
 
-fit_fungusB_dat <- aov(formula=Severity ~ Treatment, data=fungusB_dat)
-summary(fit_3) # effective
+fungicide <- mutate(fungicide, Yield_kg_per_ha = Yield_bu_per_acre*62.77)
+fungicide
 
-#describe how logical work.. in ppt
-#group_by, summarise
-effect_fungus <- fungicide %>% 
-  filter(Treatment != "Fungicide") %>% 
-  group_by(Fungus) %>% 
-  summarise(Mean_Severity = mean(Severity), Mean_Yield = mean(Yield_bu_per_acre))
+# Notice that we did not have to use fungicide$Yield_bu_per_acre. 
 
-# Suppose this data is sent to somebody in Japan and they want to analyze yield data
-# but want to convert it to kg/ha from bu/acre. How should they proceed?
+# If we want to create a new data frame with selected columns from this data, 
+# we can use the function `select()` that picks variables based on their names.
+fungicide_yield <- select(fungicide, Treatment, Yield_kg_per_ha)
+fungicide_yield
 
-# select, mutate
-yield_dat <- fungicide %>% 
-  select(Treatment, Rep, Fungus, Yield_bu_per_acre) %>% 
-  mutate(Yield_kg_per_ha = Yield_bu_per_acre*62.77) %>% 
-  select(Treatment, Rep, Fungus, Yield_kg_per_ha)
+# If we want to filter a data frame based upon specific values of a variable,
+# we can use the function `filter()`.
+filter(fungicide, Treatment == "Fungicide_A")
+
+fungicide <- filter(fungicide, Treatment == "Control" | Treatment == "Fungicide_A")
+fungicide
+
+# It can also be written as
+filter(fungicide, Treatment != "Fungicide_B")
+
+# If we want to summarise multiple values to a single value, for example, mean,
+# we can use the function `summarise()`.
+summarise(fungicide, Mean_yield = mean(Yield_kg_per_ha))
+
+# In the above example, we just got one mean even though we had three different 
+# groups (Control, Fungicide_A, Fungicide_B). To perform any operation by group, 
+# we can use the function `group_by()`.
+
+fungicide_grp <- group_by(fungicide, Treatment)
+fungicide_grp
+#
+#
+fungicide_grp_mean <- summarise(fungicide_grp, Mean_yield = mean(Yield_kg_per_ha))
+fungicide_grp_mean
+
+# Instead of creating different objects everytime, we may perform multiple functions
+# at once to create one final object. We use the pipe operator, %>% , for this purpose.
+# The left hand side of %>% acts as the input on which one function is performed and
+# the right hand side of %>% is where we can write a subsequent function to be performed.
+
+# Let's first restore our original data file.
+
+fungicide <- read.csv("data/fungicide_dat.csv", header = TRUE, sep = ",")
+
+yield_summary <- fungicide %>% 
+  mutate(Yield_kg_per_ha = Yield_bu_per_acre*62.77) %>%  
+  select(Treatment, Yield_kg_per_ha) %>% 
+  group_by(Treatment) %>% 
+  summarise(Mean_yield = mean(Yield_kg_per_ha))
+
+yield_summary
+
+# Let's make a new data frame for severity where severity is measured in percent and
+# not on a scale of 1 to 10.
+
+severity_dat <- fungicide %>% 
+  mutate(Percent_Severity = Severity/10*100) %>% 
+  select(Treatment, Percent_Severity)
+
+severity_dat
 
 # If we wanted to use these data as a table in a paper, we should export it to a
 # csv file. We do this using the function `write.table()`
 
 dir.create("results")
-write.table(yield_dat, file = "results/yield_data.csv", sep = ",", 
+write.table(severity_dat, file = "results/severity_dat.csv", sep = ",", 
             col.names = NA,
             row.names = TRUE)
+
+# Part 4: Finding the right tool for the job
+# -------------------------------------------
+# 
+# The dummy data presented here consists of yield (measured in bu/acre) and disease
+# severity (measured on a scale of 1 to 10) of a corn culitvar treated with two
+# fungicides. This trial was conducted to measure the efficacy of the two fungicides 
+# to manage disease. The experiment was laid out as a Completely Randomized Design.
+# With these data, we want to find which fungicide is effective? We can find this by
+# doing ANOVA for yield and severity data. The alpha level to be used is 0.05.
+# 
+# If you do an internet search for ANOVA in R, you will find that function `aov` is 
+# appropriate for this. How do we use `aov`?
+
+?aov
+
+# This function takes in a formula to be tested. So if we want to find the response
+# of `Yield_bu_per_acre` (dependent variable) with respect to `Treatment` (independent 
+# variable), the formula should be written as 'Yield_bu_per_acre ~ Treatment'. The
+# function also takes in a data frame in which these variables are present. Other
+# arguments are optional.
+
+# Let's use this function
+aov(formula=Yield_bu_per_acre ~ Treatment, data=fungicide) 
+
+# As mentioned in the 'Description', `aov` fits an ANOVA model to an experimental design.
+# Let's check the 'Value' section of the help page so we know how to find the result.
+
+# Create an object of class `aov`
+fit_yield <- aov(formula=Yield_bu_per_acre ~ Treatment, data=fungicide) 
+
+# Use `summary` method to find the 'Value'. 
+summary(fit_yield)
+
+# 'Pr(>F)' is the associated p-value. As the p-value is less than 0.05, we can say that
+# the null hypothesis is rejected. So, at least one of the treatments is different.
+
+# Now that we know that differences exist between our treatments, how can we find which
+# treatments are different? We can do this by using Tukey's post-hoc test using the 
+# function `TukeyHSD`.
+
+TukeyHSD(fit_yield) # There is no difference between 'Fungicide_A' and 'Control' as the
+                    # p-value is 0.978 (>0.05)
+
+# Let's do similar analysis using the Severity data
+
+fit_severity <- aov(formula=Severity ~ Treatment, data=fungicide)
+summary(fit_severity)
+TukeyHSD(fit_severity) 

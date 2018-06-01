@@ -50,6 +50,8 @@
 # 
 # We will be using the *ggplot2* and *tidyr* packages 
 
+install.packages("tidyverse")
+
 library("tidyverse")
 
 # 
@@ -84,8 +86,8 @@ is.data.frame(fungicide)
 #  3. your future self will tank you
 # 
 # In order to use our data with ggplot2, we need to make sure it is in a "tidy"
-# form where we have one observation per row. We already have one observation
-# per row. 
+# form or long form where we have one observation per row. We already have one 
+# observation per row. 
 #
 # Visualizing Data
 # ----------------
@@ -141,10 +143,10 @@ stop("
 # 
 # To create our ggplot with nothing on it, we should specify two things:
 # 
-#  1. The data set (fungicide.tidy)
+#  1. The data set (fungicide)
 #  2. The mapping of the x and y coordinates (from the data set, using aes)
 
-fungicide.plot <- ggplot(data = fungicide, mapping = aes(x = Treatment, y = Severity, fill = Fungus))
+fungicide.plot <- ggplot(data = fungicide, mapping = aes(x = Treatment, y = Severity))
 
 # If everything worked, you should see nothing. This is because ggplot2 returns
 # an R object. This object contains the instructions for creating the
@@ -180,11 +182,10 @@ fungicide.plot
 
 (fungicide.plot <- fungicide.plot + geom_boxplot())
 
-# Now you can see that we have a boxplot displaying the data,
-# but we also have automatic legends. To give a title to our plot, we can
-# use `ggtitle()`. 
+# Now you can see that we have a boxplot displaying the data, To give a title to
+# our plot, we can use `ggtitle()`. 
 
-(fungicide.plot <- fungicide.plot + ggtitle("Boxplot of disease severity under two treatments"))
+(fungicide.plot <- fungicide.plot + ggtitle("Disease Severity with and without fungicide applications"))
 
 # We now have a fully functional and informative plot using only three lines of
 # code! Producing a visualization of your data can be an extremely useful tool
@@ -213,28 +214,6 @@ fungicide.plot
 # In contrast to the above section, where layers are added to the plot, we are
 # now manipulating the aesthetics of the plot in how the data and labels are
 # displayed.
-# 
-# What if we don't want to color it? We can separate
-# our data into different "facets" based on a given variable. For example, we 
-# can create three plots separated by cultivar by using the `facet_wrap()` 
-# function and giving a formula (which contains a ~):
-
-fungicide.plot <- ggplot(data = fungicide, mapping = aes(x = Treatment, y = Severity)) +
-  geom_boxplot() +
-  ggtitle("Boxplot of disease severity under two treatments") +
-  facet_wrap(~Fungus)
-
-fungicide.plot
-
-# Instead of having three panels side by side, we want
-# them in a column. We can specify the number of columns by using `ncol`. Again,
-# because we are manipulating how the plot is displayed and not adding layers,
-# we can simply re-call this function
-
-(fungicide.plot <- fungicide.plot + facet_wrap(~Fungus, ncol = 1))
-
-# 
-# 
 # 
 # ### Axis labels 
 # 
@@ -295,8 +274,7 @@ stop("
 
 fungicide.plot <- ggplot(fungicide, aes(x = Treatment, y = Severity)) +
   geom_boxplot() +
-  ggtitle("Boxplot of disease severity under two treatments") +
-  facet_wrap(~Fungus, ncol = 1) +
+  ggtitle("Disease Severity with and without fungicide applications") +
   theme_bw(base_size = 16) +
   theme(aspect.ratio = 1/3) +
   theme(legend.position = "bottom") +
@@ -305,6 +283,20 @@ fungicide.plot <- ggplot(fungicide, aes(x = Treatment, y = Severity)) +
   xlab("Treatment Applied") +
   ylab("Disease Severity")
 fungicide.plot
+
+# We can now create a similar plot for Yield Data.
+
+fungicide_yield.plot <- ggplot(fungicide, aes(x = Treatment, y = Yield_bu_per_acre)) +
+  geom_boxplot() +
+  ggtitle("Disease Severity with and without fungicide applications") +
+  theme_bw(base_size = 16) +
+  theme(aspect.ratio = 1/3) +
+  theme(legend.position = "bottom") +
+  theme(legend.direction = "vertical") +
+  theme(panel.grid = element_blank()) +
+  xlab("Treatment Applied") +
+  ylab("Disease Severity")
+fungicide_yield.plot
 
 # 
 # 
