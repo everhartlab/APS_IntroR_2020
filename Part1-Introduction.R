@@ -501,9 +501,21 @@ summer[-c(1:31), "month"] # July
 
 ?ifelse
 
-# This function produces a new vector based on a condition specified for another
-# vector.  If the month is 6, we want it to be replaced with June, otherwise, we 
-# it should be replaced with July:
+stop("
+
+     Type ?ifelse and answer these three questions:
+     
+     1. What does it do? (Description)
+     2. What are the arguments? (Usage/Arguments)
+     3. What does it return? (Value)
+     
+     ")
+
+# In order to use `ifelse`, we will need to provide three things:
+# 
+#  1. A logical question about the elements of an object   : summer$month == 6
+#  2. Values for TRUE elements                             : "June"
+#  3. Values for FALSE elements                            : "July"
 
 ifelse(summer$month == 6, yes = "June", no = "July")
 summer$month <- ifelse(summer$month == 6, yes = "June", no = "July")

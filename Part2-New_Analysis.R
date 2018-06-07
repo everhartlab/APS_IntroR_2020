@@ -67,16 +67,28 @@ ncol(fungicide)
 
 fungicide
 
-# We can also use the `str()` function (short for "structure") to have a broad
+# We can use the `str()` function (short for "structure") to have a broad
 # overview of what our data looks like. This is useful for data frames with many
 # columns.
 
 str(fungicide)
 
+# We can also use the `View()` function to look at our data in spreadsheet-style.
+
+View(fungicide)
+
 # The dummy data presented here consists of yield (measured in bu/acre) and disease
 # severity (measured on a scale of 1 to 10) of a corn culitvar treated with two
 # fungicides. This trial was conducted to measure the efficacy of the two fungicides 
 # to manage disease. The experiment was laid out as a Completely Randomized Design. 
+
+# With these data, we want to answer the following questions:
+# 1. What is the mean yield of each treatment group in kg/ha?
+# 2. What is the percent severity of Control and Fungicide A?
+# 3. Control" | Treatment == "Fungicide_A"
+# 4. Mean_yield = mean(Yield_kg_per_ha))
+# 5. severity is measured in percent
+# 6. Which fungicide shows better results? (ANOVA)
 
 # Part 3: Advanced data manipulation (filter, select, group_by, mutate)
 # ----------------------------------------------------------------------
@@ -91,61 +103,59 @@ install.packages("dplyr")
 
 library("dplyr")
 
-# So, how can we convert yield data from bu/acre to kg/ha ?
-#
-# We can do it similar to what we did in Part 1.
+# First, let's convert yield data from bu/acre to kg/ha. To do this conversion
+# for corn, we need to multiply the yield in bu/acre with 62.77. How can we add
+# a column with yield data in kg/ha? We can do this similar to what we learnt in 
+# Part 1.
 
 # fungicide$Yield_kg_per_ha <- fungicide$Yield_bu_per_acre*62.77
 
 # We can also use the function `mutate()` from 'dplyr'. This adds a new variable 
-# using the existing variables. The usage of this function is as: 
+# using existing variables. The usage of this function is as: 
+#
 # mutate(data, new_variable_name = calculation_based_upon_existing_variables)
 
-fungicide <- mutate(fungicide, Yield_kg_per_ha = Yield_bu_per_acre*62.77)
-fungicide
+fungicide_1 <- mutate(fungicide, Yield_kg_per_ha = Yield_bu_per_acre*62.77)
+fungicide_1
 
-# Notice that we did not have to use fungicide$Yield_bu_per_acre. 
+# > Note: We did not have to use fungicide$Yield_bu_per_acre. 
 
-# If we want to create a new data frame with selected columns from this data, 
-# we can use the function `select()` that picks variables based on their names.
-fungicide_yield <- select(fungicide, Treatment, Yield_kg_per_ha)
-fungicide_yield
+# Now, we have two columns with yield and one with severity. We only want yield 
+# data and just in kg/ha. Let's select the yield column and create a new data  
+# frame. We can use the function `select()` that picks variables based on their 
+# names.
 
-# If we want to filter a data frame based upon specific values of a variable,
-# we can use the function `filter()`.
-filter(fungicide, Treatment == "Fungicide_A")
+fungicide_2 <- select(fungicide_1, Treatment, Yield_kg_per_ha)
+fungicide_2
 
-fungicide <- filter(fungicide, Treatment == "Control" | Treatment == "Fungicide_A")
-fungicide
+# Now, we can find the mean yield in kg/ha. If we want to summarise multiple values
+# to a single value, for example, mean, we can use the function `summarize()`.
+summarize(fungicide_2, Mean_yield = mean(Yield_kg_per_ha))
 
-# It can also be written as
-filter(fungicide, Treatment != "Fungicide_B")
+# Wait, we just got one mean even though we had three different groups (Control,
+# Fungicide_A, Fungicide_B). To perform any operation by group, we can use the
+# function `group_by()`.
 
-# If we want to summarise multiple values to a single value, for example, mean,
-# we can use the function `summarise()`.
-summarise(fungicide, Mean_yield = mean(Yield_kg_per_ha))
+fungicide_3 <- group_by(fungicide_2, Treatment)
+fungicide_3 # Yield column has underlined part because it is not printing the whole
+# answer (after decimals)
+# You will see that fungicide_2 and fungicide_3 don't have any difference because group_by 
+# does not do anything alone.
 
-# In the above example, we just got one mean even though we had three different 
-# groups (Control, Fungicide_A, Fungicide_B). To perform any operation by group, 
-# we can use the function `group_by()`.
+View(fungicide_3)
 
-fungicide_grp <- group_by(fungicide, Treatment)
-fungicide_grp
 #
 #
-fungicide_grp_mean <- summarise(fungicide_grp, Mean_yield = mean(Yield_kg_per_ha))
-fungicide_grp_mean
+fungicide_4 <- summarize(fungicide_3, Mean_yield = mean(Yield_kg_per_ha))
+fungicide_4
 
 # Instead of creating different objects everytime, we may perform multiple functions
 # at once to create one final object. We use the pipe operator, %>% , for this purpose.
 # The left hand side of %>% acts as the input on which one function is performed and
 # the right hand side of %>% is where we can write a subsequent function to be performed.
+# A shortcut to write %>% is `ctrl+shift+m`.
 
-# Let's first restore our original data file.
-
-fungicide <- read.csv("data/fungicide_dat.csv", header = TRUE, sep = ",")
-
-yield_summary <- fungicide %>% 
+yield_summary <- fungicide %>% #why is it broken/ what are the + signs
   mutate(Yield_kg_per_ha = Yield_bu_per_acre*62.77) %>%  
   select(Treatment, Yield_kg_per_ha) %>% 
   group_by(Treatment) %>% 
@@ -153,14 +163,24 @@ yield_summary <- fungicide %>%
 
 yield_summary
 
+# What is the percent severity of Control and Fungicide A? First, we need to create a
+# new data frame where we only have severity data for Control and Fungicide A.
+# If we want to filter a data frame based upon specific values of a variable,
+# we can use the function `filter()`.
 # Let's make a new data frame for severity where severity is measured in percent and
 # not on a scale of 1 to 10.
 
 severity_dat <- fungicide %>% 
+  filter(Treatment == "Control" | Treatment == "Fungicide_A") %>% 
   mutate(Percent_Severity = Severity/10*100) %>% 
   select(Treatment, Percent_Severity)
 
 severity_dat
+
+# It can also be written as
+filter(fungicide, Treatment != "Fungicide_B") %>% 
+  mutate(Percent_Severity = Severity/10*100) %>% 
+  select(Treatment, Percent_Severity)
 
 # If we wanted to use these data as a table in a paper, we should export it to a
 # csv file. We do this using the function `write.table()`
