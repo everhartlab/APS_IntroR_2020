@@ -488,7 +488,7 @@ summer$month
 # those rows in the object summer:
 
 summer[1:30, "month"]     # June
-summer[-c(1:31), "month"] # July
+summer[-c(1:30), "month"] # July
 
 # 
 # > Notice that we used `-c(1:31)`, what do you think this is doing? Why would 

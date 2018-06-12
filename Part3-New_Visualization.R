@@ -199,11 +199,13 @@ stop("
 # When we inspect the help page of the `theme()` function, we can find out how
 # to adjust several parameters to make out plot look acceptable:
 
-(yield.plot <- yield.plot + theme(aspect.ratio = 1.25)) 
+(yield.plot <- yield.plot + theme(aspect.ratio = 1)) # This looks the same
+(yield.plot <- yield.plot + theme(aspect.ratio = 2)) # This is too skinny
+(yield.plot <- yield.plot + theme(aspect.ratio = 1.25)) # I think this is perfect!
 (yield.plot <- yield.plot + theme(panel.grid = element_blank()))
 
-# Since the information in the legend is repetetive, we can remove it. If you 
-# 'google' how to remove the legend in ggplot2, you will find that you can use
+# Since the information in the legend is repetitive, we can remove it. If you 
+# 'Google' how to remove the legend in ggplot2, you will find that you can use
 # `guides(fill=FALSE)`.
 
 (yield.plot <- yield.plot + guides(fill=FALSE))

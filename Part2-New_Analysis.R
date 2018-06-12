@@ -217,7 +217,7 @@ str(yield_summary
 
 filter(fungicide, Treatment == "Control" | Treatment == "Fungicide_A")
 
-# The treatment column should either be equal to (`==`) to Control OR (`|`) Fungicide_A.
+# The treatment column should either be equal (`==`) to Control OR (`|`) Fungicide_A.
 # We can also write the same expression as:
 
 filter(fungicide, Treatment != "Fungicide_B")
@@ -294,4 +294,4 @@ fit_severity <- aov(formula=Severity ~ Treatment, data=fungicide)
 summary(fit_severity) # p-value is less than 0.05, so let's do Tukey's post-hoc test
 
 TukeyHSD(fit_severity) # All the treatment pairs are significantly different from each
-# other as the p-value is < 0.05.
+                       # other as the p-value is < 0.05.
