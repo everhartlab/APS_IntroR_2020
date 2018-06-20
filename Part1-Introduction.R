@@ -332,8 +332,8 @@ length(day)
 length(month)
 length(year)
 
-# Step 4: Data frames, basic data manipulation, and finding help for using functions
-# -----------------------------------------------------------------------------------
+# Step 4: Data frames, basic data manipulation, and finding help
+# --------------------------------------------------------------
 # 
 # Remember that our goal here is to create a table with the columns "month",
 # "day", and "year". First, here's a quick reminder of what we want this to

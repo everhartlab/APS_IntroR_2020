@@ -15,8 +15,8 @@ demonstrate a simple analysis in R, emphasizing problem solving and
 troubleshooting. By the end of the workshop you should have just enough
 background to be able to learn more.
 
-About this website
-------------------
+Website
+-------
 
 This website was built using R and Rmarkdown.
 

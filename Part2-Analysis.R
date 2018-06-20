@@ -6,7 +6,7 @@
 # 
 #  1. Working directories
 #  2. Reading in data
-#  3. Advanced data manipulation (group_by, filter, mutate, select)
+#  3. Advanced data manipulation
 #  4. Statistical Analysis
 #  
 #  
@@ -101,12 +101,12 @@ stop("
 
 # With these data, we want to answer the following questions:
 
-#####1. What is the mean yield of each treatment group in kg/ha?
-#####2. What is the percent severity of Control and Fungicide A?
-#####3. Which fungicide shows better results? (ANOVA)
+## 1. What is the mean yield of each treatment group in kg/ha?
+## 2. What is the percent severity of Control and Fungicide A?
+## 3. Which fungicide shows better results? (ANOVA)
 
-# Step 3: Advanced data manipulation (group_by, filter, mutate, select)
-# ----------------------------------------------------------------------
+# Step 3: Advanced data manipulation
+# ----------------------------------
 #
 # The package 'dplyr' provides functions for easy and advanced data manipulation.
 # If we want to use it, we can download the package to our computer with the 
@@ -126,7 +126,7 @@ library("dplyr")
 # a) Convert yield data from bu/acre to kg/ha
 # To do this conversion for corn, we need to multiply the yield in bu/acre with
 # 62.77. So, how can we add a column with yield data in kg/ha? We can do this 
-# similar to what we learnt in Step 1.
+# similar to what we learnt in Part 1.
 
 # fungicide$Yield_kg_per_ha <- fungicide$Yield_bu_per_acre*62.77
 
@@ -251,7 +251,7 @@ write.table(severity_dat, file = "results/severity_dat.csv", sep = ",",
             row.names = FALSE)
 
 # 3. Which fungicide shows better results? (ANOVA)
-
+#
 # Step 4: Statistical Analysis
 # ----------------------------
 # 

@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -106,34 +106,34 @@ button.code-folding-btn:focus {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 51px;
+  padding-top: 52px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 
 .section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 </style>
 
@@ -340,7 +340,7 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Working directories</li>
 <li>Reading in data</li>
-<li>Advanced data manipulation (group_by, filter, mutate, select)</li>
+<li>Advanced data manipulation</li>
 <li>Statistical Analysis</li>
 </ol>
 <div id="step-1-working-directories" class="section level2">
@@ -474,12 +474,12 @@ can use the function <code>list.files()</code> to view the files in your current
      
      </code></pre>
 <p>The dummy data presented here consists of yield (measured in bu/acre) and disease severity (measured on a scale of 1 to 10) of a corn culitvar treated with two fungicides. This trial was conducted to measure the efficacy of the two fungicides to manage disease. The experiment was laid out as a Completely Randomized Design. With these data, we want to answer the following questions:</p>
-<pre class="r"><code>&gt; #####1. What is the mean yield of each treatment group in kg/ha?
-&gt; #####2. What is the percent severity of Control and Fungicide A?
-&gt; #####3. Which fungicide shows better results? (ANOVA)</code></pre>
+<pre class="r"><code>&gt; ## 1. What is the mean yield of each treatment group in kg/ha?
+&gt; ## 2. What is the percent severity of Control and Fungicide A?
+&gt; ## 3. Which fungicide shows better results? (ANOVA)</code></pre>
 </div>
-<div id="step-3-advanced-data-manipulation-group_by-filter-mutate-select" class="section level2">
-<h2>Step 3: Advanced data manipulation (group_by, filter, mutate, select)</h2>
+<div id="step-3-advanced-data-manipulation" class="section level2">
+<h2>Step 3: Advanced data manipulation</h2>
 <pre class="r"><code>&gt; #</code></pre>
 <p>The package ‘dplyr’ provides functions for easy and advanced data manipulation. If we want to use it, we can download the package to our computer with the function <code>install.packages()</code>. This will install a package from CRAN and place it into your R <em>Library</em>.</p>
 <pre class="r"><code>&gt; install.packages(&quot;dplyr&quot;)</code></pre>
@@ -498,7 +498,7 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <li>What is the mean yield of each treatment group in kg/ha? Let’s go step by step to answer this:</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>Convert yield data from bu/acre to kg/ha To do this conversion for corn, we need to multiply the yield in bu/acre with 62.77. So, how can we add a column with yield data in kg/ha? We can do this similar to what we learnt in Step 1. fungicide<span class="math inline">\(Yield_kg_per_ha &lt;- fungicide\)</span>Yield_bu_per_acre*62.77 We can also use the function <code>mutate()</code> from ‘dplyr’. This adds a new variable using existing variables. The usage of this function is as: mutate(data, new_variable_name = calculation_based_upon_existing_variables)</li>
+<li>Convert yield data from bu/acre to kg/ha To do this conversion for corn, we need to multiply the yield in bu/acre with 62.77. So, how can we add a column with yield data in kg/ha? We can do this similar to what we learnt in Part 1. fungicide<span class="math inline">\(Yield_kg_per_ha &lt;- fungicide\)</span>Yield_bu_per_acre*62.77 We can also use the function <code>mutate()</code> from ‘dplyr’. This adds a new variable using existing variables. The usage of this function is as: mutate(data, new_variable_name = calculation_based_upon_existing_variables)</li>
 </ol>
 <pre class="r"><code>&gt; fungicide_1 &lt;- mutate(fungicide, Yield_kg_per_ha = Yield_bu_per_acre*62.77)</code></pre>
 <blockquote>
@@ -666,8 +666,12 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 +             col.names = TRUE, 
 +             row.names = FALSE)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Which fungicide shows better results? (ANOVA) Step 4: Statistical Analysis —————————-</li>
+<li>Which fungicide shows better results? (ANOVA)</li>
 </ol>
+<pre class="r"><code>&gt; #</code></pre>
+</div>
+<div id="step-4-statistical-analysis" class="section level2">
+<h2>Step 4: Statistical Analysis</h2>
 <p>Let’s do ANOVA for yield and severity data. We can use alpha level = 0.05. If we do an internet search for ANOVA in R, you will find that function <code>aov</code> is appropriate for this. How do we use <code>aov</code>?</p>
 <pre class="r"><code>&gt; ?aov</code></pre>
 <p>This function takes in a formula to be tested. To find if the independent variable (<code>Treatment</code>) had an effect on the dependent variable (<code>Yield_bu_per_acre</code>), the formula should be written as ‘dependent_variable ~ independent_variable’. If we used blocks in our experimental design, the formula can be modified to ‘dependent_variable ~ independent_variable + block’. The function also takes in a data frame in which these variables are present. Let’s use this function.</p>
