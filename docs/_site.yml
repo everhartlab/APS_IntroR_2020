@@ -35,7 +35,7 @@ output:
     toc_float:
       collapsed: false
     toc_depth: 2
-    theme: spacelab
+    theme: readable
     highlight: textmate
     include:
       after_body: footer.html
