@@ -2,8 +2,6 @@
 title: "Before The Workshop"
 ---
 
-Required Materials
-------------------
 
 Again, because this is a four hour workshop, we ask that you come prepared with
 a laptop that has the most recent versions of [R] and [RStudio] installed, and
