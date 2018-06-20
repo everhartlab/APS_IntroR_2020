@@ -22,7 +22,7 @@ everything up to date, UBC's [STAT545] page is an excellent resource.
  - [R]
  - [RStudio]
  - [Workshop Materials] (zip file; unzip to Desktop)
- - (Once you've installed R) packages "[tidyverse]" and "[agricolae]"
+ - (Once you've installed R) packages "[dplyr]" and "[ggplot2]"
 
 Verification
 ------------
@@ -46,7 +46,7 @@ Our [workshop materials] is a zip file that contains a folder called
 
 ```
 .
-├── IntroR.Rproj
+├── IntroR_Workshop.Rproj
 ├── LICENSE
 ├── Makefile
 ├── Part1-Introduction.R
@@ -54,17 +54,14 @@ Our [workshop materials] is a zip file that contains a folder called
 ├── Part3-Visualization.R
 ├── README.md
 ├── data/
-│   ├── FungicideExample.csv
+│   ├── fungicide_dat.csv
 │   └── README.md
 └── docs/
     └── ...
 ```
 
-We are providing the R scripts for the workshop. We will be live-coding these
-scripts, and **we encourage you to follow along by creating your own R scripts**
-so that you can get comfortable typing these commands. For those who feel the
-pace is too fast, or are unable to type the commands, feel free to execute the
-code in these scripts to follow along.
+We are providing the R scripts for the workshop, so that you can easily 
+execute the code in these scripts to follow along.
 
 Installing Packages
 -------------------
@@ -72,13 +69,13 @@ Installing Packages
 To install [dplyr] and [ggplot2] to your system, open R and type:
 
 ```{r, eval = FALSE}
-install.packages(c("dplyr", "ggplott2"), repos = "https://cran.rstudio.com")
+install.packages(c("dplyr", "ggplot2"), repos = "https://cran.rstudio.com")
 ```
 
 
 [stat545]: http://stat545.com/block000_r-rstudio-install.html
 [R]: https://cloud.r-project.org/
 [RStudio]: https://www.rstudio.com/products/rstudio/download/
-[Workshop Materials]: https://github.com/everhartlab/IntroR/archive/master.zip
-[agricolae]: http://tarwi.lamolina.edu.pe/~fmendiburu/
-[tidyverse]: http://tidyverse.org/
+[Workshop Materials]: https://github.com/everhartlab/IntroR_Workshop/archive/master.zip
+[dplyr]: https://dplyr.tidyverse.org
+[ggplot2]: https://ggplot2.tidyverse.org

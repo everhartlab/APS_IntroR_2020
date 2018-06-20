@@ -2,6 +2,10 @@
 title: "About"
 ---
 
+This introduction to R is designed to be a companion to a workshop lasting 4 
+hours introducing agronomists to the basics of R by using an example of
+fungicide trial data.
+
 Workshop Outcomes
 -----------------
 
@@ -17,3 +21,4 @@ About this website
 This website was built using R and Rmarkdown.
 
 Github: https://github.com/everhartlab/IntroR_Workshop
+

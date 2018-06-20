@@ -358,7 +358,7 @@ can use the function <code>list.files()</code> to view the files in your current
 [7] &quot;Part2-Analysis.R&quot;      &quot;Part3-Visualization.R&quot; &quot;README.md&quot;            </code></pre>
 <p>You can see that the first entry in here is “data”. This is where we’ve placed the fungicide example data.</p>
 <pre class="r"><code>&gt; list.files(&quot;data&quot;)</code></pre>
-<pre><code>[1] &quot;fungicide_dat.csv&quot;    &quot;FungicideExample.csv&quot; &quot;README.md&quot;           </code></pre>
+<pre><code>[1] &quot;fungicide_dat.csv&quot; &quot;README.md&quot;        </code></pre>
 </div>
 <div id="step-2-reading-in-data" class="section level2">
 <h2>Step 2: Reading in Data</h2>
@@ -464,7 +464,8 @@ can use the function <code>list.files()</code> to view the files in your current
  $ Severity         : num  5.5 5.6 5.4 5.4 5.6 5.5 5.1 5.2 5 5 ...</code></pre>
 <p>We can also use the <code>View()</code> function to look at our data in spreadsheet-style.</p>
 <pre class="r"><code>&gt; View(fungicide)</code></pre>
-<pre><code>Error in check_for_XQuartz(): X11 library is missing: install XQuartz from xquartz.macosforge.org</code></pre>
+<pre><code>Warning in View(fungicide): unable to open display</code></pre>
+<pre><code>Error in .External2(C_dataviewer, x, title): unable to start data viewer</code></pre>
 <p>The dummy data presented here consists of yield (measured in bu/acre) and disease severity (measured on a scale of 1 to 10) of a corn culitvar treated with two fungicides. This trial was conducted to measure the efficacy of the two fungicides to manage disease. The experiment was laid out as a Completely Randomized Design. With these data, we want to answer the following questions: 1. What is the mean yield of each treatment group in kg/ha? 2. What is the percent severity of Control and Fungicide A? 3. Which fungicide shows better results? (ANOVA)</p>
 <pre class="r"><code>&gt; #</code></pre>
 </div>
@@ -591,7 +592,8 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 2 Fungicide_A     10916.
 3 Fungicide_B     11035.</code></pre>
 <pre class="r"><code>&gt; View(yield_summary)</code></pre>
-<pre><code>Error in check_for_XQuartz(): X11 library is missing: install XQuartz from xquartz.macosforge.org</code></pre>
+<pre><code>Warning in View(yield_summary): unable to open display</code></pre>
+<pre><code>Error in .External2(C_dataviewer, x, title): unable to start data viewer</code></pre>
 <p>We answered our first question! You will notice that on the console below, the code for creating <code>yield_summary</code> has <code>+</code> signs before every line. The plus signs just indicate that R is waiting for the code to be finished. This sign also appears when we forget to put a closing paranthesis ‘)’. Try this:</p>
 <pre class="r"><code>&gt; str(yield_summary
 + 

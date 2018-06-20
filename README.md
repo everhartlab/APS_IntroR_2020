@@ -6,7 +6,8 @@ title: "R for Plant Pathologists"
 -->
 
 
-An introduction to R for plant pathologists written by Drs. Sydney E. Everhart and Zhian N. Kamvar and edited by Nikita Gambhir
+An introduction to R for plant pathologists written by Dr. Sydney E. Everhart, Nikita Gambhir, and Dr. Zhian
+N. Kamvar.
 
 This repository is intended to serve as an additional resource for short 
 workshops given at Univeristy of Nebraska and The 2018 International Congress of Plant Pathology Meeting. The source code can be found at 
