@@ -101,9 +101,9 @@ stop("
 
 # With these data, we want to answer the following questions:
 
-# 1. What is the mean yield of each treatment group in kg/ha?
-# 2. What is the percent severity of Control and Fungicide A?
-# 3. Which fungicide shows better results? (ANOVA)
+# *1. What is the mean yield of each treatment group in kg/ha?
+# *2. What is the percent severity of Control and Fungicide A?
+# *3. Which fungicide shows better results? (ANOVA)
 
 # Step 3: Advanced data manipulation (group_by, filter, mutate, select)
 # ----------------------------------------------------------------------
