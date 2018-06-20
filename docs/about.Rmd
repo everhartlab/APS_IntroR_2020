@@ -15,6 +15,11 @@ demonstrate a simple analysis in R, emphasizing problem solving and
 troubleshooting. By the end of the workshop you should have just enough
 background to be able to learn more.
 
+Authors
+-------
+
+Dr. Sydney E. Everhart, Nikita Gambhir, and Dr. Zhian N. Kamvar.
+
 Website
 -------
 

@@ -1,9 +1,9 @@
 ---
-title: "R for Plant Pathologists"
+title: "R for beginners"
 ---
 
 
-An introduction to R for plant pathologists written by Dr. Sydney E. Everhart, Nikita Gambhir, and Dr. Zhian N. Kamvar.
+An introduction to R written by Dr. Sydney E. Everhart, Nikita Gambhir, and Dr. Zhian N. Kamvar.
 
 ## Goals
 
