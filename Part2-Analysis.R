@@ -88,7 +88,11 @@ str(fungicide)
 
 # We can also use the `View()` function to look at our data in spreadsheet-style.
 
-View(fungicide)
+stop("
+
+     Type View(fungicide) and inspect the data
+     
+     ")
 
 # The dummy data presented here consists of yield (measured in bu/acre) and disease
 # severity (measured on a scale of 1 to 10) of a corn culitvar treated with two
@@ -96,10 +100,11 @@ View(fungicide)
 # to manage disease. The experiment was laid out as a Completely Randomized Design. 
 
 # With these data, we want to answer the following questions:
+
 # 1. What is the mean yield of each treatment group in kg/ha?
 # 2. What is the percent severity of Control and Fungicide A?
 # 3. Which fungicide shows better results? (ANOVA)
-#
+
 # Step 3: Advanced data manipulation (group_by, filter, mutate, select)
 # ----------------------------------------------------------------------
 #

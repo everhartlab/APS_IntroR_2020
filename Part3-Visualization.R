@@ -34,6 +34,8 @@ install.packages("ggplot2")
 
 library("ggplot2")
 
+fungicide <- read.csv("data/fungicide_dat.csv")
+
 # Visualizing Data
 # ----------------
 # 

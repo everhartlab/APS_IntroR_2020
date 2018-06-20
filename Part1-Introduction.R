@@ -221,7 +221,7 @@ str(name)
 # list, which is indicated by the *chr* label. We also see the two elements in this
 # vector, which is your first and last name.
 # 
-# What is the length of your name?  We can find out using the function lenght()
+# What is the length of your name?  We can find out using the function length()
 
 length(name)
 
