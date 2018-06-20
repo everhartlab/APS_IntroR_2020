@@ -11,11 +11,11 @@
 
 
 
-<title>About This Website</title>
+<title>About</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -23,8 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -33,10 +33,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -91,6 +93,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -283,6 +288,9 @@ div.tocify {
         <li>
   <a href="index.html">Home</a>
 </li>
+<li>
+  <a href="installation.html">Before the Workshop</a>
+</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Workshop
@@ -290,9 +298,6 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="installation.html">Before the Workshop (Installation)</a>
-    </li>
     <li>
       <a href="Part1-Introduction.html">Part 1: Introduction to R</a>
     </li>
@@ -304,38 +309,14 @@ div.tocify {
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    About
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="data.html">Data Sets</a>
-    </li>
-    <li>
-      <a href="about.html">About This Site</a>
-    </li>
-  </ul>
+<li>
+  <a href="about.html">About</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Links
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="quiz.html">Workshop Quizzes</a>
-    </li>
-    <li>
-      <a href="https://goo.gl/forms/oDBV8WPXg7DlsS4C3">Exit Survey</a>
-    </li>
-    <li>
-      <a href="refs.html">Useful Tools/Links/References</a>
-    </li>
-  </ul>
+<li>
+  <a href="quiz.html">Quizzes</a>
+</li>
+<li>
+  <a href="refs.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -349,13 +330,20 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">About This Website</h1>
+<h1 class="title toc-ignore">About</h1>
 
 </div>
 
 
+<div id="workshop-outcomes" class="section level2">
+<h2>Workshop Outcomes</h2>
+<p>In this workshop, we expect to present enough information to get you started on your way to learning R. Because this is a four hour workshop, our goal is to demonstrate a simple analysis in R, emphasizing problem solving and troubleshooting. By the end of the workshop you should have just enough background to be able to learn more.</p>
+</div>
+<div id="about-this-website" class="section level2">
+<h2>About this website</h2>
 <p>This website was built using R and Rmarkdown.</p>
-<p>Github: <a href="https://github.com/everhartlab/IntroR" class="uri">https://github.com/everhartlab/IntroR</a></p>
+<p>Github: <a href="https://github.com/everhartlab/IntroR_Workshop" class="uri">https://github.com/everhartlab/IntroR_Workshop</a></p>
+</div>
 
 <br>
 <center>

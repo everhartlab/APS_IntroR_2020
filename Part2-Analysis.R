@@ -6,11 +6,11 @@
 # 
 #  1. Working directories
 #  2. Reading in data
-#  3. Finding help
-#  4. Basic data manipulation (renaming, subsetting, rotating)
+#  3. Advanced data manipulation (group_by, filter, mutate, select)
+#  4. Statistical Analysis
 #  
 #  
-# Part I: Working Directories
+# Step 1: Working Directories
 # ---------------------------
 # 
 # A working directory is the folder on your computer where you are currently
@@ -19,9 +19,9 @@
 getwd()
 
 # If you've downloaded and un-zipped this directory to your desktop, you might 
-# see something like `/Users/<yourname>/Desktop/IntroR`. This is the default 
-# place where R will begin reading and writing files. For example, you can use 
-# the function `list.files()` to view the files in your current working 
+# see something like `/Users/<yourname>/Desktop/IntroR_Workshop`. This is the  
+# default place where R will begin reading and writing files. For example, you  
+# can use the function `list.files()` to view the files in your current working 
 # directory. These are the same files that we downloaded earlier. If you're 
 # using Rstudio, you can compare the file list with the "Files" tab in the
 # bottom right panel. 
@@ -36,39 +36,43 @@ list.files(".")
 
 list.files("data")
 
-# Part II: Reading in Data
+# Step 2: Reading in Data
 # ------------------------
 # 
 # 
-# We can use the `read.table()` function to read these data in to R. It's
-# important to remember that while in R, these data are simply a copy kept *in
-# memory*, not on the disk, so we don't have to worry too much about
+# We can use the `read.csv()` function to read (or import) these data into R. 
+# It's important to remember that while in R, these data are simply a copy kept 
+# *in memory*, not on the disk, so we don't have to worry too much about
 # accidentally deleting the data :).
 # 
-# So, how do we actually USE the `read.table()` function? 
+# So, how do we actually USE the `read.csv()` function? 
 
-stop("
+?read.csv
 
-     Type ?read.table and answer these three questions:
-     
-     1. What does it do? (Description)
-     2. What are the first three arguments and their defaults? (Usage/Arguments)
-     3. What does it return? (Value)
-     
-     ")
+# You will notice that the help page describes all the sibling functions, too:
+# `read.table()`, `read.csv2()`, `read.delim()`, `read.delim2()`. Let's read the 
+# Description and Usage first. All arguments except 'file' have a default value
+# (e.g. header = TRUE). You do not need to specify these arguments unless you want 
+# to change the default. Let's use `read.csv()` with the default values.
 
+read.csv("data/fungicide_dat.csv")
 
-# In order to read our data into R, we will need to provide three things:
-# 
-#  1. The path to the data set                 : data/FungicideExample.csv
-#  2. If the first row are column names        : yes
-#  3. The separator for each cell in the data  : comma
-# 
-# Now that we have these elements, we can read the data into a variable, which
-# we can call "fungicide". Once we do this, we can check the dimensions to make
-# sure that we have all of the data.
+# Let's use `read.table()` with the default values.
+read.table("data/fungicide_dat.csv")
 
-fungicide <- read.csv("data/FungicideExample.csv", header = TRUE, sep = ",")
+# This has two issues:
+# 1. The column names are treated as the first row. This is because the default 
+#    for header is FALSE in `read.table()`. We should change to header = TRUE. 
+# 2. The data is presented as one column, 'V1'. This is because the separator for 
+#    each cell in the data is a "," and not ""(space). We should change to sep = ",". 
+
+read.table("data/fungicide_dat.csv", header = TRUE, sep = ",")
+
+# Now that we have these elements, we can read the data into an object, which we
+# can call "fungicide". Once we do this, we can check the dimensions to make sure
+# that we have all of the data.
+
+fungicide <- read.csv("data/fungicide_dat.csv")
 nrow(fungicide)
 ncol(fungicide)
 
@@ -76,137 +80,219 @@ ncol(fungicide)
 
 fungicide
 
-# We can also use the `str()` function (short for "structure") to have a broad
+# We can use the `str()` function (short for "structure") to have a broad
 # overview of what our data looks like. This is useful for data frames with many
 # columns.
 
 str(fungicide)
 
+# We can also use the `View()` function to look at our data in spreadsheet-style.
 
-# Part III: Finding the right tool for the job
-# --------------------------------------------
-# 
-# The data presented here are from
-# http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/StripeRust.aspx
-# and consist of three cultivars of wheat treated with different fungicides. 
-# 'Jagger Wheat' is a succeptible variety whereas 'Cutter Wheat' and '2137 
-# Wheat' are both resistant varieties. Disease severity is measured over a 
-# period of 58 days. It is assumed that the fungicide will only be able to
-# prevent new infections for two weeks after applicaton. With these data, we
-# want to answer the following questions:
-# 
-#  1. How does the size of the fungicide effect compare to the effect of
-#     cultivar? 
-#  2. Would it be the same as cultivar?
-# 
-# To answer these questions, we will use the summary statistic, Area Under the
-# Disease Progress Curve (AUDPC). 
-# 
-# So, how do you calculate this? You could code the trapezoid rule yourself, OR
-# you could find a package that was designed for this. 
+View(fungicide)
 
-stop("
+# The dummy data presented here consists of yield (measured in bu/acre) and disease
+# severity (measured on a scale of 1 to 10) of a corn culitvar treated with two
+# fungicides. This trial was conducted to measure the efficacy of the two fungicides 
+# to manage disease. The experiment was laid out as a Completely Randomized Design. 
 
-    Do an internet search for AUDPC in R. What did you find?
+# With these data, we want to answer the following questions:
+# 1. What is the mean yield of each treatment group in kg/ha?
+# 2. What is the percent severity of Control and Fungicide A?
+# 3. Which fungicide shows better results? (ANOVA)
+#
+# Step 3: Advanced data manipulation (group_by, filter, mutate, select)
+# ----------------------------------------------------------------------
+#
+# The package 'dplyr' provides functions for easy and advanced data manipulation.
+# If we want to use it, we can download the package to our computer with the 
+# function `install.packages()`. This will install a package from CRAN and place
+# it into your R *Library*.
 
-    ")
+install.packages("dplyr")
 
-# The first thing that likely popped up was the function `audpc()` in the
-# *agricolae* package. If we want to use it, we can download the package to our
-# computer with the function `install.packages()`. This will install a package
-# from CRAN and place it into your R *Library*. Where is your R library? Type
-# `.libPaths()` to find out!
-#+ eval = FALSE
+# To load this package, we can use the function `library()`.
 
-.libPaths()
+library("dplyr")
 
-install.packages("agricolae", repos = "https://cran.rstudio.com")
+# 1. What is the mean yield of each treatment group in kg/ha?
 
-# Now that we have the *agricolae* package installed, we can load into our R
-# workspace using the `library()` function, which looks in our library and loads
-# the functions and data sets within that package. You can find out about what
-# functions are avialable with help(package = "agricolae").
-# 
-# To accomplish our task, however, we need to find out how to use the `audpc()`
-# function. First we should load the agricolae package
+# Let's go step by step to answer this:
 
-library("agricolae")
+# a) Convert yield data from bu/acre to kg/ha
+# To do this conversion for corn, we need to multiply the yield in bu/acre with
+# 62.77. So, how can we add a column with yield data in kg/ha? We can do this 
+# similar to what we learnt in Step 1.
 
-# Now we can look up help for `audpc()`
+# fungicide$Yield_kg_per_ha <- fungicide$Yield_bu_per_acre*62.77
 
-?audpc
+# We can also use the function `mutate()` from 'dplyr'. This adds a new variable 
+# using existing variables. The usage of this function is as: 
 
-# This function will take in a data frame of severity and a vector of dates. 
-# Since our vector of dates is in the first column, we will need to manipulate
-# the data frame by subsetting. 
+# mutate(data, new_variable_name = calculation_based_upon_existing_variables)
 
-jdate <- fungicide$Julian.Date # this is the first column, so it can also
-# be written as `jdate <- fungicide[, 1]`
+fungicide_1 <- mutate(fungicide, Yield_kg_per_ha = Yield_bu_per_acre*62.77)
 
-jdate
+# > Note: We did not have to use fungicide$Yield_bu_per_acre. 
 
-severity_data <- fungicide[, -1]
-severity_data
+# Let's print the data to see what we have
+fungicide_1
 
-fungicide.audpc <- audpc(evaluation = severity_data, dates = jdate, type = "relative")
+# We have a new column `Yield_kg_per_ha`. We have two columns with yield and one 
+# with severity. We don't want severity data and want yield data only in kg/ha.
 
-# Well this doesn't look good. What can this error message mean? Let's take a 
-# look at the audpc help page one more time; this time, we'll look at the
-# Examples section. Try to copy and paste 'example 3' code one line at a time
-# and see what happens. Check the evaluaton data relative to the dates and see
-# how it's relevant.
+# b) Create a new data frame with only `Treatment` and `Yield_kg_per_ha` columns
+# We can use the function `select()` that picks variables based on their names.
 
-stop("
+fungicide_2 <- select(fungicide_1, Treatment, Yield_kg_per_ha)
+fungicide_2
 
-     Stop and look at the examples from ?audpc.
-     
-     ")
+# c) Find the mean yield
+# If we want to summarise multiple values to a single value, for example, mean, 
+# we can use the function `summarize()`.
 
-# We can see from example 3 that data must be arranged such that dates are in
-# separate columns. How does our data look like?
+summarize(fungicide_2, Mean_yield = mean(Yield_kg_per_ha))
 
-fungicide
+# Wait, we just got one mean even though we had three different groups (Control,
+# Fungicide_A, Fungicide_B). We need to find the mean for every group. How can 
+# we tell R that it needs to group the data according to the treatment?
 
-# We need to transpose our data. To do this, we can use the `t()` function:
+# d) Group data according to treatment
+# We can use the function `group_by()` for this purpose. 
 
-t(fungicide)
+fungicide_3 <- group_by(fungicide_2, Treatment)
+fungicide_3 
 
-# Now we can plug this into the `audpc()` function:
+# You will notice that `fungicide_2` and `fungicide_3` are a little different.
+# `fungicide_3` is also a "tibble", which is a form of data frame that gives 
+# more information about our data (e.g. what kind of data the columns are). You
+# will notice that Treatment is a factor, while Yield_kg_per_ha is a double 
+# (decimal). It also tells us that our data is grouped by Treatment (therefore, 
+# it has three groups). To add the grouping information to this data frame, 
+# 'dplyr' uses a sister package to convert it into a tibble. Also, note that 
+# `Yield_kg_per_ha` is not printing the whole answer (after decimals) and 
+# has underlined first two digits. The tibble format is different when we print
+# it, but the same when we use `View()`. The digits are underlined so that it
+# is easier to read larger numbers. It's role is similar to a comma. So,
+# '10,000' will have '10' underlined and '100,000' will have '100' underlined.
 
-fungicide.audpc <- audpc(evaluation = t(fungicide[, -1]), dates = jdate, type = "relative")
-fungicide.audpc
+# e) Find the mean yield of every group
+fungicide_4 <- summarize(fungicide_3, Mean_yield = mean(Yield_kg_per_ha))
+fungicide_4
 
-# This gives us a vector with the AUDPC values per treatment. The vector format 
-# does not make it particularly easy to compare the effect of cultivar or
-# treatment. A better format to store these data would be in a table. Since all
-# the values are numeric, we can place them into a matrix using the `matrix()`
-# function. We are going to put the cultivars in rows and experiments in columns.
-# We have three cultivars (2137 Wheat, Cutter Wheat, and Jagger Wheat) and two
-# experiments (Control and Treated).
+# Instead of creating different objects everytime, we can perform multiple functions
+# at once and create one final object. We use the pipe operator, %>% , for this purpose.
+# The left hand side of %>% acts as the input on which an operation on the right side
+# is performed. A shortcut to write %>% is `ctrl+shift+m`.
 
-fungicide.res <- matrix(fungicide.audpc, nrow = 3, ncol = 2, byrow = TRUE)
-fungicide.res
+yield_summary <- fungicide %>% 
+  mutate(Yield_kg_per_ha = Yield_bu_per_acre*62.77) %>%  
+  select(Treatment, Yield_kg_per_ha) %>% 
+  group_by(Treatment) %>% 
+  summarise(Mean_yield = mean(Yield_kg_per_ha))
 
-# We have our result, but there are no labels for the rows and columns. Notice
-# how we selected `byrow = TRUE`. This means that the matrix was filled row by 
-# row. So the first two elements of the vector would go in the first row, the
-# next two would go in the second, and so on and so forth.
+yield_summary
 
-names(fungicide.audpc)[1:2]
-names(fungicide.audpc)[3:4]
-names(fungicide.audpc)[5:6]
- 
-# Since this is a small matrix, we can easily name these rows and columns
-# ourselves using the `rownames()` and `colnames()` functions.
+View(yield_summary)
 
-rownames(fungicide.res) <- c("2137", "Cutter", "Jagger")
-colnames(fungicide.res) <- c("Control", "Treated")
-fungicide.res
+# We answered our first question!
+
+# You will notice that on the console below, the code for creating `yield_summary` has 
+# `+` signs before every line. The plus signs just indicate that R is waiting for the 
+# code to be finished. This sign also appears when we forget to put a closing
+# paranthesis ')'. Try this:
+
+str(yield_summary
+
+)
+
+# Let's go to our second question.
+
+# 2. What is the percent severity of Control and Fungicide A? 
+# -----------------------------------------------------------
+
+# First, we need to create a new data frame where we only have severity data for Control
+# and Fungicide A. If we want to filter a data frame based upon specific values of a 
+# variable, we can use the function `filter()`.
+
+filter(fungicide, Treatment == "Control" | Treatment == "Fungicide_A")
+
+# The treatment column should either be equal (`==`) to Control OR (`|`) Fungicide_A.
+# We can also write the same expression as:
+
+filter(fungicide, Treatment != "Fungicide_B")
+
+# The treatment column should not be equal to (`!=`) to Fungicide_B. So, it will have 
+# everything except Fungicide B ("Control" and "Fungicide_A").
+
+# After filtering, we need to add a column `Percent_Severity`, where severity is measured
+# in percent and not on a scale of 1 to 10. Any guess on which function should we use?
+# Let's perform all operations in one go.
+
+severity_dat <- fungicide %>% 
+  filter(Treatment == "Control" | Treatment == "Fungicide_A") %>% 
+  mutate(Percent_Severity = Severity/10*100) %>% 
+  select(Treatment, Percent_Severity)
+
+severity_dat
 
 # If we wanted to use these data as a table in a paper, we should export it to a
-# csv file. We do this using the function `write.table()`
+# csv file. We can do this using the function `write.table()`. Before that, let's
+# create a new directory (or folder) named results. We can do this using the
+# function `dir.create()`.
 
 dir.create("results")
-write.table(fungicide.res, file = "results/audpc.csv", sep = ",", 
-            col.names = NA,
-            row.names = TRUE)
+write.table(severity_dat, file = "results/severity_dat.csv", sep = ",", 
+            col.names = TRUE, 
+            row.names = FALSE)
+
+# 3. Which fungicide shows better results? (ANOVA)
+
+# Step 4: Statistical Analysis
+# ----------------------------
+# 
+# Let's do ANOVA for yield and severity data. We can use alpha level = 0.05. If we 
+# do an internet search for ANOVA in R, you will find that function `aov` is 
+# appropriate for this. How do we use `aov`?
+
+?aov
+
+# This function takes in a formula to be tested. To find if the independent variable
+# (`Treatment`) had an effect on the dependent variable (`Yield_bu_per_acre`), the
+# formula should be written as 'dependent_variable ~ independent_variable'. If we 
+# used blocks in our experimental design, the formula can be modified to
+# 'dependent_variable ~ independent_variable + block'. The function also takes in a 
+# data frame in which these variables are present. 
+
+# Let's use this function.
+aov(formula=Yield_bu_per_acre ~ Treatment, data=fungicide) 
+
+# As mentioned in the 'Description', `aov` fits an ANOVA model to an experimental design.
+# Let's check the 'Value' section of the help page so we know what does it return. It
+# returns an object, which can further be explored with `print()` and `summary()`. Let's
+# assign it to an object so that we can use `print()` and `summary()` on it.
+
+fit_yield <- aov(formula=Yield_bu_per_acre ~ Treatment, data=fungicide) 
+
+print(fit_yield) 
+
+summary(fit_yield) # This is what we want!
+
+# The output is similar to an ANOVA table. 'Pr(>F)' is the associated p-value. As the 
+# p-value is less than 0.05, the null hypothesis is rejected. So, at least one of the
+# treatments is different. Now that we know that differences exist between our 
+# treatments, how can we find which treatments are different? We can do this by using 
+# Tukey's post-hoc test. If you scroll down the help page of `aov` and go the section
+# 'See Also', you will see a function `TukeyHSD`. This is what we need.
+
+TukeyHSD(fit_yield) 
+
+# There is no difference between 'Fungicide_A' and 'Control' as the p-value is 0.978 (>0.05).
+
+# Let's do similar analysis using the Severity data
+
+fit_severity <- aov(formula=Severity ~ Treatment, data=fungicide)
+summary(fit_severity) # p-value is less than 0.05, so let's do Tukey's post-hoc test
+
+TukeyHSD(fit_severity) 
+
+# All the treatment pairs are significantly different from each other as the p-value is < 0.05.

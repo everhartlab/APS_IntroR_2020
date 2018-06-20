@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -23,8 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -33,10 +33,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -91,6 +93,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -283,6 +288,9 @@ div.tocify {
         <li>
   <a href="index.html">Home</a>
 </li>
+<li>
+  <a href="installation.html">Before the Workshop</a>
+</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Workshop
@@ -290,9 +298,6 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="installation.html">Before the Workshop (Installation)</a>
-    </li>
     <li>
       <a href="Part1-Introduction.html">Part 1: Introduction to R</a>
     </li>
@@ -304,38 +309,14 @@ div.tocify {
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    About
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="data.html">Data Sets</a>
-    </li>
-    <li>
-      <a href="about.html">About This Site</a>
-    </li>
-  </ul>
+<li>
+  <a href="about.html">About</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Links
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="quiz.html">Workshop Quizzes</a>
-    </li>
-    <li>
-      <a href="https://goo.gl/forms/oDBV8WPXg7DlsS4C3">Exit Survey</a>
-    </li>
-    <li>
-      <a href="refs.html">Useful Tools/Links/References</a>
-    </li>
-  </ul>
+<li>
+  <a href="quiz.html">Quizzes</a>
+</li>
+<li>
+  <a href="refs.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -354,15 +335,12 @@ div.tocify {
 </div>
 
 
-<div id="workshop-outcomes" class="section level2">
-<h2>Workshop Outcomes</h2>
-<p>In this workshop, we expect to present enough information to get you started on your way to learning R. Because this is a three hour workshop, our goal is to demonstrate a simple analysis in R, emphasizing problem solving and troubleshooting. By the end of the workshop you should have just enough background to be able to learn more.</p>
-</div>
 <div id="required-materials" class="section level2">
 <h2>Required Materials</h2>
-<p>Again, because this is a three hour workshop, we ask that you come prepared with a laptop that has the most recent versions of <a href="https://cloud.r-project.org/">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a> installed, and our <a href="https://github.com/everhartlab/IntroR/archive/master.zip">workshop materials</a> downloaded to your Desktop. <strong>We cannot provide service for installation the day of the workshop. Those who are not prepared for the workshop may be asked to give up their seat to those on the waitlist</strong>.</p>
-<div id="installation" class="section level3">
-<h3>Installation</h3>
+<p>Again, because this is a four hour workshop, we ask that you come prepared with a laptop that has the most recent versions of <a href="https://cloud.r-project.org/">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a> installed, and our <a href="https://github.com/everhartlab/IntroR/archive/master.zip">workshop materials</a> downloaded to your Desktop. <strong>We cannot provide service for installation the day of the workshop. Those who are not prepared for the workshop may be asked to give up their seat to those on the waitlist</strong>.</p>
+</div>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
 <p>Even if you already have <a href="https://cloud.r-project.org/">R</a> installed on your system, you really should make sure its up to date. This ensures that there are no problems due to outdated software. For more details about installing <a href="https://cloud.r-project.org/">R</a>, <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>, and keeping everything up to date, UBC’s <a href="http://stat545.com/block000_r-rstudio-install.html">STAT545</a> page is an excellent resource.</p>
 <ul>
 <li><a href="https://cloud.r-project.org/">R</a></li>
@@ -371,19 +349,19 @@ div.tocify {
 <li>(Once you’ve installed R) packages “<a href="http://tidyverse.org/">tidyverse</a>” and “<a href="http://tarwi.lamolina.edu.pe/~fmendiburu/">agricolae</a>”</li>
 </ul>
 </div>
-<div id="verification" class="section level3">
-<h3>Verification</h3>
+<div id="verification" class="section level2">
+<h2>Verification</h2>
 <p>Once you have installed <a href="https://cloud.r-project.org/">R</a>, we should verify that you have the correct version.</p>
 <ol style="list-style-type: decimal">
 <li>Open R (or RStudio) on your computer</li>
 <li><p>Enter the following in the R console after the <code>&gt;</code></p>
-<pre><code>R.version.string == &quot;R version 3.4.0 (2017-04-21)&quot;</code></pre></li>
+<pre><code>R.version.string == &quot;R version 3.5.0 (2018-04-23)&quot;</code></pre></li>
 <li><p>Make sure the result is <strong><code>[1] TRUE</code></strong><br />
 (If the result is <code>[1] FALSE</code>, please quit R and try the installation again)</p></li>
 </ol>
 </div>
-<div id="workshop-materials" class="section level3">
-<h3>Workshop Materials</h3>
+<div id="workshop-materials" class="section level2">
+<h2>Workshop Materials</h2>
 <p>Our <a href="https://github.com/everhartlab/IntroR/archive/master.zip">workshop materials</a> is a zip file that contains a folder called <code>IntroR-master/</code> with the folowing structure:</p>
 <pre><code>.
 ├── IntroR.Rproj
@@ -400,11 +378,10 @@ div.tocify {
     └── ...</code></pre>
 <p>We are providing the R scripts for the workshop. We will be live-coding these scripts, and <strong>we encourage you to follow along by creating your own R scripts</strong> so that you can get comfortable typing these commands. For those who feel the pace is too fast, or are unable to type the commands, feel free to execute the code in these scripts to follow along.</p>
 </div>
-<div id="installing-packages" class="section level3">
-<h3>Installing Packages</h3>
-<p>To install <a href="http://tidyverse.org/">tidyverse</a> and <a href="http://tarwi.lamolina.edu.pe/~fmendiburu/">agricolae</a> to your system, open R and type:</p>
-<pre class="r"><code>install.packages(c(&quot;tidyverse&quot;, &quot;agricolae&quot;), repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
-</div>
+<div id="installing-packages" class="section level2">
+<h2>Installing Packages</h2>
+<p>To install [dplyr] and [ggplot2] to your system, open R and type:</p>
+<pre class="r"><code>install.packages(c(&quot;dplyr&quot;, &quot;ggplott2&quot;), repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
 </div>
 
 <br>

@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -23,8 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -33,10 +33,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -91,6 +93,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -283,6 +288,9 @@ div.tocify {
         <li>
   <a href="index.html">Home</a>
 </li>
+<li>
+  <a href="installation.html">Before the Workshop</a>
+</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Workshop
@@ -290,9 +298,6 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="installation.html">Before the Workshop (Installation)</a>
-    </li>
     <li>
       <a href="Part1-Introduction.html">Part 1: Introduction to R</a>
     </li>
@@ -304,38 +309,14 @@ div.tocify {
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    About
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="data.html">Data Sets</a>
-    </li>
-    <li>
-      <a href="about.html">About This Site</a>
-    </li>
-  </ul>
+<li>
+  <a href="about.html">About</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Links
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="quiz.html">Workshop Quizzes</a>
-    </li>
-    <li>
-      <a href="https://goo.gl/forms/oDBV8WPXg7DlsS4C3">Exit Survey</a>
-    </li>
-    <li>
-      <a href="refs.html">Useful Tools/Links/References</a>
-    </li>
-  </ul>
+<li>
+  <a href="quiz.html">Quizzes</a>
+</li>
+<li>
+  <a href="refs.html">Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -359,193 +340,389 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Working directories</li>
 <li>Reading in data</li>
-<li>Finding help</li>
-<li>Basic data manipulation (renaming, subsetting, rotating)</li>
+<li>Advanced data manipulation (group_by, filter, mutate, select)</li>
+<li>Statistical Analysis</li>
 </ol>
-<div id="part-i-working-directories" class="section level2">
-<h2>Part I: Working Directories</h2>
+<div id="step-1-working-directories" class="section level2">
+<h2>Step 1: Working Directories</h2>
 <p>A working directory is the folder on your computer where you are currently working. You can find out your current working directory by typing <code>getwd()</code></p>
 <pre class="r"><code>&gt; getwd()</code></pre>
-<pre><code>[1] &quot;/Users/zhian/Documents/Everhart/IntroR&quot;</code></pre>
-<p>If you’ve downloaded and un-zipped this directory to your desktop, you might see something like <code>/Users/&lt;yourname&gt;/Desktop/IntroR</code>. This is the default place where R will begin reading and writing files. For example, you can use the function <code>list.files()</code> to view the files in your current working directory. These are the same files that we downloaded earlier. If you’re using Rstudio, you can compare the file list with the “Files” tab in the bottom right panel.</p>
+<pre><code>[1] &quot;/Users/nikitagambhir/Desktop/IntroR_Workshop&quot;</code></pre>
+<p>If you’ve downloaded and un-zipped this directory to your desktop, you might see something like <code>/Users/&lt;yourname&gt;/Desktop/IntroR_Workshop</code>. This is the<br />
+default place where R will begin reading and writing files. For example, you<br />
+can use the function <code>list.files()</code> to view the files in your current working directory. These are the same files that we downloaded earlier. If you’re using Rstudio, you can compare the file list with the “Files” tab in the bottom right panel.</p>
 <p>In order to use <code>list.files()</code>, we should provide it with a file path. We can provide it a “.”, which means “here” to most computer programs.</p>
 <pre class="r"><code>&gt; list.files(&quot;.&quot;)</code></pre>
-<pre><code> [1] &quot;analysis.R&quot;            &quot;data&quot;                 
- [3] &quot;docs&quot;                  &quot;IntroR.Rproj&quot;         
- [5] &quot;LICENSE&quot;               &quot;Makefile&quot;             
- [7] &quot;Part1-Introduction.R&quot;  &quot;Part2-Analysis.R&quot;     
- [9] &quot;Part3-Visualization.R&quot; &quot;parts.gif&quot;            
-[11] &quot;README.md&quot;            </code></pre>
+<pre><code>[1] &quot;data&quot;                  &quot;docs&quot;                  &quot;IntroR_Workshop.Rproj&quot;
+[4] &quot;LICENSE&quot;               &quot;Makefile&quot;              &quot;Part1-Introduction.R&quot; 
+[7] &quot;Part2-Analysis.R&quot;      &quot;Part3-Visualization.R&quot; &quot;README.md&quot;            </code></pre>
 <p>You can see that the first entry in here is “data”. This is where we’ve placed the fungicide example data.</p>
 <pre class="r"><code>&gt; list.files(&quot;data&quot;)</code></pre>
-<pre><code>[1] &quot;FungicideExample.csv&quot; &quot;README.md&quot;           </code></pre>
+<pre><code>[1] &quot;fungicide_dat.csv&quot;    &quot;FungicideExample.csv&quot; &quot;README.md&quot;           </code></pre>
 </div>
-<div id="part-ii-reading-in-data" class="section level2">
-<h2>Part II: Reading in Data</h2>
-<p>We can use the <code>read.table()</code> function to read these data in to R. It’s important to remember that while in R, these data are simply a copy kept <em>in memory</em>, not on the disk, so we don’t have to worry too much about accidentally deleting the data :).</p>
-<p>So, how do we actually USE the <code>read.table()</code> function? A good first step to figuring out how you can use a function is to look at it’s help page. The way you can do that is by typing either help(“function_name”) or ?function_name.</p>
-<pre class="r"><code>&gt; stop(&quot;
-+ 
-+      Type ?read.table and answer these three questions:
-+      
-+      1. What does it do? (Description)
-+      2. What are the first three arguments and their defaults? (Usage/Arguments)
-+      3. What does it return? (Value)
-+      
-+      &quot;)</code></pre>
-<pre><code>Error in eval(expr, envir, enclos): 
-
-     Type ?read.table and answer these three questions:
-     
-     1. What does it do? (Description)
-     2. What are the first three arguments and their defaults? (Usage/Arguments)
-     3. What does it return? (Value)
-     
-     </code></pre>
-<p>In order to read our data into R, we will need to provide three things:</p>
-<ol style="list-style-type: decimal">
-<li>The path to the data set : data/FungicideExample.csv</li>
-<li>If the first row are column names : yes</li>
-<li>The separator for each cell in the data : comma</li>
-</ol>
-<p>Now that we have these elements, we can read the data into a variable, which we can call “fungicide”. Once we do this, we can check the dimensions to make sure that we have all of the data.</p>
-<pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/FungicideExample.csv&quot;, header = TRUE, sep = &quot;,&quot;)
+<div id="step-2-reading-in-data" class="section level2">
+<h2>Step 2: Reading in Data</h2>
+<p>We can use the <code>read.csv()</code> function to read (or import) these data into R. It’s important to remember that while in R, these data are simply a copy kept <em>in memory</em>, not on the disk, so we don’t have to worry too much about accidentally deleting the data :).</p>
+<p>So, how do we actually USE the <code>read.csv()</code> function?</p>
+<pre class="r"><code>&gt; ?read.csv</code></pre>
+<p>You will notice that the help page describes all the sibling functions, too: <code>read.table()</code>, <code>read.csv2()</code>, <code>read.delim()</code>, <code>read.delim2()</code>. Let’s read the Description and Usage first. All arguments except ‘file’ have a default value (e.g. header = TRUE). You do not need to specify these arguments unless you want to change the default. Let’s use <code>read.csv()</code> with the default values.</p>
+<pre class="r"><code>&gt; read.csv(&quot;data/fungicide_dat.csv&quot;)</code></pre>
+<pre><code>     Treatment Yield_bu_per_acre Severity
+1      Control            173.82      5.5
+2      Control            174.23      5.6
+3      Control            173.57      5.4
+4      Control            173.61      5.4
+5      Control            174.19      5.6
+6      Control            173.80      5.5
+7  Fungicide_A            173.98      5.1
+8  Fungicide_A            174.27      5.2
+9  Fungicide_A            173.61      5.0
+10 Fungicide_A            173.88      5.0
+11 Fungicide_A            174.17      5.2
+12 Fungicide_A            173.49      5.1
+13 Fungicide_B            175.98      4.1
+14 Fungicide_B            175.58      3.9
+15 Fungicide_B            175.75      4.2
+16 Fungicide_B            175.88      4.0
+17 Fungicide_B            175.68      4.1
+18 Fungicide_B            175.95      4.2</code></pre>
+<p>Let’s use <code>read.table()</code> with the default values.</p>
+<pre class="r"><code>&gt; read.table(&quot;data/fungicide_dat.csv&quot;)</code></pre>
+<pre><code>                                     V1
+1  Treatment,Yield_bu_per_acre,Severity
+2                    Control,173.82,5.5
+3                    Control,174.23,5.6
+4                    Control,173.57,5.4
+5                    Control,173.61,5.4
+6                    Control,174.19,5.6
+7                     Control,173.8,5.5
+8                Fungicide_A,173.98,5.1
+9                Fungicide_A,174.27,5.2
+10                 Fungicide_A,173.61,5
+11                 Fungicide_A,173.88,5
+12               Fungicide_A,174.17,5.2
+13               Fungicide_A,173.49,5.1
+14               Fungicide_B,175.98,4.1
+15               Fungicide_B,175.58,3.9
+16               Fungicide_B,175.75,4.2
+17                 Fungicide_B,175.88,4
+18               Fungicide_B,175.68,4.1
+19               Fungicide_B,175.95,4.2</code></pre>
+<p>This has two issues: 1. The column names are treated as the first row. This is because the default for header is FALSE in <code>read.table()</code>. We should change to header = TRUE. 2. The data is presented as one column, ‘V1’. This is because the separator for each cell in the data is a “,” and not “”(space). We should change to sep = “,”.</p>
+<pre class="r"><code>&gt; read.table(&quot;data/fungicide_dat.csv&quot;, header = TRUE, sep = &quot;,&quot;)</code></pre>
+<pre><code>     Treatment Yield_bu_per_acre Severity
+1      Control            173.82      5.5
+2      Control            174.23      5.6
+3      Control            173.57      5.4
+4      Control            173.61      5.4
+5      Control            174.19      5.6
+6      Control            173.80      5.5
+7  Fungicide_A            173.98      5.1
+8  Fungicide_A            174.27      5.2
+9  Fungicide_A            173.61      5.0
+10 Fungicide_A            173.88      5.0
+11 Fungicide_A            174.17      5.2
+12 Fungicide_A            173.49      5.1
+13 Fungicide_B            175.98      4.1
+14 Fungicide_B            175.58      3.9
+15 Fungicide_B            175.75      4.2
+16 Fungicide_B            175.88      4.0
+17 Fungicide_B            175.68      4.1
+18 Fungicide_B            175.95      4.2</code></pre>
+<p>Now that we have these elements, we can read the data into an object, which we can call “fungicide”. Once we do this, we can check the dimensions to make sure that we have all of the data.</p>
+<pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;)
 &gt; nrow(fungicide)</code></pre>
-<pre><code>[1] 9</code></pre>
+<pre><code>[1] 18</code></pre>
 <pre class="r"><code>&gt; ncol(fungicide)</code></pre>
-<pre><code>[1] 7</code></pre>
+<pre><code>[1] 3</code></pre>
 <p>We can print the data to screen by simply typing its name</p>
 <pre class="r"><code>&gt; fungicide</code></pre>
-<pre><code>  Julian.Date TwentyOneThirtySevenWheat TwentyOneThirtySevenWheat.trt
-1          97                      0.00                          0.00
-2         104                      0.00                          0.00
-3         111                      0.00                          0.00
-4         118                      0.00                          0.00
-5         125                      0.00                          0.00
-6         132                      0.00                          0.00
-7         139                      2.34                          1.81
-8         146                      7.56                          7.89
-9         154                     28.78                         15.04
-  CutterWheat CutterWheat.Trt JaggerWheat JaggerWheat.Trt
-1        0.00            0.00        0.00            0.00
-2        0.00            0.00        0.00            0.00
-3        0.00            0.00        0.00            0.00
-4        0.00            0.00        0.00            0.00
-5        0.00            0.00        0.00            0.00
-6        0.00            0.00        0.00            0.00
-7        1.15            1.79        1.85            2.27
-8        3.62            2.40        6.92            5.00
-9       17.89            6.21       47.39           20.17</code></pre>
-<p>We can also use the <code>str()</code> function (short for “structure”) to have a broad overview of what our data looks like. This is useful for data frames with many columns.</p>
+<pre><code>     Treatment Yield_bu_per_acre Severity
+1      Control            173.82      5.5
+2      Control            174.23      5.6
+3      Control            173.57      5.4
+4      Control            173.61      5.4
+5      Control            174.19      5.6
+6      Control            173.80      5.5
+7  Fungicide_A            173.98      5.1
+8  Fungicide_A            174.27      5.2
+9  Fungicide_A            173.61      5.0
+10 Fungicide_A            173.88      5.0
+11 Fungicide_A            174.17      5.2
+12 Fungicide_A            173.49      5.1
+13 Fungicide_B            175.98      4.1
+14 Fungicide_B            175.58      3.9
+15 Fungicide_B            175.75      4.2
+16 Fungicide_B            175.88      4.0
+17 Fungicide_B            175.68      4.1
+18 Fungicide_B            175.95      4.2</code></pre>
+<p>We can use the <code>str()</code> function (short for “structure”) to have a broad overview of what our data looks like. This is useful for data frames with many columns.</p>
 <pre class="r"><code>&gt; str(fungicide)</code></pre>
-<pre><code>&#39;data.frame&#39;:   9 obs. of  7 variables:
- $ Julian.Date                  : int  97 104 111 118 125 132 139 146 154
- $ TwentyOneThirtySevenWheat    : num  0 0 0 0 0 ...
- $ TwentyOneThirtySevenWheat.trt: num  0 0 0 0 0 ...
- $ CutterWheat                  : num  0 0 0 0 0 ...
- $ CutterWheat.Trt              : num  0 0 0 0 0 0 1.79 2.4 6.21
- $ JaggerWheat                  : num  0 0 0 0 0 ...
- $ JaggerWheat.Trt              : num  0 0 0 0 0 ...</code></pre>
+<pre><code>&#39;data.frame&#39;:   18 obs. of  3 variables:
+ $ Treatment        : Factor w/ 3 levels &quot;Control&quot;,&quot;Fungicide_A&quot;,..: 1 1 1 1 1 1 2 2 2 2 ...
+ $ Yield_bu_per_acre: num  174 174 174 174 174 ...
+ $ Severity         : num  5.5 5.6 5.4 5.4 5.6 5.5 5.1 5.2 5 5 ...</code></pre>
+<p>We can also use the <code>View()</code> function to look at our data in spreadsheet-style.</p>
+<pre class="r"><code>&gt; View(fungicide)</code></pre>
+<pre><code>Error in check_for_XQuartz(): X11 library is missing: install XQuartz from xquartz.macosforge.org</code></pre>
+<p>The dummy data presented here consists of yield (measured in bu/acre) and disease severity (measured on a scale of 1 to 10) of a corn culitvar treated with two fungicides. This trial was conducted to measure the efficacy of the two fungicides to manage disease. The experiment was laid out as a Completely Randomized Design. With these data, we want to answer the following questions: 1. What is the mean yield of each treatment group in kg/ha? 2. What is the percent severity of Control and Fungicide A? 3. Which fungicide shows better results? (ANOVA)</p>
+<pre class="r"><code>&gt; #</code></pre>
 </div>
-<div id="part-iii-finding-the-right-tool-for-the-job" class="section level2">
-<h2>Part III: Finding the right tool for the job</h2>
-<p>The data presented here are from <a href="http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/StripeRust.aspx" class="uri">http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/StripeRust.aspx</a> and consist of three cultivars of wheat treated with different fungicides Jagger wheat is a succeptible variety whereas Cutter and 2137 are both resistant varieties. It is assumed that the fungicide will only be able to prevent new infections for two weeks after applicaton. With these data, we want to answer the following questions:</p>
+<div id="step-3-advanced-data-manipulation-group_by-filter-mutate-select" class="section level2">
+<h2>Step 3: Advanced data manipulation (group_by, filter, mutate, select)</h2>
+<pre class="r"><code>&gt; #</code></pre>
+<p>The package ‘dplyr’ provides functions for easy and advanced data manipulation. If we want to use it, we can download the package to our computer with the function <code>install.packages()</code>. This will install a package from CRAN and place it into your R <em>Library</em>.</p>
+<pre class="r"><code>&gt; install.packages(&quot;dplyr&quot;)</code></pre>
+<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
+<p>To load this package, we can use the function <code>library()</code>.</p>
+<pre class="r"><code>&gt; library(&quot;dplyr&quot;)</code></pre>
+<pre><code>
+Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    filter, lag</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    intersect, setdiff, setequal, union</code></pre>
 <ol style="list-style-type: decimal">
-<li>How does the size of the fungicide effect compare to the effect of cultivar?</li>
-<li>Would it be the same as cultivar?</li>
+<li>What is the mean yield of each treatment group in kg/ha? Let’s go step by step to answer this:</li>
 </ol>
-<p>To answer these questions, we will use the summary statistic, Area Under the Disease Progress Curve (AUDPC).</p>
-<p>So, how do you calculate this? You could code the trapezoid rule yourself, OR you could find a package that was designed for this.</p>
-<pre class="r"><code>&gt; stop(&quot;
-+ 
-+     Do an internet search for AUDPC in R. What did you find?
-+ 
-+     &quot;)</code></pre>
-<pre><code>Error in eval(expr, envir, enclos): 
-
-    Do an internet search for AUDPC in R. What did you find?
-
-    </code></pre>
-<p>The first thing that likely popped up was the function <code>audpc()</code> in the <em>agricolae</em> package. If we want to use it, we can download the package to our computer with the function <code>install.packages()</code>. This will install a package from CRAN and place it into your R <em>Library</em>. Where is your R library? Type <code>.libPaths()</code> to find out!</p>
-<pre class="r"><code>&gt; .libPaths()
+<ol style="list-style-type: lower-alpha">
+<li>Convert yield data from bu/acre to kg/ha To do this conversion for corn, we need to multiply the yield in bu/acre with 62.77. So, how can we add a column with yield data in kg/ha? We can do this similar to what we learnt in Step 1. fungicide<span class="math inline">\(Yield_kg_per_ha &lt;- fungicide\)</span>Yield_bu_per_acre*62.77 We can also use the function <code>mutate()</code> from ‘dplyr’. This adds a new variable using existing variables. The usage of this function is as: mutate(data, new_variable_name = calculation_based_upon_existing_variables)</li>
+</ol>
+<pre class="r"><code>&gt; fungicide_1 &lt;- mutate(fungicide, Yield_kg_per_ha = Yield_bu_per_acre*62.77)</code></pre>
+<blockquote>
+<p>Note: We did not have to use fungicide$Yield_bu_per_acre. Let’s print the data to see what we have</p>
+</blockquote>
+<pre class="r"><code>&gt; fungicide_1</code></pre>
+<pre><code>     Treatment Yield_bu_per_acre Severity Yield_kg_per_ha
+1      Control            173.82      5.5        10910.68
+2      Control            174.23      5.6        10936.42
+3      Control            173.57      5.4        10894.99
+4      Control            173.61      5.4        10897.50
+5      Control            174.19      5.6        10933.91
+6      Control            173.80      5.5        10909.43
+7  Fungicide_A            173.98      5.1        10920.72
+8  Fungicide_A            174.27      5.2        10938.93
+9  Fungicide_A            173.61      5.0        10897.50
+10 Fungicide_A            173.88      5.0        10914.45
+11 Fungicide_A            174.17      5.2        10932.65
+12 Fungicide_A            173.49      5.1        10889.97
+13 Fungicide_B            175.98      4.1        11046.26
+14 Fungicide_B            175.58      3.9        11021.16
+15 Fungicide_B            175.75      4.2        11031.83
+16 Fungicide_B            175.88      4.0        11039.99
+17 Fungicide_B            175.68      4.1        11027.43
+18 Fungicide_B            175.95      4.2        11044.38</code></pre>
+<p>We have a new column <code>Yield_kg_per_ha</code>. We have two columns with yield and one with severity. We don’t want severity data and want yield data only in kg/ha. b) Create a new data frame with only <code>Treatment</code> and <code>Yield_kg_per_ha</code> columns We can use the function <code>select()</code> that picks variables based on their names.</p>
+<pre class="r"><code>&gt; fungicide_2 &lt;- select(fungicide_1, Treatment, Yield_kg_per_ha)
+&gt; fungicide_2</code></pre>
+<pre><code>     Treatment Yield_kg_per_ha
+1      Control        10910.68
+2      Control        10936.42
+3      Control        10894.99
+4      Control        10897.50
+5      Control        10933.91
+6      Control        10909.43
+7  Fungicide_A        10920.72
+8  Fungicide_A        10938.93
+9  Fungicide_A        10897.50
+10 Fungicide_A        10914.45
+11 Fungicide_A        10932.65
+12 Fungicide_A        10889.97
+13 Fungicide_B        11046.26
+14 Fungicide_B        11021.16
+15 Fungicide_B        11031.83
+16 Fungicide_B        11039.99
+17 Fungicide_B        11027.43
+18 Fungicide_B        11044.38</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Find the mean yield If we want to summarise multiple values to a single value, for example, mean, we can use the function <code>summarize()</code>.</li>
+</ol>
+<pre class="r"><code>&gt; summarize(fungicide_2, Mean_yield = mean(Yield_kg_per_ha))</code></pre>
+<pre><code>  Mean_yield
+1    10954.9</code></pre>
+<p>Wait, we just got one mean even though we had three different groups (Control, Fungicide_A, Fungicide_B). We need to find the mean for every group. How can we tell R that it needs to group the data according to the treatment? d) Group data according to treatment We can use the function <code>group_by()</code> for this purpose.</p>
+<pre class="r"><code>&gt; fungicide_3 &lt;- group_by(fungicide_2, Treatment)
+&gt; fungicide_3 </code></pre>
+<pre><code># A tibble: 18 x 2
+# Groups:   Treatment [3]
+   Treatment   Yield_kg_per_ha
+   &lt;fct&gt;                 &lt;dbl&gt;
+ 1 Control              10911.
+ 2 Control              10936.
+ 3 Control              10895.
+ 4 Control              10897.
+ 5 Control              10934.
+ 6 Control              10909.
+ 7 Fungicide_A          10921.
+ 8 Fungicide_A          10939.
+ 9 Fungicide_A          10897.
+10 Fungicide_A          10914.
+11 Fungicide_A          10933.
+12 Fungicide_A          10890.
+13 Fungicide_B          11046.
+14 Fungicide_B          11021.
+15 Fungicide_B          11032.
+16 Fungicide_B          11040.
+17 Fungicide_B          11027.
+18 Fungicide_B          11044.</code></pre>
+<p>You will notice that <code>fungicide_2</code> and <code>fungicide_3</code> are a little different. <code>fungicide_3</code> is also a “tibble”, which is a form of data frame that gives more information about our data (e.g. what kind of data the columns are). You will notice that Treatment is a factor, while Yield_kg_per_ha is a double (decimal). It also tells us that our data is grouped by Treatment (therefore, it has three groups). To add the grouping information to this data frame, ‘dplyr’ uses a sister package to convert it into a tibble. Also, note that <code>Yield_kg_per_ha</code> is not printing the whole answer (after decimals) and has underlined first two digits. The tibble format is different when we print it, but the same when we use <code>View()</code>. The digits are underlined so that it is easier to read larger numbers. It’s role is similar to a comma. So, ‘10,000’ will have ‘10’ underlined and ‘100,000’ will have ‘100’ underlined. e) Find the mean yield of every group</p>
+<pre class="r"><code>&gt; fungicide_4 &lt;- summarize(fungicide_3, Mean_yield = mean(Yield_kg_per_ha))
+&gt; fungicide_4</code></pre>
+<pre><code># A tibble: 3 x 2
+  Treatment   Mean_yield
+  &lt;fct&gt;            &lt;dbl&gt;
+1 Control         10914.
+2 Fungicide_A     10916.
+3 Fungicide_B     11035.</code></pre>
+<p>Instead of creating different objects everytime, we can perform multiple functions at once and create one final object. We use the pipe operator, %&gt;% , for this purpose. The left hand side of %&gt;% acts as the input on which an operation on the right side is performed. A shortcut to write %&gt;% is <code>ctrl+shift+m</code>.</p>
+<pre class="r"><code>&gt; yield_summary &lt;- fungicide %&gt;% 
++   mutate(Yield_kg_per_ha = Yield_bu_per_acre*62.77) %&gt;%  
++   select(Treatment, Yield_kg_per_ha) %&gt;% 
++   group_by(Treatment) %&gt;% 
++   summarise(Mean_yield = mean(Yield_kg_per_ha))
 &gt; 
-&gt; install.packages(&quot;agricolae&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
-<p>Now that we have the <em>agricolae</em> package installed, we can load into our R workspace using the <code>library()</code> function, which looks in our library and loads the functions and data sets within that package. You can find out about what functions are avialable with help(package = “agricolae”).</p>
-<p>To accomplish our task, however, we need to find out how to use the <code>audpc()</code> function. First we should load the agricolae package</p>
-<pre class="r"><code>&gt; library(&quot;agricolae&quot;)</code></pre>
-<p>Now we can look up help for <code>audpc()</code></p>
-<pre class="r"><code>&gt; ?audpc</code></pre>
-<p>This function will take in a data frame of severity and a vector of dates. Since our vector of dates is in the first column, we will need to manipulate the data frame by subsetting.</p>
-<pre class="r"><code>&gt; jdate &lt;- fungicide$Julian.Date # this is also the first column
-&gt; jdate</code></pre>
-<pre><code>[1]  97 104 111 118 125 132 139 146 154</code></pre>
-<pre class="r"><code>&gt; fungicide.audpc &lt;- audpc(evaluation = fungicide[, -1], dates = jdate, type = &quot;relative&quot;)</code></pre>
-<pre><code>Error:
-The number of dates of evaluation 
-must agree with the number of evaluations</code></pre>
-<p>Well this doesn’t look good. What can this error message mean? Let’s take a look at the audpc help page one more time; this time, we’ll look at the Examples section. Try to copy and paste the code one line at a time and see what happens. Check the evaluaton data relative to the dates and see how it’s relevant.</p>
-<pre class="r"><code>&gt; stop(&quot;
+&gt; yield_summary</code></pre>
+<pre><code># A tibble: 3 x 2
+  Treatment   Mean_yield
+  &lt;fct&gt;            &lt;dbl&gt;
+1 Control         10914.
+2 Fungicide_A     10916.
+3 Fungicide_B     11035.</code></pre>
+<pre class="r"><code>&gt; View(yield_summary)</code></pre>
+<pre><code>Error in check_for_XQuartz(): X11 library is missing: install XQuartz from xquartz.macosforge.org</code></pre>
+<p>We answered our first question! You will notice that on the console below, the code for creating <code>yield_summary</code> has <code>+</code> signs before every line. The plus signs just indicate that R is waiting for the code to be finished. This sign also appears when we forget to put a closing paranthesis ‘)’. Try this:</p>
+<pre class="r"><code>&gt; str(yield_summary
 + 
-+      Stop and look at the examples from ?audpc.
-+      
-+      &quot;)</code></pre>
-<pre><code>Error in eval(expr, envir, enclos): 
-
-     Stop and look at the examples from ?audpc.
-     
-     </code></pre>
-<p>We can see from example 3, that the data must be arranged where dates are in separate columns. We need to transpose our data. To do this, we can use the <code>t()</code> function:</p>
-<pre class="r"><code>&gt; t(fungicide[, -1])</code></pre>
-<pre><code>                              [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
-TwentyOneThirtySevenWheat        0    0    0    0    0    0 2.34 7.56
-TwentyOneThirtySevenWheat.trt    0    0    0    0    0    0 1.81 7.89
-CutterWheat                      0    0    0    0    0    0 1.15 3.62
-CutterWheat.Trt                  0    0    0    0    0    0 1.79 2.40
-JaggerWheat                      0    0    0    0    0    0 1.85 6.92
-JaggerWheat.Trt                  0    0    0    0    0    0 2.27 5.00
-                               [,9]
-TwentyOneThirtySevenWheat     28.78
-TwentyOneThirtySevenWheat.trt 15.04
-CutterWheat                   17.89
-CutterWheat.Trt                6.21
-JaggerWheat                   47.39
-JaggerWheat.Trt               20.17</code></pre>
-<p>Now we can plug this into the <code>audpc()</code> function:</p>
-<pre class="r"><code>&gt; fungicide.audpc &lt;- audpc(evaluation = t(fungicide[, -1]), dates = jdate, type = &quot;relative&quot;)
-&gt; fungicide.audpc</code></pre>
-<pre><code>    TwentyOneThirtySevenWheat TwentyOneThirtySevenWheat.trt 
-                  0.033017544                   0.023158772 
-                  CutterWheat               CutterWheat.Trt 
-                  0.018729825                   0.009714035 
-                  JaggerWheat               JaggerWheat.Trt 
-                  0.044633333                   0.023521053 </code></pre>
-<p>This gives us a vector with the AUDPC values per treatment. The vector format does not make it particularly easy to compare the effect of cultivar or treatment. A better format to store these data would be in a table. Since all the values are numeric, we can place them into a matrix using the <code>matrix()</code> function. We are going to put the samples in rows and experiments in columns.</p>
-<pre class="r"><code>&gt; fungicide.res &lt;- matrix(fungicide.audpc, nrow = 3, ncol = 2, byrow = TRUE)
-&gt; fungicide.res</code></pre>
-<pre><code>           [,1]        [,2]
-[1,] 0.03301754 0.023158772
-[2,] 0.01872982 0.009714035
-[3,] 0.04463333 0.023521053</code></pre>
-<p>We have our result, but there are no labels for the rows and columns. Notice how we selected <code>byrow = TRUE</code>. This means that the matrix was filled row by row. So the first two elements of the vector would go in the first row, the next two would go in the second, and so on and so forth.</p>
-<pre class="r"><code>&gt; names(fungicide.audpc)[1:2]</code></pre>
-<pre><code>[1] &quot;TwentyOneThirtySevenWheat&quot;     &quot;TwentyOneThirtySevenWheat.trt&quot;</code></pre>
-<pre class="r"><code>&gt; names(fungicide.audpc)[3:4]</code></pre>
-<pre><code>[1] &quot;CutterWheat&quot;     &quot;CutterWheat.Trt&quot;</code></pre>
-<pre class="r"><code>&gt; names(fungicide.audpc)[5:6]</code></pre>
-<pre><code>[1] &quot;JaggerWheat&quot;     &quot;JaggerWheat.Trt&quot;</code></pre>
-<p>Since this is a small matrix, we can easily name these rows and columns ourselves using the <code>rownames()</code> and <code>colnames()</code> functions.</p>
-<pre class="r"><code>&gt; rownames(fungicide.res) &lt;- c(&quot;2137&quot;, &quot;Cutter&quot;, &quot;Jagger&quot;)
-&gt; colnames(fungicide.res) &lt;- c(&quot;Control&quot;, &quot;Treated&quot;)
-&gt; fungicide.res</code></pre>
-<pre><code>          Control     Treated
-2137   0.03301754 0.023158772
-Cutter 0.01872982 0.009714035
-Jagger 0.04463333 0.023521053</code></pre>
-<p>If we wanted to use these data as a table in a paper, we should export it to a csv file. We do this using the function <code>write.table()</code></p>
++ )</code></pre>
+<pre><code>Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:   3 obs. of  2 variables:
+ $ Treatment : Factor w/ 3 levels &quot;Control&quot;,&quot;Fungicide_A&quot;,..: 1 2 3
+ $ Mean_yield: num  10914 10916 11035</code></pre>
+<p>Let’s go to our second question. 2. What is the percent severity of Control and Fungicide A? ———————————————————– First, we need to create a new data frame where we only have severity data for Control and Fungicide A. If we want to filter a data frame based upon specific values of a variable, we can use the function <code>filter()</code>.</p>
+<pre class="r"><code>&gt; filter(fungicide, Treatment == &quot;Control&quot; | Treatment == &quot;Fungicide_A&quot;)</code></pre>
+<pre><code>     Treatment Yield_bu_per_acre Severity
+1      Control            173.82      5.5
+2      Control            174.23      5.6
+3      Control            173.57      5.4
+4      Control            173.61      5.4
+5      Control            174.19      5.6
+6      Control            173.80      5.5
+7  Fungicide_A            173.98      5.1
+8  Fungicide_A            174.27      5.2
+9  Fungicide_A            173.61      5.0
+10 Fungicide_A            173.88      5.0
+11 Fungicide_A            174.17      5.2
+12 Fungicide_A            173.49      5.1</code></pre>
+<p>The treatment column should either be equal (<code>==</code>) to Control OR (<code>|</code>) Fungicide_A. We can also write the same expression as:</p>
+<pre class="r"><code>&gt; filter(fungicide, Treatment != &quot;Fungicide_B&quot;)</code></pre>
+<pre><code>     Treatment Yield_bu_per_acre Severity
+1      Control            173.82      5.5
+2      Control            174.23      5.6
+3      Control            173.57      5.4
+4      Control            173.61      5.4
+5      Control            174.19      5.6
+6      Control            173.80      5.5
+7  Fungicide_A            173.98      5.1
+8  Fungicide_A            174.27      5.2
+9  Fungicide_A            173.61      5.0
+10 Fungicide_A            173.88      5.0
+11 Fungicide_A            174.17      5.2
+12 Fungicide_A            173.49      5.1</code></pre>
+<p>The treatment column should not be equal to (<code>!=</code>) to Fungicide_B. So, it will have everything except Fungicide B (“Control” and “Fungicide_A”). After filtering, we need to add a column <code>Percent_Severity</code>, where severity is measured in percent and not on a scale of 1 to 10. Any guess on which function should we use? Let’s perform all operations in one go.</p>
+<pre class="r"><code>&gt; severity_dat &lt;- fungicide %&gt;% 
++   filter(Treatment == &quot;Control&quot; | Treatment == &quot;Fungicide_A&quot;) %&gt;% 
++   mutate(Percent_Severity = Severity/10*100) %&gt;% 
++   select(Treatment, Percent_Severity)
+&gt; 
+&gt; severity_dat</code></pre>
+<pre><code>     Treatment Percent_Severity
+1      Control               55
+2      Control               56
+3      Control               54
+4      Control               54
+5      Control               56
+6      Control               55
+7  Fungicide_A               51
+8  Fungicide_A               52
+9  Fungicide_A               50
+10 Fungicide_A               50
+11 Fungicide_A               52
+12 Fungicide_A               51</code></pre>
+<p>If we wanted to use these data as a table in a paper, we should export it to a csv file. We can do this using the function <code>write.table()</code>. Before that, let’s create a new directory (or folder) named results. We can do this using the function <code>dir.create()</code>.</p>
 <pre class="r"><code>&gt; dir.create(&quot;results&quot;)
-&gt; write.table(fungicide.res, file = &quot;results/audpc.csv&quot;, sep = &quot;,&quot;, 
-+             col.names = NA,
-+             row.names = TRUE)</code></pre>
+&gt; write.table(severity_dat, file = &quot;results/severity_dat.csv&quot;, sep = &quot;,&quot;, 
++             col.names = TRUE, 
++             row.names = FALSE)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Which fungicide shows better results? (ANOVA) Step 4: Statistical Analysis —————————-</li>
+</ol>
+<p>Let’s do ANOVA for yield and severity data. We can use alpha level = 0.05. If we do an internet search for ANOVA in R, you will find that function <code>aov</code> is appropriate for this. How do we use <code>aov</code>?</p>
+<pre class="r"><code>&gt; ?aov</code></pre>
+<p>This function takes in a formula to be tested. To find if the independent variable (<code>Treatment</code>) had an effect on the dependent variable (<code>Yield_bu_per_acre</code>), the formula should be written as ‘dependent_variable ~ independent_variable’. If we used blocks in our experimental design, the formula can be modified to ‘dependent_variable ~ independent_variable + block’. The function also takes in a data frame in which these variables are present. Let’s use this function.</p>
+<pre class="r"><code>&gt; aov(formula=Yield_bu_per_acre ~ Treatment, data=fungicide) </code></pre>
+<pre><code>Call:
+   aov(formula = Yield_bu_per_acre ~ Treatment, data = fungicide)
+
+Terms:
+                Treatment Residuals
+Sum of Squares  14.722711  0.992333
+Deg. of Freedom         2        15
+
+Residual standard error: 0.2572072
+Estimated effects may be unbalanced</code></pre>
+<p>As mentioned in the ‘Description’, <code>aov</code> fits an ANOVA model to an experimental design. Let’s check the ‘Value’ section of the help page so we know what does it return. It returns an object, which can further be explored with <code>print()</code> and <code>summary()</code>. Let’s assign it to an object so that we can use <code>print()</code> and <code>summary()</code> on it.</p>
+<pre class="r"><code>&gt; fit_yield &lt;- aov(formula=Yield_bu_per_acre ~ Treatment, data=fungicide) 
+&gt; 
+&gt; print(fit_yield) </code></pre>
+<pre><code>Call:
+   aov(formula = Yield_bu_per_acre ~ Treatment, data = fungicide)
+
+Terms:
+                Treatment Residuals
+Sum of Squares  14.722711  0.992333
+Deg. of Freedom         2        15
+
+Residual standard error: 0.2572072
+Estimated effects may be unbalanced</code></pre>
+<pre class="r"><code>&gt; summary(fit_yield) # This is what we want!</code></pre>
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+Treatment    2 14.723   7.361   111.3 1.01e-09 ***
+Residuals   15  0.992   0.066                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The output is similar to an ANOVA table. ‘Pr(&gt;F)’ is the associated p-value. As the p-value is less than 0.05, the null hypothesis is rejected. So, at least one of the treatments is different. Now that we know that differences exist between our treatments, how can we find which treatments are different? We can do this by using Tukey’s post-hoc test. If you scroll down the help page of <code>aov</code> and go the section ‘See Also’, you will see a function <code>TukeyHSD</code>. This is what we need.</p>
+<pre class="r"><code>&gt; TukeyHSD(fit_yield) </code></pre>
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Yield_bu_per_acre ~ Treatment, data = fungicide)
+
+$Treatment
+                            diff        lwr       upr    p adj
+Fungicide_A-Control     0.030000 -0.3557208 0.4157208 0.977785
+Fungicide_B-Control     1.933333  1.5476125 2.3190542 0.000000
+Fungicide_B-Fungicide_A 1.903333  1.5176125 2.2890542 0.000000</code></pre>
+<p>There is no difference between ‘Fungicide_A’ and ‘Control’ as the p-value is 0.978 (&gt;0.05). Let’s do similar analysis using the Severity data</p>
+<pre class="r"><code>&gt; fit_severity &lt;- aov(formula=Severity ~ Treatment, data=fungicide)
+&gt; summary(fit_severity) # p-value is less than 0.05, so let&#39;s do Tukey&#39;s post-hoc test</code></pre>
+<pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)    
+Treatment    2  6.401   3.201   323.7 4.6e-13 ***
+Residuals   15  0.148   0.010                    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>&gt; TukeyHSD(fit_severity) </code></pre>
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Severity ~ Treatment, data = fungicide)
+
+$Treatment
+                             diff        lwr        upr    p adj
+Fungicide_A-Control     -0.400000 -0.5491295 -0.2508705 1.28e-05
+Fungicide_B-Control     -1.416667 -1.5657962 -1.2675371 0.00e+00
+Fungicide_B-Fungicide_A -1.016667 -1.1657962 -0.8675371 0.00e+00</code></pre>
+<p>All the treatment pairs are significantly different from each other as the p-value is &lt; 0.05.</p>
 </div>
 </div>
 

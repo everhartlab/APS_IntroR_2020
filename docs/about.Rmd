@@ -1,6 +1,18 @@
 ---
-title: "About This Website"
+title: "About"
 ---
+
+Workshop Outcomes
+-----------------
+
+In this workshop, we expect to present enough information to get you started on 
+your way to learning R. Because this is a four hour workshop, our goal is to 
+demonstrate a simple analysis in R, emphasizing problem solving and 
+troubleshooting. By the end of the workshop you should have just enough
+background to be able to learn more.
+
+About this website
+------------------
 
 This website was built using R and Rmarkdown.
 

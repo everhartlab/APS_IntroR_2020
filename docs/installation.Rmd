@@ -2,25 +2,17 @@
 title: "Before The Workshop"
 ---
 
-Workshop Outcomes
------------------
-
-In this workshop, we expect to present enough information to get you started on 
-your way to learning R. Because this is a three hour workshop, our goal is to 
-demonstrate a simple analysis in R, emphasizing problem solving and 
-troubleshooting. By the end of the workshop you should have just enough
-background to be able to learn more.
-
 Required Materials
 ------------------
 
-Again, because this is a three hour workshop, we ask that you come prepared with
+Again, because this is a four hour workshop, we ask that you come prepared with
 a laptop that has the most recent versions of [R] and [RStudio] installed, and
 our [workshop materials] downloaded to your Desktop. **We cannot provide service
 for installation the day of the workshop. Those who are not prepared for the 
 workshop may be asked to give up their seat to those on the waitlist**.
 
-### Installation
+Installation
+------------
 
 Even if you already have [R] installed on your system, you really should make
 sure its up to date. This ensures that there are no problems due to outdated
@@ -32,20 +24,22 @@ everything up to date, UBC's [STAT545] page is an excellent resource.
  - [Workshop Materials] (zip file; unzip to Desktop)
  - (Once you've installed R) packages "[tidyverse]" and "[agricolae]"
 
-### Verification
+Verification
+------------
 
 Once you have installed [R], we should verify that you have the correct version.
 
  1. Open R (or RStudio) on your computer
  2. Enter the following in the R console after the `>`    
         
-        R.version.string == "R version 3.4.0 (2017-04-21)"
+        R.version.string == "R version 3.5.0 (2018-04-23)"
         
  3. Make sure the result is **`[1] TRUE`**    
     (If the result is `[1] FALSE`, please quit R and try the installation again)
  
  
-### Workshop Materials
+Workshop Materials
+------------------
 
 Our [workshop materials] is a zip file that contains a folder called 
 `IntroR-master/` with the folowing structure:
@@ -72,12 +66,13 @@ so that you can get comfortable typing these commands. For those who feel the
 pace is too fast, or are unable to type the commands, feel free to execute the
 code in these scripts to follow along.
 
-### Installing Packages
+Installing Packages
+-------------------
 
-To install [tidyverse] and [agricolae] to your system, open R and type:
+To install [dplyr] and [ggplot2] to your system, open R and type:
 
 ```{r, eval = FALSE}
-install.packages(c("tidyverse", "agricolae"), repos = "https://cran.rstudio.com")
+install.packages(c("dplyr", "ggplott2"), repos = "https://cran.rstudio.com")
 ```
 
 

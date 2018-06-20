@@ -11,7 +11,7 @@
 #  4. Data frames, basic data manipulation (subsetting, renaming, joining), 
 #     and finding help for using functions
 #  
-# Part 1: How to use this R script
+# Step 1: How to use this R script
 # ---------------------------------
 # 
 # A script is a text document that contains instructions and commands The # 
@@ -24,7 +24,7 @@
 # 
 # Copy and paste the following into the console and run it:
 
-    print("the instructor's name is Sydney")  
+print("the instructor's name is Sydney")  
 
 # Run a single line of your script in the console by placing your cursor on the 
 # line you want to submit and use your cursor to press the "Run" button at the 
@@ -64,7 +64,7 @@ pi*pi
 pi^2   # this does the same thing because ^ is, here, interpreted as "taken to the exponent"
 
 # 
-# Part 2: Creating objects and using logicals
+# Step 2: Creating objects and using logicals
 # --------------------------------------------
 # 
 # Objects are like shortcuts.  They are a way to store data without having to 
@@ -116,12 +116,19 @@ answer*2
 # We can also use logical operations in R.  The answer to a logical question is
 # always TRUE or FALSE.
 
-a > b # Is `a` greater than `b`?  You can look at the Values on your right to
-      # check the answer.
-b > 10 # Is `b` greater than 10?
-b + c > a # Is `b + c` greater than `a`?  R will first evaluate the algebraic
-          # operation (`+`) and then evaluate the logical operation (`>`).
-          # So, we don't need to use `(b+c) > a`
+# Is `a` greater than `b`?
+a > b # You can look at the Values on your right to check the answer.
+ 
+# Is `b` greater than 10?   
+b > 10
+
+# Is `b + c` greater than `a`?  
+b + c > a 
+
+# R will first evaluate the algebraic operation (`+`) and then evaluate the  
+# logical operation (`>`). So, we don't need to use `(b+c) > a`.
+
+# Is `a` equal to 7?  
 a = 7 
 
 # Oops! We did not get any answer. What went wrong? Let's print `a`.
@@ -133,10 +140,14 @@ a
 
 a == 7 # We need to put two '=' signs to check equality.
 
-a != 7 # Is `a` not equal to '7'?
+# Is `a` not equal to '7'?
+a != 7 
 
-a & b > c # Are both `a` and `b` greater than c?
-a | b > c # Is either `a` or `b` greater than c?
+# Are both `a` and `b` greater than c?
+a & b > c 
+
+# Is either `a` or `b` greater than c?
+a | b > c 
 
 # The examples above dealt with numeric values assigned to objects.  We can also
 # store character data in objects.  We need to place the character data (words,  
@@ -181,10 +192,10 @@ c(first.name, last.name)
 # these are interpreted as character data in R. You'll also notice that each
 # name is placed inside quotes and that's because c() combined names into a
 # single vector that contains two elements, your first and your last name.  This
-# brings us to the next part in our introduction, vectors.
+# brings us to the next step in our introduction, vectors.
 # 
 
-# Part 3: Vectors and sequences 
+# Step 3: Vectors and sequences 
 # ------------------------------
 # 
 # Up to here, the objects we've created only contained a single element. You can 
@@ -321,7 +332,7 @@ length(day)
 length(month)
 length(year)
 
-# Part 4: Data frames, basic data manipulation, and finding help for using functions
+# Step 4: Data frames, basic data manipulation, and finding help for using functions
 # -----------------------------------------------------------------------------------
 # 
 # Remember that our goal here is to create a table with the columns "month",
@@ -416,11 +427,11 @@ June[, 2, drop = FALSE]
 
 # Now that we've inspected the object `June`, let's create the same thing for
 # the month of July. How should we do this?
-# 
+
 # One option would be to create new obects for day, month, and year and combine
 # them just like we did for June.  What is the simplest method to do this, using
 # the fewest number of steps? 
-# 
+
 # We can simply make a copy of `July` and add a vector with information about
 # the 31st day.  Now that we have two dimensions, there are two ways we can add
 # the vector, as a row or as a column. R provides two functions that can help us
@@ -477,7 +488,7 @@ tail(summer)
 #   3     "June"   2018
 #   ...
 # ```
-# 
+
 # Months need to be changed from the number 6 to "June" and from 7 to "July" in
 # the second column.  Let's first look at the month column.
 
@@ -490,10 +501,10 @@ summer$month
 summer[1:30, "month"]     # June
 summer[-c(1:30), "month"] # July
 
-# 
+
 # > Notice that we used `-c(1:31)`, what do you think this is doing? Why would 
 # > this give us the values for the month of July?
-# 
+ 
 # We can use the `ifelse()` function to replace the values in our column.  How 
 # do we use this function?  A good first step to figuring out how you can use a 
 # function is to look at its help page.  The way you can do that is by typing  
@@ -512,7 +523,7 @@ stop("
      ")
 
 # In order to use `ifelse`, we will need to provide three things:
-# 
+ 
 #  1. A logical question about the elements of an object   : summer$month == 6
 #  2. Values for TRUE elements                             : "June"
 #  3. Values for FALSE elements                            : "July"
@@ -522,7 +533,7 @@ summer$month <- ifelse(summer$month == 6, yes = "June", no = "July")
 
 # > Notice that we had to use `==` to indicate equality. This is so that R 
 # > doesn't get confused and assume we are using the argument assignment, `=`.
-# 
+
 # Now, let's inspect summer. 
 
 str(summer)

@@ -5,10 +5,10 @@ navbar:
   left:
     - text: "Home"
       href: index.html
+    - text: "Before the Workshop"
+      href: installation.html
     - text: "Workshop"
       menu:
-        - text: "Before the Workshop (Installation)"
-          href: installation.html
         - text: "Part 1: Introduction to R"
           href: Part1-Introduction.html
         - text: "Part 2: First Analysis"
@@ -16,26 +16,26 @@ navbar:
         - text: "Part 3: Reshaping and Visualization"
           href: Part3-Visualization.html
     - text: "About"
-      menu:
-        - text: "Data Sets"
-          href: data.html
-        - text: "About This Site"
-          href: about.html
+      href: about.html
+#      menu:
+#        - text: "Data Sets"
+#          href: data.html
+    - text: "Quizzes"
+      href: quiz.html
     - text: "Links"
-      menu:
-        - text: "Workshop Quizzes"
-          href: quiz.html
-        - text: "Exit Survey"
-          href: https://goo.gl/forms/oDBV8WPXg7DlsS4C3
-        - text: "Useful Tools/Links/References"
-          href: refs.html
+      href: refs.html
+#      menu:
+#        - text: "Exit Survey"
+#          href: https://goo.gl/forms/oDBV8WPXg7DlsS4C3
+#        - text: "Useful Tools/Links/References"
+          
 output:
   html_document:
     toc: true
     toc_float:
       collapsed: false
     toc_depth: 2
-    theme: cerulean
+    theme: cosmo
     highlight: textmate
     include:
       after_body: footer.html
