@@ -346,22 +346,18 @@ div.tocify {
 <li>saving data</li>
 </ul>
 <p>Of course, we haven’t used one of R’s most powerful assets: graphics. This section is dedicated to creating a plot from the data. While R has very powerful default plotting functions, we will be using the “ggplot2” package as it relies on a consistent “grammar of graphics” that gives a clear relationship between the data and the visualization.</p>
-<div id="expected-outcomes" class="section level2">
-<h2>Expected Outcomes</h2>
 <p>After this section, you should have the tools to:</p>
 <ol style="list-style-type: decimal">
 <li>Create a simple plot in ggplot2</li>
 <li>Save plots</li>
 </ol>
 <p>Again, since this is a four hour workshop, we do not expect mastery, but this at least should give you a starting point. With that in mind, let’s get started!</p>
+<div id="getting-started" class="section level3">
+<h3>Getting started</h3>
 <pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;)</code></pre>
 <pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
-<pre class="r"><code>&gt; library(&quot;ggplot2&quot;)
-&gt; 
-&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;)</code></pre>
-</div>
-<div id="visualizing-data" class="section level2">
-<h2>Visualizing Data</h2>
+<pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
+<pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;)</code></pre>
 <pre class="r"><code>&gt; stop(&quot;
 +      What visualization might be appropriate for these data?
 +      What should be on the axes?
@@ -373,11 +369,11 @@ div.tocify {
      Should we use lines, points, bars, boxplots, etc?
      </code></pre>
 <p>If you haven’t taken the time to address the questions above, do so now.</p>
+</div>
 <div id="what-is-ggplot2" class="section level3">
 <h3>What is ggplot2?</h3>
 <p>The package <em>ggplot2</em> is built off of the “grammar of graphics” in which plots are built layer by layer, starting with the coordinate plane and then adding geometric elements like lines, dots, bars, etc, and assigning metadata to values like color or shape.</p>
 <p>The advantage of ggplot2 over R’s native plotting is that the plots are saved as R objects and can be modified by adding layers or even replacing data. This tutorial will begin to scratch the surface of how to use ggplot2, but to get a better idea of what is possible, you can browse the resources at <a href="http://ggplot2.tidyverse.org/#learning-ggplot2" class="uri">http://ggplot2.tidyverse.org/#learning-ggplot2</a> or examine the code of colleagues (e.g. Alejandro Rojas: <a href="https://github.com/alejorojas2/Rojas_Survey_Phytopath_2016" class="uri">https://github.com/alejorojas2/Rojas_Survey_Phytopath_2016</a>).</p>
-</div>
 </div>
 <div id="step-1-creating-our-plot" class="section level2">
 <h2>Step 1: Creating our plot</h2>
@@ -394,51 +390,62 @@ div.tocify {
 <p>To create our ggplot with nothing on it, we should specify two things:</p>
 <ol style="list-style-type: decimal">
 <li>The data set (fungicide)</li>
-<li>The mapping of the x and y coordinates (from the data set, using aes) &gt; Note, we can specify the column names without using quotation marks.</li>
+<li>The mapping of the x and y coordinates (from the data set, using aes)</li>
 </ol>
+<blockquote>
+<p>Note, we can specify the column names without using quotation marks.</p>
+</blockquote>
 <pre class="r"><code>&gt; yield.plot &lt;- ggplot(data = fungicide, mapping = aes(x = Treatment, y = Yield_bu_per_acre))</code></pre>
 <p>If everything worked, you should see nothing. This is because ggplot2 returns an R object. This object contains the instructions for creating the visualization. When you print this object, the plot is created:</p>
 <pre class="r"><code>&gt; yield.plot</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Now you should see a plot with nothing on it where the x and y axes are labeled “Treatment” and “Yield_bu_per_acre”, respectively.</p>
-<p>To break down what the above function did, it first took in the data set <code>fungicide</code> and then mapped the x and y aesthetics to the Treatment and Yield_bu_per_acre columns. Effectively, this told ggplot how big our canvas needs to be in order to display our data, but currently, it doesn’t know HOW we want to display our data; we need to give it a specific geometry. ### Adding a geometry layer</p>
+<p>To break down what the above function did, it first took in the data set <code>fungicide</code> and then mapped the x and y aesthetics to the Treatment and Yield_bu_per_acre columns. Effectively, this told ggplot how big our canvas needs to be in order to display our data, but currently, it doesn’t know HOW we want to display our data; we need to give it a specific geometry.</p>
+</div>
+<div id="adding-a-geometry-layer" class="section level3">
+<h3>Adding a geometry layer</h3>
 <p>All functions that add geometries to data start with <code>geom_</code>, so if we wanted the data to be displayed as a line showing the increase of yield over time, we would use <code>geom_line()</code>. If we wanted to show the data displayed as points, we can use <code>geom_point()</code>.</p>
 <p>To add a geometry or anything to a ggplot object, we can just use the <code>+</code> symbol. Here, we will add boxplots.</p>
 <blockquote>
 <p>Note: From here on out, I will be wrapping all commands with parentheses. This allows the result of the assignment to be displayed automatically.</p>
 </blockquote>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + geom_boxplot())</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>If we want to change the color of the boxplots from white (default) to orange,<br />
 we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + geom_boxplot(fill = &quot;orange&quot;))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Instead of all the boxplots having the same color, it will be interesting if we could color them according to the Treatment.</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + geom_boxplot(fill = Treatment))</code></pre>
 <pre><code>Error in layer(data = data, mapping = mapping, stat = stat, geom = GeomBoxplot, : object &#39;Treatment&#39; not found</code></pre>
 <p>Oops! There was an error. It cannot recognize that we are talking about the Treatment column from our data set. This is because we have to use the function <code>aes()</code> whenever we are referring to our data set.</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + geom_boxplot(aes(fill = Treatment))) # This works!</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>To give a title to our plot, we can use <code>ggtitle()</code>.</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + ggtitle(&quot;Effect of Fungicides on Yield&quot;))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>We now have a fully functional and informative plot using only few lines of code! Producing a visualization of your data can be an extremely useful tool for analysis because it can allow you to see if there are any strange patterns or spurious correlations in your variables. We can click on ‘Zoom’ to view a bigger version of this plot. Of course, this plot is not quite publication ready. We need to add some customization. ## Preparing a publication-ready plot Let’s manipulate the aesthetics of the plot in how the data and labels are displayed.</p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We now have a fully functional and informative plot using only few lines of code! Producing a visualization of your data can be an extremely useful tool for analysis because it can allow you to see if there are any strange patterns or spurious correlations in your variables.</p>
+<p>We can click on ‘Zoom’ to view a bigger version of this plot.</p>
+<p>Of course, this plot is not quite publication ready. We need to add some customization. Let’s manipulate the aesthetics of the plot in how the data and labels are displayed.</p>
 </div>
 <div id="axis-labels" class="section level3">
 <h3>Axis labels</h3>
 <p>This is easily done with <code>xlab()</code> and <code>ylab()</code>:</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + xlab(&quot;Treatment Applied&quot;))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + ylab(&quot;Yield (bu/acre)&quot;))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-10-2.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>The labels are now okay, but it’s still not publication-ready. The font is too small, the background should have no gridlines and the axis text needs to be darker.<br />
-### Adjusting Look and Feel (theme) The first thing we can do is change the default theme from <code>theme_grey()</code> to <code>theme_bw()</code>. We will simultaneously set the base size of the font to be 14pt.</p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-12-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The labels are now okay, but it’s still not publication-ready. The font is too small, the background should have no gridlines and the axis text needs to be darker.</p>
+</div>
+<div id="adjusting-look-and-feel-theme" class="section level3">
+<h3>Adjusting Look and Feel (theme)</h3>
+<p>The first thing we can do is change the default theme from <code>theme_grey()</code> to <code>theme_bw()</code>. We will simultaneously set the base size of the font to be 14pt.</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + theme_bw(base_size = 14))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>There are many different default themes available for ggplot2 objects that change many aspects of the look and feel. The <em>ggthemes</em> contains many popular themes such as fivethirtyeight and economist. Of course, we can make it prettier before including it in our final manuscript. To adjust granular aspects of the theme, we can use the <code>theme()</code> function, which contains a whopping 71 different options all related to the layout of the non-data aspects of the plot.</p>
-<pre class="r"><code>&gt; ?theme
-&gt; 
-&gt; stop(&quot;
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>There are many different default themes available for ggplot2 objects that change many aspects of the look and feel. The <em>ggthemes</em> contains many popular themes such as fivethirtyeight and economist. Of course, we can make it prettier before including it in our final manuscript.</p>
+<p>To adjust granular aspects of the theme, we can use the <code>theme()</code> function, which contains a whopping 71 different options all related to the layout of the non-data aspects of the plot.</p>
+<pre class="r"><code>&gt; ?theme</code></pre>
+<pre class="r"><code>&gt; stop(&quot;
 +      Look at ?theme and figure out one of the following:
 +      1. change the aspect ratio of the panels
 +      2. remove the background grid in the panels
@@ -450,16 +457,16 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
      </code></pre>
 <p>When we inspect the help page of the <code>theme()</code> function, we can find out how to adjust several parameters to make out plot look acceptable:</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + theme(aspect.ratio = 1)) # This looks the same</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + theme(aspect.ratio = 2)) # This is too skinny</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-13-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-16-2.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + theme(aspect.ratio = 1.25)) # I think this is perfect!</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-13-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-16-3.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + theme(panel.grid = element_blank()))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-13-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-16-4.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Since the information in the legend is repetitive, we can remove it. If you ‘Google’ how to remove the legend in ggplot2, you will find that you can use <code>guides(fill=FALSE)</code>.</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + guides(fill=FALSE))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="putting-it-all-together" class="section level3">
 <h3>Putting it all together</h3>
@@ -474,7 +481,7 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 +   theme(panel.grid = element_blank()) +
 +   guides(fill=FALSE)
 &gt; yield.plot</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>We can now create a similar plot for Severity Data.</p>
 <pre class="r"><code>&gt; severity.plot &lt;- ggplot(fungicide, aes(x = Treatment, y = Severity)) +
 +   geom_boxplot() +
@@ -485,10 +492,10 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 +   xlab(&quot;Treatment Applied&quot;) +
 +   ylab(&quot;Disease Severity&quot;)
 &gt; severity.plot</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>The text of the title is not in the center. To format text elements of the plot, we can use the function <code>element_text()</code> inside <code>theme()</code>. Since we need to edit the text of the plot title, we need to specify <code>plot.title = element_text()</code>. Since we need to adjust the text horizontally in the center, we modify it to <code>theme(plot.title = element_text(hjust = 0.5))</code>.</p>
 <pre class="r"><code>&gt; (severity.plot &lt;- severity.plot + theme(plot.title = element_text(hjust = 0.5)))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="step-2-saving-our-plot" class="section level2">
