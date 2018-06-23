@@ -9,7 +9,7 @@ title: "References"
    data frames.
    
 # Resources
-
+ - [R for Beginners] to build a strong foundation
  - [RStudio Cheat Sheets] great visual maps for data analysis (highly recommend the dplyr, data import, and ggplot2 sheets!)
  - [R style guide] to make sure your code is beautiful because when your code is
    easy to read, your future self will thank you.
@@ -50,3 +50,4 @@ These accounts are great to follow to see what's going on in R
 [Sampling, Data Management and Visualization]: https://atyre2.github.io/data-management/ 
 [R style guide]: http://style.tidyverse.org/
 [RStudio Cheat Sheets]: https://www.rstudio.com/resources/cheatsheets/
+[R for Beginners]: https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf
