@@ -18,7 +18,7 @@ navbar:
 #      menu:
 #        - text: "Data Sets"
 #          href: data.html
-    - text: "Quizzes"
+    - text: "Quiz"
       href: quiz.html
     - text: "Links"
       href: refs.html

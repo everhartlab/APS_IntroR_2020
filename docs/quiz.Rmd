@@ -1,18 +1,9 @@
 ---
-title: "Quiz Questions"
+title: "Test Your Knowledge"
 ---
 
-During the live workshop, we will ask questions for the class to answer
-interactively. Below are the links to answer the questions.
+If you are already familiar with the basics of R, take this quiz to test your knowledge.
 
-### [Data Types Quiz](https://goo.gl/forms/S5AXWUqJ0Evv7oeu1)
-
-### [Subsetting Quiz](https://goo.gl/forms/JYQVIjlKAV6aXrIz1)
-
-### [Vectorization Quiz](https://goo.gl/forms/dco0MMG5FWfj3Cpn2)
-
-### [Conversion Quiz](https://goo.gl/forms/bKamQXwgHSkQqSR73)
-
-### [Tables Quiz](https://goo.gl/forms/KcJQ5rNnXW81sVL63)
+### [Quiz Questions](https://docs.google.com/forms/d/1XdJ1JR07VFuhYaa65UR3IVHdzt5fv-u-el-rg8xarOg/edit?ts=5b2d9e2c)
 
 
