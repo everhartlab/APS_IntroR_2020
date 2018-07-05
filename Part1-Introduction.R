@@ -227,10 +227,10 @@ length(name)
 
 # Let's compare this to a vector that contains only numeric data. For this 
 # example, let's create three objects to represent today's date in numbers for
-# the month (06), day (27), and year (2018).
+# the month (07), day (28), and year (2018).
 
-month <- 06
-day <- 27
+month <- 07
+day <- 28
 year <- 2018
 
 # combine those three objects using the *combine* function:
@@ -246,11 +246,11 @@ str(today)
 # You'll notice that the vector has three elements [1:3] and it contains only 
 # numeric data.
 # 
-# Let's do the same thing using the name June for month and see how that changes
+# Let's do the same thing using the name July for month and see how that changes
 # our vector. Notice that we are not modifying the object *month*, we are simply
-# combining our two existing objects with the word "June".
+# combining our two existing objects with the word "July".
 
-c("June", day, year)   
+c("July", day, year)   
 
 # In this case we didn't re-assign the object named `today`. To inspect the 
 # structure of this vector, we can wrap the statement within the str() function,
@@ -258,8 +258,8 @@ c("June", day, year)
 # character) using the function class().  Don't forget to use the up-arrow to
 # access the last like that you ran!
 
-str(c("June", day, year)) # this shows us the structure of the object
-class(c("June", day, year))
+str(c("July", day, year)) # this shows us the structure of the object
+class(c("July", day, year))
 
 # Notice how R is trying to keep our data organized according to type.  Rather
 # than coding this vector as containing numbers and characters, it has decided
@@ -276,28 +276,28 @@ class(c("June", day, year))
 #   ...
 # ```
 # 
-# We know there are 30 days in the month, so we can modify the object day to
-# contain all of the 30 days in this month. Instead of typing each number out by
-# hand, we can place a colon (`:`) between 1 and 30, which is a shortcut in R
+# We know there are 31 days in the month, so we can modify the object day to
+# contain all of the 31 days in this month. Instead of typing each number out by
+# hand, we can place a colon (`:`) between 1 and 31, which is a shortcut in R
 # for creating sequences of numbers.
 
-1:30
+1:31
 
-# You see at in the console that this created a sequence of 30 numbers from 1 to
-# 30. Let's go ahead and assign this to the object `day`.
+# You see at in the console that this created a sequence of 31 numbers from 1 to
+# 31. Let's go ahead and assign this to the object `day`.
 
-day <- 1:30
+day <- 1:31
 
 # For the objects month and year, we don't need to modify them, however, we want
-# to repeat each of them a total of 30 times because we need to repeat each, 
+# to repeat each of them a total of 31 times because we need to repeat each, 
 # once for each day.
 # 
-# We can easily repeat the number 6 a total of 30 times using the function 
+# We can easily repeat the number 7 a total of 31 times using the function 
 # `rep()`, specifying how many `times` we should repeat this object. Let's
-# assign `6` to `month` and modify the object month to contain 30 copies.
+# assign `7` to `month` and modify the object month to contain 31 copies.
 
-month <- 6
-month <- rep(month, times = 30)
+month <- 7
+month <- rep(month, times = 31)
 month
 
 # Let's check to make sure that month is correct using the function `length()`:
@@ -307,20 +307,20 @@ length(month)
 # There are 30 elements in this vector and we can inspect individual elements in the
 # vector based on their ordered position using square brackets:
 
-day[27]  
-month[27] # the number inside the brackets corresponds to location of element in list, not value
+day[28]  
+month[28] # the number inside the brackets corresponds to location of element in list, not value
 
-# In this case, the 27th element in `day` is 27, and the 27th element in `month` is 6
+# In this case, the 28th element in `day` is 28, and the 28th element in `month` is 7
 # which confirms that we created this correctly.
 # 
 # > Type `day[32]` into your R console. What do you get? What does it mean? Ask
 # > yourself the question, "Are there any months with 32 days?"
 # 
-# We can create the object `year` to contain 30 repeats of 2018, however, this 
+# We can create the object `year` to contain 31 repeats of 2018, however, this 
 # time, let's say we wanted to make sure that this object was always the same
-# length as the number of days we have in a month. Instead of specifying `30`,
+# length as the number of days we have in a month. Instead of specifying `31`,
 # we can simply get that information using the `length()` function. Here, we'll
-# replace `30` with `length(day)`, which is equivalent.
+# replace `31` with `length(day)`, which is equivalent.
 
 year <- rep(2018, times = length(day))
 year
@@ -341,9 +341,9 @@ length(year)
 # 
 # ```
 #   day   month   year
-#   1     6       2018
-#   2     6       2018
-#   3     6       2018
+#   1     7       2018
+#   2     7       2018
+#   3     7       2018
 #   ...
 # ```
 # 
@@ -352,39 +352,39 @@ length(year)
 # the function, we just have to specify name of the column and populate it with
 # vector data.
 
-June <- data.frame(day = day, month = month, year = year)
+July <- data.frame(day = day, month = month, year = year)
 
 # Let's inspect this new object in the same way as vectors:
 
-June
-length(June)
+July
+length(July)
 
-# Using the `length()` function, we see it says 3. This is because `June` has three
+# Using the `length()` function, we see it says 3. This is because `July` has three
 # columns: day, month, and year. A data frame is a two-dimensional object which
 # stores its information in rows and columns. 
 # 
 # Because this is a 2-dimensional object, we can inspect the dimensions using
 # the `dim()` function:
 
-dim(June)
+dim(July)
 
 # This tells us that we have 30 rows and 3 columns. R also provides the `nrow()`
 # and `ncol()` functions to make it easier to remember which is which:
 
-nrow(June)
-ncol(June)
+nrow(July)
+ncol(July)
 
 # What happens when we use the `str()` function?
 
-str(June)
+str(July)
 
 # We can see that it's listing the columns we have in our table and showing us
 # how they are represented. Notice the `$` to the left of each column name, 
 # this is how we access the columns of the data frame:
 
-June$day
-June$month
-June$year
+July$day
+July$month
+July$year
 
 # You can see that these are the same as the vectors we created earlier.
 # 
@@ -392,30 +392,30 @@ June$year
 # obect.  A quick way to look at the top of the object is with the `head()`
 # function and if we wanted to look at the bottom, we would use `tail()`.
 
-head(June)  # if this didn't work, double-check that you spelled the object name correctly
+head(July)  # if this didn't work, double-check that you spelled the object name correctly
 
 # Now that we have our table, the question becomes, how do we inspect different elements?
 # 
-# Just like we can inspect the 27th element in the `day` vector using `day[27]`,
+# Just like we can inspect the 28th element in the `day` vector using `day[28]`,
 # we can also use the brackets to subset a table, the only catch is that we have
 # to use the coordinates of the row(s) and the column(s) we want. We can do this
 # by specifying `[row, column]`. These are analagous to X and Y Cartesian 
-# coordinates. Let's take a look at the elements in the 27th row, separately:
+# coordinates. Let's take a look at the elements in the 28th row, separately:
 
-June[27, 1] # day
-June[27, "month"] # you can use characters when the elements are named!
-June[27, 3] # year
-June[27, -3] # here `-` means all columns except the third (year)
-June[27, -2] # day and year
+July[28, 1] # day
+July[28, "month"] # you can use characters when the elements are named!
+July[28, 3] # year
+July[28, -3] # here `-` means all columns except the third (year)
+July[28, -2] # day and year
 
 # If we don't specify a dimension, R will give us the entire contents of that
 # dimension. Let's look at the row that contains today's date:
 
-June[27, ]
+July[28, ]
 
 # You can also use this to access just one column of the matrix.  Let's look at month:
 
-June[, 2]
+July[, 2]
 
 # Notice, however that this result now appears to be a a vector! This is because
 # of a sneaky default option called `drop = TRUE`. R tries to "help" by removing
@@ -423,53 +423,52 @@ June[, 2]
 # to keep this as a data frame, you can turn off this option *inside the 
 # brackets*:
 
-June[, 2, drop = FALSE]
+July[, 2, drop = FALSE]
 
-# Now that we've inspected the object `June`, let's create the same thing for
-# the month of July. How should we do this?
+# Now that we've inspected the object `July`, let's create the same thing for
+# the month of June. How should we do this?
 
 # One option would be to create new obects for day, month, and year and combine
-# them just like we did for June.  What is the simplest method to do this, using
+# them just like we did for July.  What is the simplest method to do this, using
 # the fewest number of steps? 
 
-# We can simply make a copy of `July` and add a vector with information about
-# the 31st day.  Now that we have two dimensions, there are two ways we can add
-# the vector, as a row or as a column. R provides two functions that can help us
-# with that called `rbind()` and `cbind()` which bind a data frame with a vector
-# (or another data frame) by rows and columns, respectively.  Which one should
-# we use?  If you're unsure, try both!
+# We can simply make a copy of `July` and delete a vector with information about
+# the 31st day.  Now that we have two dimensions, we can subset everything in July  
+# except for the 31st row and all the columns of that row.
 
-July <- cbind(June, c(31, 6, 2018))
+June <- July[-31,]
 
 # Inspect what we have now:
 
-str(July)  # we have an extra column
-tail(July) # we don't have 31 days
+str(June)  # we have an extra column
+tail(June) # we don't have 31 days
 
-# Now let's try `rbind()`
-
-July <- rbind(June, c(31, 6, 2018)) 
-str(July)
-tail(July) # we have 31 days!
-
-# We need to change the month column so that it says 7 instead of 6, how can we
+# We need to change the month column so that it says 6 instead of 7, how can we
 # do this?  Let's just look at the column first:
 
-July$month
+June$month
 
 # We need to add 1 to each of these values, so let's try that!
 
-July$month + 1
+June$month - 1
 
-# This worked, so now we just need to replace values in July[,2] with the new
+# This worked, so now we just need to replace values in June[,2] with the new
 # expression:
 
-July$month <- July$month + 1    # Did it work?
-str(July)
+June$month <- June$month - 1    # Did it work?
+str(June)
 
-# Let's combine both of these tables into one.
+# Let's combine both of these tables into one.  R provides two functions that can help 
+# us with that called rbind() and cbind() which bind a data frame with a vector 
+# (or another data frame) by rows and columns, respectively. Which one should we use? 
+# If you’re unsure, try both!
 
-rbind(June, July)
+cbind(June, July) 
+
+# We have an error! R is trying to stack them side by side and is failing to do so because 
+# of different number of rows.
+
+rbind(June, July) # This works!
 summer <- rbind(June, July)
 
 # Inspect this object to ensure it was made correctly. 
@@ -489,7 +488,7 @@ tail(summer)
 #   ...
 # ```
 
-# Months need to be changed from the number 6 to "June" and from 7 to "July" in
+# Months need to be changed from the number 6 to "July" and from 7 to "July" in
 # the second column.  Let's first look at the month column.
 
 summer$month
@@ -499,7 +498,7 @@ summer$month
 # those rows in the object summer:
 
 summer[1:30, "month"]     # June
-summer[-c(1:30), "month"] # July
+summer[-c(1:31), "month"] # July
 
 
 # > Notice that we used `-c(1:31)`, what do you think this is doing? Why would 
