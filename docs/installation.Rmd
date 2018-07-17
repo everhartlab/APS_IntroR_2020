@@ -30,7 +30,7 @@ Once you have installed [R], we should verify that you have the correct version.
  1. Open R (or RStudio) on your computer
  2. Enter the following in the R console after the `>`    
         
-        R.version.string == "R version 3.5.0 (2018-04-23)"
+        R.version.string == "R version 3.5.1 (2018-07-02)"
         
  3. Make sure the result is **`[1] TRUE`**    
     (If the result is `[1] FALSE`, please quit R and try the installation again)
