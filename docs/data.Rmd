@@ -1,7 +1,3 @@
----
-title: "Data Sets"
----
-
 ## Description
 
 The dummy data presented here consists of yield (measured in bu/acre) and disease

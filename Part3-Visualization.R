@@ -155,7 +155,7 @@ yield.plot
 # labels are displayed. But first, use the cheatsheet or 'Google' to answer the
 # following questions:
 #
-# Question1: Create a `new_plot` that is similar to `yield_plot`, but the geometry
+# Question1: Create a `new_plot` that is similar to `yield.plot`, but the geometry
 # is a violin plot instead of a box plot.
 
 new_plot <- ggplot(yield_dat, aes(x = Treatment, y = Yield_bu_per_acre)) +
@@ -264,10 +264,10 @@ severity.plot
 
 # Question3: Unravel the working of annotate by pasting examples in the console.
 
-yield_plot <- yield_plot +
+yield.plot <- yield.plot +
   annotate(geom="text", x=3, y=178, label="P < 0.05", color="red", size = 5)
 
-yield_plot
+yield.plot
 
 
 # Step 2: Saving our plot

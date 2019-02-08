@@ -15,8 +15,6 @@ navbar:
           href: Part2-Analysis.html
         - text: "Part 3: Data Visualization"
           href: Part3-Visualization.html
-        - text: "Part 4: Project Organization"
-          href: Part4-RProject.html
 #      menu:
 #        - text: "Data Sets"
 #          href: data.html
@@ -37,7 +35,7 @@ output:
     toc_float:
       collapsed: false
     toc_depth: 2
-    theme: cosmo
+    theme: readable
     highlight: textmate
     include:
       after_body: footer.html
