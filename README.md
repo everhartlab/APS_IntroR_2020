@@ -6,18 +6,18 @@ title: "R for Plant Pathologists"
 -->
 
 
-An introduction to R for plant pathologists written by Dr. Sydney E. Everhart, Nikita Gambhir, and Dr. Zhian
+An introduction to R for plant pathologists written by Dr. Sydney E. Everhart, Nikita Gambhir, Dr. Lucky Mehra, and Dr. Zhian
 N. Kamvar.
 
 This repository is intended to serve as an additional resource for short 
 workshops given at Univeristy of Nebraska and The 2018 International Congress of Plant Pathology Meeting. The source code can be found at 
-https://github.com/everhartlab/IntroR_Workshop.
+https://github.com/everhartlab/IntroR_2019.
 
 ## About 
 
 This introduction to R is designed to be a companion to a workshop lasting 4 
 hours introducing plant pathologists to the basics of R by using a 
-[real world stripe rust example]. 
+yield data example. 
 
 ## Goals
 
@@ -31,13 +31,12 @@ As a result of taking this workshop you should be able to:
  - visualize data
  - troubleshoot commmon problems
 
-[real world stripe rust example]: http://www.apsnet.org/edcenter/advanced/topics/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/StripeRust.aspx "APS Education Center: Using the area under the disease progress curve to compare disease severity"
 
 ## Website
 
 This website is meant to serve as a companion to the workshop. The pages located
 in the **Workshop** tab are rendered versions of R scripts located in the top 
-level of https://github.com/everhartlab/IntroR_Workshop. As the workshop is designed to
+level of https://github.com/everhartlab/IntroR_2019. As the workshop is designed to
 be interactive where the participants are given some control over what direction
 we should take the analyses, the scripts here are only to serve as guidelines.
 
@@ -53,7 +52,7 @@ These scripts follow these conventions:
 
 
 
-The website located at https://github.com/everhartlab/IntroR_Workshop can be build via the
+The website located at https://github.com/everhartlab/IntroR_2019 can be build via the
 `make` program:
 
 ```make
