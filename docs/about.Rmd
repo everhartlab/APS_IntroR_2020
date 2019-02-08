@@ -18,7 +18,7 @@ background to be able to learn more.
 Authors
 -------
 
-Dr. Sydney E. Everhart, Nikita Gambhir, and Dr. Zhian N. Kamvar.
+Dr. Sydney E. Everhart, Nikita Gambhir, Dr. Lucky Mehra, and Dr. Zhian N. Kamvar.
 
 Website
 -------
