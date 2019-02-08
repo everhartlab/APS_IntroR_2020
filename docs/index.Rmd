@@ -1,9 +1,20 @@
 ---
-title: "R for Beginners"
+title: "R for Plant Pathologists"
 ---
 
 
-An introduction to R written by Dr. Sydney E. Everhart, Nikita Gambhir, Dr. Lucky Mehra and Dr. Zhian N. Kamvar.
+An introduction to R for plant pathologists written by Dr. Sydney E. Everhart, Nikita Gambhir, Dr. Lucky Mehra, and Dr. Zhian
+N. Kamvar.
+
+This repository is intended to serve as an additional resource for short 
+workshops given at Univeristy of Nebraska and The 2018 International Congress of Plant Pathology Meeting. The source code can be found at 
+https://github.com/everhartlab/IntroR_2019.
+
+## About 
+
+This introduction to R is designed to be a companion to a workshop lasting 4 
+hours introducing plant pathologists to the basics of R by using a 
+yield data example. 
 
 ## Goals
 
@@ -17,6 +28,7 @@ As a result of taking this workshop you should be able to:
  - visualize data
  - troubleshoot commmon problems
 
+
 ## Website
 
 This website is meant to serve as a companion to the workshop. The pages located
@@ -28,7 +40,8 @@ we should take the analyses, the scripts here are only to serve as guidelines.
 These scripts follow these conventions:
 
  - R code is presented how it would appear in the R console with the first line
-   prefixed with `>` and subsequent lines prefixed with `+`. 
+   prefixed with `>` and subsequent lines prefixed with `+`. The intent is to
+   encourage the user to type the commands instead of copy and paste.
  - There will be instances where the command is a `stop()` command. These are
    points in the workshop where we stop the participants and ask them to talk 
    amongst themselves, take a short survey, or find information using R's help
@@ -36,8 +49,8 @@ These scripts follow these conventions:
 
 
 
-The website located at https://everhartlab.github.io/IntroR_2019/ can be build via 
-the `make` program:
+The website located at https://github.com/everhartlab/IntroR_2019 can be build via the
+`make` program:
 
 ```make
 make clean # run this to build the site from scratch
