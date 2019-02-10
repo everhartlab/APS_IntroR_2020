@@ -114,7 +114,7 @@ stop("
 # function `install.packages()`. This will install a package from CRAN and place
 # it into your R *Library*.
 # 
-install.packages("dplyr")
+install.packages("dplyr", repos = "http://cran.us.r-project.org")
 # 
 # To load this package, we can use the function `library()`.
 # 

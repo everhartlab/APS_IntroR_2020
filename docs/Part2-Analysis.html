@@ -490,8 +490,10 @@ can use the function <code>list.files()</code> to view the files in your current
 <div id="step-3-advanced-data-manipulation" class="section level2">
 <h2>Step 3: Advanced data manipulation</h2>
 <p>The package ‘dplyr’ provides functions for easy and advanced data manipulation. If we want to use it, we can download the package to our computer with the function <code>install.packages()</code>. This will install a package from CRAN and place it into your R <em>Library</em>.</p>
-<pre class="r"><code>&gt; install.packages(&quot;dplyr&quot;)</code></pre>
-<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;dplyr&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
+<pre><code>
+The downloaded binary packages are in
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpctKult/downloaded_packages</code></pre>
 <p>To load this package, we can use the function <code>library()</code>.</p>
 <pre class="r"><code>&gt; library(&quot;dplyr&quot;)</code></pre>
 <pre><code>
