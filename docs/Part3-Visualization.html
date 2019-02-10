@@ -359,10 +359,8 @@ div.tocify {
 </div>
 <div id="getting-started" class="section level3">
 <h3>Getting started</h3>
-<pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
-<pre><code>
-The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpBQ8Wys/downloaded_packages</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;)</code></pre>
+<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
 <p>Data for plotting with ggplot2 must be stored in a data frame</p>
 <pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;) # read.csv automatically outputs a data frame</code></pre>
