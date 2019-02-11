@@ -359,8 +359,10 @@ div.tocify {
 </div>
 <div id="getting-started" class="section level3">
 <h3>Getting started</h3>
-<pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;)</code></pre>
-<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
+<pre><code>
+The downloaded binary packages are in
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpZASHjP/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
 <p>Data for plotting with ggplot2 must be stored in a data frame</p>
 <pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;) # read.csv automatically outputs a data frame</code></pre>
@@ -423,10 +425,10 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>We now have a fully functional and informative plot using only few lines of code! Producing a visualization of your data can be an extremely useful tool for analysis because it can allow you to see if there are any strange patterns or spurious correlations in your variables.</p>
 <p>We can click on ‘Zoom’ to view a bigger version of this plot.</p>
-<p>Of course, this plot is not quite publication ready. We need to add some customization. Let’s manipulate the aesthetics of the plot in how the data and labels are displayed. But first, use the cheatsheet or ‘Google’ to answer the following questions:</p>
+<p>Of course, this plot is not quite publication ready. We need to add some customization. Let’s manipulate the aesthetics of the plot in how the data and labels are displayed. But first, use the cheatsheet or ‘Google’ to do the following exercises:</p>
 </div>
-<div id="question-1-create-new_plot-that-is-similar-to-yield.plot-but-the" class="section level3">
-<h3>Question 1: Create <code>new_plot</code> that is similar to <code>yield.plot</code>, but the</h3>
+<div id="exercise-1-create-new_plot-that-is-similar-to-yield.plot-but-the" class="section level3">
+<h3>Exercise 1: Create <code>new_plot</code> that is similar to <code>yield.plot</code>, but the</h3>
 </div>
 <div id="geometry-is-a-violin-plot-instead-of-a-box-plot." class="section level3">
 <h3>geometry is a violin plot instead of a box plot.</h3>
@@ -436,8 +438,8 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 &gt; new_plot</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="question-2-add-another-layer-to-the-new_plot-that-flips-the" class="section level3">
-<h3>Question 2: Add another layer to the <code>new_plot</code> that flips the</h3>
+<div id="exercise-2-add-another-layer-to-the-new_plot-that-flips-the" class="section level3">
+<h3>Exercise 2: Add another layer to the <code>new_plot</code> that flips the</h3>
 </div>
 <div id="co-ordinate-axes-rotates-the-plot-at-right-angle." class="section level3">
 <h3>co-ordinate axes (rotates the plot at right angle).</h3>
@@ -463,8 +465,8 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 <p>There are many different default themes available for ggplot2 objects that change many aspects of the look and feel. The <em>ggthemes</em> contains many popular themes such as fivethirtyeight and economist. Of course, we can make it prettier before including it in our final manuscript.</p>
 <p>To adjust granular aspects of the theme, we can use the <code>theme()</code> function, which contains a whopping 71 different options all related to the layout of the non-data aspects of the plot.</p>
 </div>
-<div id="question-3-look-at-theme-and-figure-out-the-following" class="section level3">
-<h3>Question 3: Look at <code>?theme</code> and figure out the following:</h3>
+<div id="exercise-3-look-at-theme-and-figure-out-the-following" class="section level3">
+<h3>Exercise 3: Look at <code>?theme</code> and figure out the following:</h3>
 <ol style="list-style-type: decimal">
 <li>change the aspect ratio of the panels</li>
 <li>remove the background grid in the panels</li>
@@ -500,8 +502,8 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 <p>How can we show that the boxplot of Fungicide_B is significantly different? Hint:<code>annotate</code> it.</p>
 <pre class="r"><code>&gt; ?annotate</code></pre>
 </div>
-<div id="question-4-unravel-the-working-of-annotate-by-pasting-examples-in-the-console." class="section level3">
-<h3>Question 4: Unravel the working of annotate by pasting examples in the console.</h3>
+<div id="exercise-4-unravel-the-working-of-annotate-by-pasting-examples-in-the-console." class="section level3">
+<h3>Exercise 4: Unravel the working of annotate by pasting examples in the console.</h3>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot +
 +     annotate(geom=&quot;text&quot;, x=3, y=176.5, label=&quot;P &lt; 0.05&quot;, color=&quot;red&quot;, size = 5))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>

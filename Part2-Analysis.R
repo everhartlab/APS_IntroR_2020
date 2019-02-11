@@ -19,7 +19,7 @@
 getwd()
 
 # If you've downloaded and un-zipped this directory to your desktop, you might 
-# see something like `/Users/<yourname>/Desktop/IntroR_2019-master`. This is the  
+# see something like `/Users/<yourname>/Desktop/IntroR_2019`. This is the  
 # default place where R will begin reading and writing files. For example, you  
 # can use the function `list.files()` to view the files in your current working 
 # directory. These are the same files that we downloaded earlier. If you're 
@@ -33,9 +33,9 @@ list.files(".")
 
 # You can see that the first entry in here is "data". This is where we've placed
 # the field_data example data. 
-# 
+
 list.files("data")
-# 
+
 # Step 2: Reading in Data
 # ------------------------
 # 
@@ -82,14 +82,11 @@ ncol(field_data)
 field_data
 
 # We can also use the `View()` function to look at our data in spreadsheet-style.
+# 
+# ### Exercise 1: Type View(field_data) and take a minute to inspect the data.
 
-stop("
-
-     Type View(field_data) and inspect the data
-     
-     ")
-
-# If we have a data frame with too many columns, we can use the `str()` function 
+# `View()` is helpful, but if we have a data frame with too many columns it may
+# become difficult to scroll and see all the columns. We can use the `str()` function 
 # (short for "structure") to have a broad overview of what our data looks like. 
 
 str(field_data)
@@ -121,11 +118,11 @@ install.packages("dplyr", repos = "http://cran.us.r-project.org")
 
 library("dplyr")
 
-# 1. What is the mean yield of each treatment group in kg/ha?
+# ## 1. What is the mean yield of each treatment group in kg/ha?
 # 
 # Let's go step by step to answer this:
 # 
-# a) Convert yield data from bu/acre to kg/ha
+# ### a) Convert yield data from bu/acre to kg/ha
 # To do this conversion for corn, we need to multiply the yield in bu/acre with
 # 62.77. So, how can we add a column with yield data in kg/ha? We can do this 
 # similar to what we learnt in Part 1.
@@ -147,13 +144,13 @@ dat_kg_ha
 # We have a new column `Yield_kg_per_ha`. We have two columns with yield and one 
 # with severity. We don't want severity data and want yield data only in kg/ha.
 # 
-# b) Create a new data frame with only `Treatment` and `Yield_kg_per_ha` columns
+# ### b) Create a new data frame with only `Treatment` and `Yield_kg_per_ha` columns
 # We can use the function `select()` that picks variables based on their names.
 
 yield_kg_ha <- select(dat_kg_ha, Treatment, Yield_kg_per_ha)
 yield_kg_ha
 
-# c) Find the mean yield
+# ### c) Find the mean yield
 # If we want to summarise multiple values to a single value, for example, mean, 
 # we can use the function `summarize()`.
 
@@ -163,7 +160,7 @@ summarize(yield_kg_ha, Mean_yield = mean(Yield_kg_per_ha))
 # Fungicide_A, Fungicide_B). We need to find the mean for every group. How can 
 # we tell R that it needs to group the data according to the treatment?
 # 
-# d) Group data according to treatment
+# ### d) Group data according to treatment
 # We can use the function `group_by()` for this purpose. 
 
 grp_yield_kg_ha <- group_by(yield_kg_ha, Treatment)
@@ -182,10 +179,10 @@ grp_yield_kg_ha
 # is easier to read larger numbers. It's role is similar to a comma. So,
 # '10,000' will have '10' underlined and '100,000' will have '100' underlined.
 # 
-# e) Find the mean yield of every group
+# ### e) Find the mean yield of every group
 mean_yield_dat <- summarize(grp_yield_kg_ha, Mean_yield = mean(Yield_kg_per_ha))
 mean_yield_dat
-# 
+
 # Instead of creating different objects everytime, we can perform multiple functions
 # at once and create one final object. We use the pipe operator, %>% , for this purpose.
 # The left hand side of %>% acts as the input on which an operation on the right side
@@ -210,20 +207,33 @@ str(yield_summary
 
 )
 
+# Before moving to our second question, let's do an exercise. You may use the cheatsheet
+# for 'dplyr' (provided in the workshop or can be accessed from the 'Help' tab) or 'Google'
+# to do this:
+# 
+# ### Exercise 2: Using the existing object `yield_summary`, create a new 
+# ### object `test_summary` in which the column `Mean_yield` is renamed to 
+# ### `Mean_yield_kg_ha`. Hint: `rename` it ;)
+
+test_summary <- yield_summary %>% 
+  rename(Mean_yield_kg_ha = Mean_yield)
+test_summary
+  
+# 
 # Let's go to our second question.
 # 
-# 2. What is the percent severity of Control and Fungicide B? 
+# ## 2. What is the percent severity of Control and Fungicide B? 
 # 
 # First, we need to create a new data frame where we only have severity data for Control
 # and Fungicide B. If we want to filter a data frame based upon specific values of a 
 # variable, we can use the function `filter()`.
 
-filter(fungicide, Treatment == "Control" | Treatment == "Fungicide_B")
+filter(field_data, Treatment == "Control" | Treatment == "Fungicide_B")
 
 # The treatment column should either be equal (`==`) to Control OR (`|`) Fungicide_A.
 # We can also write the same expression as:
 
-filter(fungicide, Treatment != "Fungicide_A")
+filter(field_data, Treatment != "Fungicide_A")
 
 # The treatment column should not be equal to (`!=`) to Fungicide_A. So, it will have 
 # everything except Fungicide A ("Control" and "Fungicide_B").
@@ -238,20 +248,33 @@ severity_dat <- field_data %>%
   select(Treatment, Percent_Severity)
 severity_dat
 
-# If we wanted to use these data as a table in a paper, we should export it to a
-# csv file. We can do this using the function `write.table()`. Before that, let's
-# create a new directory (or folder) named results. We can do this using the
-# function `dir.create()`.
+# We do not see a column for the number of replications for each treatment.
+# They might be unequal (environmental factors like insect damage, etc. can reduce
+# the pool from where data can be collected).
+# 
+# ### Exercise 3: Find the no. of replications for each treatment. Don't `count` manually.
+
+field_data %>% 
+  group_by(Treatment) %>% 
+  count(Treatment)
+
+# Now that we have answered our first two questions, what if we wanted to use these data 
+# as a table in a paper, we should export it to a csv file. We can do this using the
+# function `write.table()`. Before that, let's create a new directory (or folder) named
+# results. We can do this using the function `dir.create()`.
 
 dir.create("results")
 write.table(severity_dat, file = "results/severity_dat.csv", sep = ",", 
             col.names = TRUE, 
             row.names = FALSE)
 
-# 3. Which fungicide shows better results? (ANOVA)
 # 
 # Step 4: Statistical Analysis
 # ----------------------------
+# 
+# Let's solve our final question.
+# 
+# ### 3. Which fungicide shows better results? (ANOVA)
 # 
 # Let's do ANOVA for yield and severity data. We can use alpha level = 0.05. If we 
 # do an internet search for ANOVA in R, you will find that function `aov` is 

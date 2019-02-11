@@ -463,7 +463,7 @@ str(April)
 # (or another data frame) by rows and columns, respectively. Which one should we use? 
 # If you’re unsure, try both!
 
-cbind(April, March) #Do you think it will work?
+cbind(April, March) # Do you think it will work?
 
 # We have an error! R is trying to stack them side by side and is failing to do so because 
 # of different number of rows.
@@ -511,18 +511,13 @@ spring[-c(1:31), "month"] # March
 
 ?ifelse
 
-stop("
-
-     Type ?ifelse and answer these three questions:
-     
-     1. What does it do? (Description)
-     2. What are the arguments? (Usage/Arguments)
-     3. What does it return? (Value)
-     
-     ")
+# ### Exercise: Type `?ifelse` and answer these three questions:
+# #### 1. What does it do? (Description)
+# #### 2. What are the arguments? (Usage/Arguments)
+# #### 3. What does it return? (Value)
 
 # In order to use `ifelse`, we will need to provide three things:
- 
+# 
 #  1. A logical question about the elements of an object   : spring$month == 4
 #  2. Values for TRUE elements                             : "April"
 #  3. Values for FALSE elements                            : "March"

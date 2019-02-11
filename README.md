@@ -42,10 +42,10 @@ These scripts follow these conventions:
  - R code is presented how it would appear in the R console with the first line
    prefixed with `>` and subsequent lines prefixed with `+`. The intent is to
    encourage the user to type the commands instead of copy and paste.
- - There will be instances where the command is a `stop()` command. These are
-   points in the workshop where we stop the participants and ask them to talk 
-   amongst themselves, take a short survey, or find information using R's help
-   function.
+ - There will be instances where we will have exercise questions. These are
+   points in the workshop where we stop the participants and ask them to 
+   figure out the working of a function or find a suitable function to answer
+   the illustrated problem.
 
 
 

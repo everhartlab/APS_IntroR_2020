@@ -44,7 +44,7 @@
 # 
 # ### Getting started
 
-install.packages("ggplot2")
+install.packages("ggplot2", repos = "http://cran.us.r-project.org")
 
 library("ggplot2")
 
@@ -148,10 +148,10 @@ yield.plot
 # 
 # Of course, this plot is not quite publication ready. We need to add some
 # customization. Let's manipulate the aesthetics of the plot in how the data and
-# labels are displayed. But first, use the cheatsheet or 'Google' to answer the
-# following questions:
+# labels are displayed. But first, use the cheatsheet or 'Google' to do the
+# following exercises:
 # 
-# ### Question 1: Create `new_plot` that is similar to `yield.plot`, but the 
+# ### Exercise 1: Create `new_plot` that is similar to `yield.plot`, but the 
 # ### geometry is a violin plot instead of a box plot.
 
 new_plot <- ggplot(fungicide, aes(x = Treatment, y = Yield_bu_per_acre)) +
@@ -159,7 +159,7 @@ new_plot <- ggplot(fungicide, aes(x = Treatment, y = Yield_bu_per_acre)) +
   ggtitle("Effect of Fungicides on Yield")
 new_plot
 
-# ### Question 2: Add another layer to the `new_plot` that flips the 
+# ### Exercise 2: Add another layer to the `new_plot` that flips the 
 # ### co-ordinate axes (rotates the plot at right angle).
 
 new_plot <- new_plot +
@@ -195,7 +195,7 @@ new_plot
 # the non-data aspects of the plot.
 # 
 # 
-# ### Question 3: Look at `?theme` and figure out the following:
+# ### Exercise 3: Look at `?theme` and figure out the following:
 # 1. change the aspect ratio of the panels
 # 2. remove the background grid in the panels
 
@@ -243,7 +243,7 @@ yield.plot
 
 ?annotate
 
-# ### Question 4: Unravel the working of annotate by pasting examples in the console.
+# ### Exercise 4: Unravel the working of annotate by pasting examples in the console.
 
 (yield.plot <- yield.plot +
     annotate(geom="text", x=3, y=176.5, label="P < 0.05", color="red", size = 5))

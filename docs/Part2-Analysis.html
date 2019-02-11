@@ -347,8 +347,8 @@ div.tocify {
 <h2>Step 1: Working Directories</h2>
 <p>A working directory is the folder on your computer where you are currently working. You can find out your current working directory by typing <code>getwd()</code></p>
 <pre class="r"><code>&gt; getwd()</code></pre>
-<pre><code>[1] &quot;/Users/nikitagambhir/Desktop/IntroR_2019-master&quot;</code></pre>
-<p>If you’ve downloaded and un-zipped this directory to your desktop, you might see something like <code>/Users/&lt;yourname&gt;/Desktop/IntroR_2019-master</code>. This is the<br />
+<pre><code>[1] &quot;/Users/nikitagambhir/Desktop/IntroR_2019&quot;</code></pre>
+<p>If you’ve downloaded and un-zipped this directory to your desktop, you might see something like <code>/Users/&lt;yourname&gt;/Desktop/IntroR_2019</code>. This is the<br />
 default place where R will begin reading and writing files. For example, you<br />
 can use the function <code>list.files()</code> to view the files in your current working directory. These are the same files that we downloaded earlier. If you’re using Rstudio, you can compare the file list with the “Files” tab in the bottom right panel.</p>
 <p>In order to use <code>list.files()</code>, we should provide it with a file path. We can provide it a “.”, which means “here” to most computer programs.</p>
@@ -357,7 +357,8 @@ can use the function <code>list.files()</code> to view the files in your current
  [3] &quot;docs&quot;                  &quot;IntroR_2019.Rproj&quot;    
  [5] &quot;LICENSE&quot;               &quot;Makefile&quot;             
  [7] &quot;Part1-Introduction.R&quot;  &quot;Part2-Analysis.R&quot;     
- [9] &quot;Part3-Visualization.R&quot; &quot;README.md&quot;            </code></pre>
+ [9] &quot;Part3-Visualization.R&quot; &quot;README.md&quot;            
+[11] &quot;slides&quot;               </code></pre>
 <p>You can see that the first entry in here is “data”. This is where we’ve placed the field_data example data.</p>
 <pre class="r"><code>&gt; list.files(&quot;data&quot;)</code></pre>
 <pre><code>[1] &quot;fungicide_dat.csv&quot; &quot;README.md&quot;        </code></pre>
@@ -463,17 +464,9 @@ can use the function <code>list.files()</code> to view the files in your current
 17 Fungicide_B            175.68      4.1
 18 Fungicide_B            175.95      4.2</code></pre>
 <p>We can also use the <code>View()</code> function to look at our data in spreadsheet-style.</p>
-<pre class="r"><code>&gt; stop(&quot;
-+ 
-+      Type View(field_data) and inspect the data
-+      
-+      &quot;)</code></pre>
-<pre><code>Error in eval(expr, envir, enclos): 
-
-     Type View(field_data) and inspect the data
-     
-     </code></pre>
-<p>If we have a data frame with too many columns, we can use the <code>str()</code> function (short for “structure”) to have a broad overview of what our data looks like.</p>
+<div id="exercise-1-type-viewfield_data-and-take-a-minute-to-inspect-the-data." class="section level3">
+<h3>Exercise 1: Type View(field_data) and take a minute to inspect the data.</h3>
+<p><code>View()</code> is helpful, but if we have a data frame with too many columns it may become difficult to scroll and see all the columns. We can use the <code>str()</code> function (short for “structure”) to have a broad overview of what our data looks like.</p>
 <pre class="r"><code>&gt; str(field_data)</code></pre>
 <pre><code>&#39;data.frame&#39;:   18 obs. of  3 variables:
  $ Treatment        : Factor w/ 3 levels &quot;Control&quot;,&quot;Fungicide_A&quot;,..: 1 1 1 1 1 1 2 2 2 2 ...
@@ -487,13 +480,14 @@ can use the function <code>list.files()</code> to view the files in your current
 <li>Which fungicide shows better results? (ANOVA)</li>
 </ol>
 </div>
+</div>
 <div id="step-3-advanced-data-manipulation" class="section level2">
 <h2>Step 3: Advanced data manipulation</h2>
 <p>The package ‘dplyr’ provides functions for easy and advanced data manipulation. If we want to use it, we can download the package to our computer with the function <code>install.packages()</code>. This will install a package from CRAN and place it into your R <em>Library</em>.</p>
 <pre class="r"><code>&gt; install.packages(&quot;dplyr&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpppEgeN/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpHCwkig/downloaded_packages</code></pre>
 <p>To load this package, we can use the function <code>library()</code>.</p>
 <pre class="r"><code>&gt; library(&quot;dplyr&quot;)</code></pre>
 <pre><code>
@@ -504,13 +498,13 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:base&#39;:
 
     intersect, setdiff, setequal, union</code></pre>
-<ol style="list-style-type: decimal">
-<li>What is the mean yield of each treatment group in kg/ha?</li>
-</ol>
+</div>
+<div id="what-is-the-mean-yield-of-each-treatment-group-in-kgha" class="section level2">
+<h2>1. What is the mean yield of each treatment group in kg/ha?</h2>
 <p>Let’s go step by step to answer this:</p>
-<ol style="list-style-type: lower-alpha">
-<li>Convert yield data from bu/acre to kg/ha To do this conversion for corn, we need to multiply the yield in bu/acre with 62.77. So, how can we add a column with yield data in kg/ha? We can do this similar to what we learnt in Part 1.</li>
-</ol>
+<div id="a-convert-yield-data-from-buacre-to-kgha" class="section level3">
+<h3>a) Convert yield data from bu/acre to kg/ha</h3>
+<p>To do this conversion for corn, we need to multiply the yield in bu/acre with 62.77. So, how can we add a column with yield data in kg/ha? We can do this similar to what we learnt in Part 1.</p>
 <p><code>field_data$Yield_kg_per_ha &lt;- field_data$Yield_bu_per_acre*62.77</code></p>
 <p>We can also use the function <code>mutate()</code> from ‘dplyr’. This adds a new variable using existing variables. The usage of this function is as:</p>
 <p>mutate(data, new_variable_name = calculation_based_upon_existing_variables)</p>
@@ -539,9 +533,10 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 17 Fungicide_B            175.68      4.1        11027.43
 18 Fungicide_B            175.95      4.2        11044.38</code></pre>
 <p>We have a new column <code>Yield_kg_per_ha</code>. We have two columns with yield and one with severity. We don’t want severity data and want yield data only in kg/ha.</p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Create a new data frame with only <code>Treatment</code> and <code>Yield_kg_per_ha</code> columns We can use the function <code>select()</code> that picks variables based on their names.</li>
-</ol>
+</div>
+<div id="b-create-a-new-data-frame-with-only-treatment-and-yield_kg_per_ha-columns" class="section level3">
+<h3>b) Create a new data frame with only <code>Treatment</code> and <code>Yield_kg_per_ha</code> columns</h3>
+<p>We can use the function <code>select()</code> that picks variables based on their names.</p>
 <pre class="r"><code>&gt; yield_kg_ha &lt;- select(dat_kg_ha, Treatment, Yield_kg_per_ha)
 &gt; yield_kg_ha</code></pre>
 <pre><code>     Treatment Yield_kg_per_ha
@@ -563,16 +558,18 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 16 Fungicide_B        11039.99
 17 Fungicide_B        11027.43
 18 Fungicide_B        11044.38</code></pre>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>Find the mean yield If we want to summarise multiple values to a single value, for example, mean, we can use the function <code>summarize()</code>.</li>
-</ol>
+</div>
+<div id="c-find-the-mean-yield" class="section level3">
+<h3>c) Find the mean yield</h3>
+<p>If we want to summarise multiple values to a single value, for example, mean, we can use the function <code>summarize()</code>.</p>
 <pre class="r"><code>&gt; summarize(yield_kg_ha, Mean_yield = mean(Yield_kg_per_ha))</code></pre>
 <pre><code>  Mean_yield
 1    10954.9</code></pre>
 <p>Wait, we just got one mean even though we had three different groups (Control, Fungicide_A, Fungicide_B). We need to find the mean for every group. How can we tell R that it needs to group the data according to the treatment?</p>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>Group data according to treatment We can use the function <code>group_by()</code> for this purpose.</li>
-</ol>
+</div>
+<div id="d-group-data-according-to-treatment" class="section level3">
+<h3>d) Group data according to treatment</h3>
+<p>We can use the function <code>group_by()</code> for this purpose.</p>
 <pre class="r"><code>&gt; grp_yield_kg_ha &lt;- group_by(yield_kg_ha, Treatment)
 &gt; grp_yield_kg_ha </code></pre>
 <pre><code># A tibble: 18 x 2
@@ -598,9 +595,9 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 17 Fungicide_B          11027.
 18 Fungicide_B          11044.</code></pre>
 <p>You will notice that <code>yield_kg_ha</code> and <code>grp_yield_kg_ha</code> are a little different. <code>grp_yield_kg_ha</code> is also a “tibble”, which is a form of data frame that gives more information about our data (e.g. what kind of data the columns are). You will notice that Treatment is a factor, while Yield_kg_per_ha is a double (decimal). It also tells us that our data is grouped by Treatment (therefore, it has three groups). To add the grouping information to this data frame, ‘dplyr’ uses a sister package to convert it into a tibble. Also, note that <code>Yield_kg_per_ha</code> is not printing the whole answer (after decimals) and has underlined first two digits. The tibble format is different when we print it, but the same when we use <code>View()</code>. The digits are underlined so that it is easier to read larger numbers. It’s role is similar to a comma. So, ‘10,000’ will have ‘10’ underlined and ‘100,000’ will have ‘100’ underlined.</p>
-<ol start="5" style="list-style-type: lower-alpha">
-<li>Find the mean yield of every group</li>
-</ol>
+</div>
+<div id="e-find-the-mean-yield-of-every-group" class="section level3">
+<h3>e) Find the mean yield of every group</h3>
 <pre class="r"><code>&gt; mean_yield_dat &lt;- summarize(grp_yield_kg_ha, Mean_yield = mean(Yield_kg_per_ha))
 &gt; mean_yield_dat</code></pre>
 <pre><code># A tibble: 3 x 2
@@ -631,16 +628,60 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:   3 obs. of  2 variables:
  $ Treatment : Factor w/ 3 levels &quot;Control&quot;,&quot;Fungicide_A&quot;,..: 1 2 3
  $ Mean_yield: num  10914 10916 11035</code></pre>
+<p>Before moving to our second question, let’s do an exercise. You may use the cheatsheet for ‘dplyr’ (provided in the workshop or can be accessed from the ‘Help’ tab) or ‘Google’ to do this:</p>
+</div>
+<div id="exercise-2-using-the-existing-object-yield_summary-create-a-new" class="section level3">
+<h3>Exercise 2: Using the existing object <code>yield_summary</code>, create a new</h3>
+</div>
+<div id="object-test_summary-in-which-the-column-mean_yield-is-renamed-to" class="section level3">
+<h3>object <code>test_summary</code> in which the column <code>Mean_yield</code> is renamed to</h3>
+</div>
+<div id="mean_yield_kg_ha.-hint-rename-it" class="section level3">
+<h3><code>Mean_yield_kg_ha</code>. Hint: <code>rename</code> it ;)</h3>
+<pre class="r"><code>&gt; test_summary &lt;- yield_summary %&gt;% 
++   rename(Mean_yield_kg_ha = Mean_yield)
+&gt; test_summary</code></pre>
+<pre><code># A tibble: 3 x 2
+  Treatment   Mean_yield_kg_ha
+  &lt;fct&gt;                  &lt;dbl&gt;
+1 Control               10914.
+2 Fungicide_A           10916.
+3 Fungicide_B           11035.</code></pre>
 <p>Let’s go to our second question.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>What is the percent severity of Control and Fungicide B?</li>
-</ol>
+</div>
+</div>
+<div id="what-is-the-percent-severity-of-control-and-fungicide-b" class="section level2">
+<h2>2. What is the percent severity of Control and Fungicide B?</h2>
 <p>First, we need to create a new data frame where we only have severity data for Control and Fungicide B. If we want to filter a data frame based upon specific values of a variable, we can use the function <code>filter()</code>.</p>
-<pre class="r"><code>&gt; filter(fungicide, Treatment == &quot;Control&quot; | Treatment == &quot;Fungicide_B&quot;)</code></pre>
-<pre><code>Error in filter(fungicide, Treatment == &quot;Control&quot; | Treatment == &quot;Fungicide_B&quot;): object &#39;fungicide&#39; not found</code></pre>
+<pre class="r"><code>&gt; filter(field_data, Treatment == &quot;Control&quot; | Treatment == &quot;Fungicide_B&quot;)</code></pre>
+<pre><code>     Treatment Yield_bu_per_acre Severity
+1      Control            173.82      5.5
+2      Control            174.23      5.6
+3      Control            173.57      5.4
+4      Control            173.61      5.4
+5      Control            174.19      5.6
+6      Control            173.80      5.5
+7  Fungicide_B            175.98      4.1
+8  Fungicide_B            175.58      3.9
+9  Fungicide_B            175.75      4.2
+10 Fungicide_B            175.88      4.0
+11 Fungicide_B            175.68      4.1
+12 Fungicide_B            175.95      4.2</code></pre>
 <p>The treatment column should either be equal (<code>==</code>) to Control OR (<code>|</code>) Fungicide_A. We can also write the same expression as:</p>
-<pre class="r"><code>&gt; filter(fungicide, Treatment != &quot;Fungicide_A&quot;)</code></pre>
-<pre><code>Error in filter(fungicide, Treatment != &quot;Fungicide_A&quot;): object &#39;fungicide&#39; not found</code></pre>
+<pre class="r"><code>&gt; filter(field_data, Treatment != &quot;Fungicide_A&quot;)</code></pre>
+<pre><code>     Treatment Yield_bu_per_acre Severity
+1      Control            173.82      5.5
+2      Control            174.23      5.6
+3      Control            173.57      5.4
+4      Control            173.61      5.4
+5      Control            174.19      5.6
+6      Control            173.80      5.5
+7  Fungicide_B            175.98      4.1
+8  Fungicide_B            175.58      3.9
+9  Fungicide_B            175.75      4.2
+10 Fungicide_B            175.88      4.0
+11 Fungicide_B            175.68      4.1
+12 Fungicide_B            175.95      4.2</code></pre>
 <p>The treatment column should not be equal to (<code>!=</code>) to Fungicide_A. So, it will have everything except Fungicide A (“Control” and “Fungicide_B”).</p>
 <p>After filtering, we need to add a column <code>Percent_Severity</code>, where severity is measured in percent and not on a scale of 1 to 10. Any guess on which function should we use? Let’s perform all operations in one go.</p>
 <pre class="r"><code>&gt; severity_dat &lt;- field_data %&gt;% 
@@ -661,17 +702,31 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 10 Fungicide_B               40
 11 Fungicide_B               41
 12 Fungicide_B               42</code></pre>
-<p>If we wanted to use these data as a table in a paper, we should export it to a csv file. We can do this using the function <code>write.table()</code>. Before that, let’s create a new directory (or folder) named results. We can do this using the function <code>dir.create()</code>.</p>
+<p>We do not see a column for the number of replications for each treatment. They might be unequal (environmental factors like insect damage, etc. can reduce the pool from where data can be collected).</p>
+<div id="exercise-3-find-the-no.-of-replications-for-each-treatment.-dont-count-manually." class="section level3">
+<h3>Exercise 3: Find the no. of replications for each treatment. Don’t <code>count</code> manually.</h3>
+<pre class="r"><code>&gt; field_data %&gt;% 
++   group_by(Treatment) %&gt;% 
++   count(Treatment)</code></pre>
+<pre><code># A tibble: 3 x 2
+# Groups:   Treatment [3]
+  Treatment       n
+  &lt;fct&gt;       &lt;int&gt;
+1 Control         6
+2 Fungicide_A     6
+3 Fungicide_B     6</code></pre>
+<p>Now that we have answered our first two questions, what if we wanted to use these data as a table in a paper, we should export it to a csv file. We can do this using the function <code>write.table()</code>. Before that, let’s create a new directory (or folder) named results. We can do this using the function <code>dir.create()</code>.</p>
 <pre class="r"><code>&gt; dir.create(&quot;results&quot;)
 &gt; write.table(severity_dat, file = &quot;results/severity_dat.csv&quot;, sep = &quot;,&quot;, 
 +             col.names = TRUE, 
 +             row.names = FALSE)</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Which fungicide shows better results? (ANOVA)</li>
-</ol>
+</div>
 </div>
 <div id="step-4-statistical-analysis" class="section level2">
 <h2>Step 4: Statistical Analysis</h2>
+<p>Let’s solve our final question.</p>
+<div id="which-fungicide-shows-better-results-anova" class="section level3">
+<h3>3. Which fungicide shows better results? (ANOVA)</h3>
 <p>Let’s do ANOVA for yield and severity data. We can use alpha level = 0.05. If we do an internet search for ANOVA in R, you will find that function <code>aov</code> is appropriate for this. How do we use <code>aov</code>?</p>
 <pre class="r"><code>&gt; ?aov</code></pre>
 <p>This function takes in a formula to be tested. To find if the independent variable (<code>Treatment</code>) had an effect on the dependent variable (<code>Yield_bu_per_acre</code>), the formula should be written as ‘dependent_variable ~ independent_variable’. If we used blocks in our experimental design, the formula can be modified to ‘dependent_variable ~ independent_variable + block’. The function also takes in a data frame in which these variables are present.</p>
@@ -738,6 +793,7 @@ Fungicide_A-Control     -0.400000 -0.5491295 -0.2508705 1.28e-05
 Fungicide_B-Control     -1.416667 -1.5657962 -1.2675371 0.00e+00
 Fungicide_B-Fungicide_A -1.016667 -1.1657962 -0.8675371 0.00e+00</code></pre>
 <p>All the treatment pairs are significantly different from each other as the p-value is &lt; 0.05.</p>
+</div>
 </div>
 </div>
 
