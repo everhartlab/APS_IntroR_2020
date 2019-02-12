@@ -458,12 +458,12 @@ April$month
 
 # We need to add 1 to each of these values, so let's try that!
 
-April$month - 1
+April$month + 1
 
 # This worked, so now we just need to replace values in April[,2] with the new
 # expression:
 
-April$month <- April$month - 1    # Did it work?
+April$month <- April$month + 1    # Did it work?
 str(April)
 
 # Let's combine both of these tables into one.  R provides two functions that can help 
@@ -474,13 +474,13 @@ str(April)
 # ### Exercise 3: Use `cbind()` and `rbind()` to figure out the correct  
 # ### function to stack the tables one below the other.
 
-cbind(April, March) # Do you think it will work?
+cbind(March, April) # Do you think it will work?
 
 # We have an error! R is trying to stack them side by side and is failing to do so because 
 # of different number of rows.
 
-rbind(April, March) # This works!
-spring <- rbind(April, March)
+rbind(March, April) # This works!
+spring <- rbind(March, April)
 
 # Inspect this object to ensure it was made correctly. 
 

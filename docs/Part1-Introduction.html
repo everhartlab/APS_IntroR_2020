@@ -703,14 +703,14 @@ except for the 31st row and all the columns of that row.</p>
 <pre class="r"><code>&gt; April$month</code></pre>
 <pre><code> [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</code></pre>
 <p>We need to add 1 to each of these values, so let’s try that!</p>
-<pre class="r"><code>&gt; April$month - 1</code></pre>
-<pre><code> [1] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2</code></pre>
+<pre class="r"><code>&gt; April$month + 1</code></pre>
+<pre><code> [1] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4</code></pre>
 <p>This worked, so now we just need to replace values in April[,2] with the new expression:</p>
-<pre class="r"><code>&gt; April$month &lt;- April$month - 1    # Did it work?
+<pre class="r"><code>&gt; April$month &lt;- April$month + 1    # Did it work?
 &gt; str(April)</code></pre>
 <pre><code>&#39;data.frame&#39;:   30 obs. of  3 variables:
  $ day  : int  1 2 3 4 5 6 7 8 9 10 ...
- $ month: num  2 2 2 2 2 2 2 2 2 2 ...
+ $ month: num  4 4 4 4 4 4 4 4 4 4 ...
  $ year : num  2019 2019 2019 2019 2019 ...</code></pre>
 <p>Let’s combine both of these tables into one. R provides two functions that can help us with that called <code>rbind()</code> and <code>cbind()</code>, which bind a data frame with a vector (or another data frame) by rows and columns, respectively. Which one should we use? If you’re unsure, try both!</p>
 <div id="exercise-3-use-cbind-and-rbind-to-figure-out-the-correct" class="section level3">
@@ -718,95 +718,95 @@ except for the 31st row and all the columns of that row.</p>
 </div>
 <div id="function-to-stack-the-tables-one-below-the-other." class="section level3">
 <h3>function to stack the tables one below the other.</h3>
-<pre class="r"><code>&gt; cbind(April, March) # Do you think it will work?</code></pre>
-<pre><code>Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 30, 31</code></pre>
+<pre class="r"><code>&gt; cbind(March, April) # Do you think it will work?</code></pre>
+<pre><code>Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 31, 30</code></pre>
 <p>We have an error! R is trying to stack them side by side and is failing to do so because of different number of rows.</p>
-<pre class="r"><code>&gt; rbind(April, March) # This works!</code></pre>
+<pre class="r"><code>&gt; rbind(March, April) # This works!</code></pre>
 <pre><code>   day month year
-1    1     2 2019
-2    2     2 2019
-3    3     2 2019
-4    4     2 2019
-5    5     2 2019
-6    6     2 2019
-7    7     2 2019
-8    8     2 2019
-9    9     2 2019
-10  10     2 2019
-11  11     2 2019
-12  12     2 2019
-13  13     2 2019
-14  14     2 2019
-15  15     2 2019
-16  16     2 2019
-17  17     2 2019
-18  18     2 2019
-19  19     2 2019
-20  20     2 2019
-21  21     2 2019
-22  22     2 2019
-23  23     2 2019
-24  24     2 2019
-25  25     2 2019
-26  26     2 2019
-27  27     2 2019
-28  28     2 2019
-29  29     2 2019
-30  30     2 2019
-31   1     3 2019
-32   2     3 2019
-33   3     3 2019
-34   4     3 2019
-35   5     3 2019
-36   6     3 2019
-37   7     3 2019
-38   8     3 2019
-39   9     3 2019
-40  10     3 2019
-41  11     3 2019
-42  12     3 2019
-43  13     3 2019
-44  14     3 2019
-45  15     3 2019
-46  16     3 2019
-47  17     3 2019
-48  18     3 2019
-49  19     3 2019
-50  20     3 2019
-51  21     3 2019
-52  22     3 2019
-53  23     3 2019
-54  24     3 2019
-55  25     3 2019
-56  26     3 2019
-57  27     3 2019
-58  28     3 2019
-59  29     3 2019
-60  30     3 2019
-61  31     3 2019</code></pre>
-<pre class="r"><code>&gt; spring &lt;- rbind(April, March)</code></pre>
+1    1     3 2019
+2    2     3 2019
+3    3     3 2019
+4    4     3 2019
+5    5     3 2019
+6    6     3 2019
+7    7     3 2019
+8    8     3 2019
+9    9     3 2019
+10  10     3 2019
+11  11     3 2019
+12  12     3 2019
+13  13     3 2019
+14  14     3 2019
+15  15     3 2019
+16  16     3 2019
+17  17     3 2019
+18  18     3 2019
+19  19     3 2019
+20  20     3 2019
+21  21     3 2019
+22  22     3 2019
+23  23     3 2019
+24  24     3 2019
+25  25     3 2019
+26  26     3 2019
+27  27     3 2019
+28  28     3 2019
+29  29     3 2019
+30  30     3 2019
+31  31     3 2019
+32   1     4 2019
+33   2     4 2019
+34   3     4 2019
+35   4     4 2019
+36   5     4 2019
+37   6     4 2019
+38   7     4 2019
+39   8     4 2019
+40   9     4 2019
+41  10     4 2019
+42  11     4 2019
+43  12     4 2019
+44  13     4 2019
+45  14     4 2019
+46  15     4 2019
+47  16     4 2019
+48  17     4 2019
+49  18     4 2019
+50  19     4 2019
+51  20     4 2019
+52  21     4 2019
+53  22     4 2019
+54  23     4 2019
+55  24     4 2019
+56  25     4 2019
+57  26     4 2019
+58  27     4 2019
+59  28     4 2019
+60  29     4 2019
+61  30     4 2019</code></pre>
+<pre class="r"><code>&gt; spring &lt;- rbind(March, April)</code></pre>
 <p>Inspect this object to ensure it was made correctly.</p>
 <pre class="r"><code>&gt; str(spring)</code></pre>
 <pre><code>&#39;data.frame&#39;:   61 obs. of  3 variables:
  $ day  : int  1 2 3 4 5 6 7 8 9 10 ...
- $ month: num  2 2 2 2 2 2 2 2 2 2 ...
+ $ month: num  3 3 3 3 3 3 3 3 3 3 ...
  $ year : num  2019 2019 2019 2019 2019 ...</code></pre>
 <pre class="r"><code>&gt; head(spring)</code></pre>
 <pre><code>  day month year
-1   1     2 2019
-2   2     2 2019
-3   3     2 2019
-4   4     2 2019
-5   5     2 2019
-6   6     2 2019</code></pre>
+1   1     3 2019
+2   2     3 2019
+3   3     3 2019
+4   4     3 2019
+5   5     3 2019
+6   6     3 2019</code></pre>
 <pre class="r"><code>&gt; tail(spring)</code></pre>
 <pre><code>   day month year
-56  26     3 2019
-57  27     3 2019
-58  28     3 2019
-59  29     3 2019
-60  30     3 2019
-61  31     3 2019</code></pre>
+56  25     4 2019
+57  26     4 2019
+58  27     4 2019
+59  28     4 2019
+60  29     4 2019
+61  30     4 2019</code></pre>
 <p>We now have a new object spring that contains only numeric data. Let’s revise this object so that it uses names for the month instead of numbers. We want it to look like this:</p>
 <pre><code>  day   month   year  
   1     &quot;April&quot;   2019  
@@ -815,13 +815,13 @@ except for the 31st row and all the columns of that row.</p>
   ...</code></pre>
 <p>Months need to be changed from the number 4 to “March” and from 3 to “March” in the second column. Let’s first look at the month column.</p>
 <pre class="r"><code>&gt; spring$month</code></pre>
-<pre><code> [1] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3
-[36] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</code></pre>
+<pre><code> [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4
+[36] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4</code></pre>
 <p>We want to specify only the cells in this list that are 4. We know that rows 1 to 30 contain 4’s and the rest contain 3’s, which means we can inspect those rows in the object spring:</p>
 <pre class="r"><code>&gt; spring[1:30, &quot;month&quot;]     # April</code></pre>
-<pre><code> [1] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2</code></pre>
-<pre class="r"><code>&gt; spring[-c(1:31), &quot;month&quot;] # March</code></pre>
 <pre><code> [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</code></pre>
+<pre class="r"><code>&gt; spring[-c(1:31), &quot;month&quot;] # March</code></pre>
+<pre><code> [1] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4</code></pre>
 <blockquote>
 <p>Notice that we used <code>-c(1:31)</code>, what do you think this is doing? Why would this give us the values for the month of March? We can use the <code>ifelse()</code> function to replace the values in our column. How do we use this function? A good first step to figuring out how you can use a function is to look at its help page. The way you can do that is by typing<br />
 either <code>help(&quot;function_name&quot;)</code> or <code>?function_name</code>.</p>
@@ -848,11 +848,11 @@ either <code>help(&quot;function_name&quot;)</code> or <code>?function_name</cod
 <pre><code> [1] &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot;
  [9] &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot;
 [17] &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot;
-[25] &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot;
-[33] &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot;
-[41] &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot;
-[49] &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot;
-[57] &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot;</code></pre>
+[25] &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;April&quot;
+[33] &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot;
+[41] &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot;
+[49] &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot;
+[57] &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot;</code></pre>
 <pre class="r"><code>&gt; spring$month &lt;- ifelse(spring$month == 4, yes = &quot;April&quot;, no = &quot;March&quot;)</code></pre>
 <blockquote>
 <p>Notice that we had to use <code>==</code> to indicate equality. This is so that R doesn’t get confused and assume we are using the argument assignment, <code>=</code>. Now, let’s inspect spring.</p>
