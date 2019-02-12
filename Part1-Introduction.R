@@ -35,9 +35,15 @@ print("the instructor's name is Sydney")
 # *Tab* key to auto-complete your typing at the command line and ctrl+up arrow or
 # cmd+up arrow to access the most recently typed commands.
 # 
-# You can also select only part of a line to have it run on the console.  Try
-# running the following command without copy+paste:   print("my name is _____")
+# You can also select only part of a line to have it run on the console. 
 # 
+# Let's do an exercise: 
+# 
+# ### Exercise 1: Use the function `print` to print the sentence 
+# ### "my name is ____".
+
+print("my name is _____")
+
 # R can also be used to perform calculations, such as the following:
 
 5+1/3
@@ -165,8 +171,10 @@ last.name <- 'Everhart'  # Single quotes work too!
 first.name
 last.name
 
-# Since we each have a first name and a family name, I want you to modify these
-# objects so that instead of my name, they contain your name. 
+# Since we each have a first name and a family name, let's do another exercise.
+# 
+# ### Exercise 2: Modify the objects `first.name` and `last.name` so that 
+# ### instead of my name, they contain your name. 
 
 first.name <- "____"  # Replace ____ with your own name
 last.name <- "____"
@@ -459,9 +467,12 @@ April$month <- April$month - 1    # Did it work?
 str(April)
 
 # Let's combine both of these tables into one.  R provides two functions that can help 
-# us with that called rbind() and cbind() which bind a data frame with a vector 
+# us with that called `rbind()` and `cbind()`, which bind a data frame with a vector 
 # (or another data frame) by rows and columns, respectively. Which one should we use? 
 # If you’re unsure, try both!
+# 
+# ### Exercise 3: Use `cbind()` and `rbind()` to figure out the correct  
+# ### function to stack the tables one below the other.
 
 cbind(April, March) # Do you think it will work?
 
@@ -511,7 +522,7 @@ spring[-c(1:31), "month"] # March
 
 ?ifelse
 
-# ### Exercise: Type `?ifelse` and answer these three questions:
+# ### Exercise 4: Type `?ifelse` and answer these three questions:
 # #### 1. What does it do? (Description)
 # #### 2. What are the arguments? (Usage/Arguments)
 # #### 3. What does it return? (Value)

@@ -243,7 +243,7 @@ yield.plot
 
 ?annotate
 
-# ### Exercise 4: Unravel the working of annotate by pasting examples in the console.
+# ### Exercise 4: Unravel the working of `annotate` by pasting examples in the console.
 
 (yield.plot <- yield.plot +
     annotate(geom="text", x=3, y=176.5, label="P < 0.05", color="red", size = 5))
