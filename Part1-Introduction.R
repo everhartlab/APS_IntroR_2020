@@ -235,10 +235,10 @@ length(name)
 
 # Let's compare this to a vector that contains only numeric data. For this 
 # example, let's create three objects to represent today's date in numbers for
-# the month (03), day (12), and year (2019).
+# the month (03), day (11), and year (2019).
 
 month <- 03
-day <- 12
+day <- 11
 year <- 2019
 
 # combine those three objects using the *combine* function:
@@ -315,10 +315,10 @@ length(month)
 # There are 30 elements in this vector and we can inspect individual elements in the
 # vector based on their ordered position using square brackets:
 
-day[12]  
-month[12] # the number inside the brackets corresponds to location of element in list, not value
+day[11]  
+month[11] # the number inside the brackets corresponds to location of element in list, not value
 
-# In this case, the 12th element in `day` is 12, and the 12th element in `month` is 3
+# In this case, the 11th element in `day` is 11, and the 11th element in `month` is 3
 # which confirms that we created this correctly.
 # 
 # > Type `day[32]` into your R console. What do you get? What does it mean? Ask
@@ -404,22 +404,22 @@ head(March)  # if this didn't work, double-check that you spelled the object nam
 
 # Now that we have our table, the question becomes, how do we inspect different elements?
 # 
-# Just like we can inspect the 12th element in the `day` vector using `day[12]`,
+# Just like we can inspect the 11th element in the `day` vector using `day[11]`,
 # we can also use the brackets to subset a table, the only catch is that we have
 # to use the coordinates of the row(s) and the column(s) we want. We can do this
 # by specifying `[row, column]`. These are analagous to X and Y Cartesian 
-# coordinates. Let's take a look at the elements in the 12th row, separately:
+# coordinates. Let's take a look at the elements in the 11th row, separately:
 
-March[12, 1] # day
-March[12, "month"] # you can use characters when the elements are named!
-March[12, 3] # year
-March[12, -3] # here `-` means all columns except the third (year)
-March[12, -2] # day and year
+March[11, 1] # day
+March[11, "month"] # you can use characters when the elements are named!
+March[11, 3] # year
+March[11, -3] # here `-` means all columns except the third (year)
+March[11, -2] # day and year
 
 # If we don't specify a dimension, R will give us the entire contents of that
 # dimension. Let's look at the row that contains today's date:
 
-March[12, ]
+March[11, ]
 
 # You can also use this to access just one column of the matrix.  Let's look at month:
 
