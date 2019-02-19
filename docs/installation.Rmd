@@ -20,7 +20,7 @@ everything up to date, UBC's [STAT545] page is an excellent resource.
  - [R]
  - [RStudio]
  - [Workshop Materials] (zip file; unzip to Desktop)
- - (Once you've installed R) packages "[dplyr]" and "[ggplot2]"
+ - (Once you've installed R), install packages "[dplyr]" and "[ggplot2]"
 
 Verification
 ------------
