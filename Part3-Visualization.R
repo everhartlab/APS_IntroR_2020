@@ -67,7 +67,7 @@ fungicide <- read.csv("data/fungicide_dat.csv") # read.csv automatically outputs
 # 
 # > Note: if you are reading this script after attending the workshop, the plot
 # > may look different due to the interactive nature of the workshop. This is
-# > indtended as an example.
+# > intended as an example.
 # 
 # Before we begin, we should become familiar with two functions:
 # 
@@ -86,7 +86,9 @@ fungicide <- read.csv("data/fungicide_dat.csv") # read.csv automatically outputs
 # 
 # > Note, we can specify the column names without using quotation marks.
 
-yield.plot <- ggplot(data = fungicide, mapping = aes(x = Treatment, y = Yield_bu_per_acre))
+yield.plot <- ggplot(data = fungicide, 
+                     mapping = aes(x = Treatment, 
+                                   y = Yield_bu_per_acre))
 
 # If everything worked, you should see nothing. This is because ggplot2 returns
 # an R object. This object contains the instructions for creating the
@@ -117,31 +119,36 @@ yield.plot
 # > Note: From here on out, I will be wrapping all commands with parentheses.
 # > This allows the result of the assignment to be displayed automatically.
 
-(yield.plot <- yield.plot + geom_boxplot())
+(yield.plot <- yield.plot + 
+    geom_boxplot())
 
 # If we want to change the color of the boxplots from white (default) to orange,  
 # we can do this by adding `geom_boxplot(fill = "orange")`.
 
-(yield.plot <- yield.plot + geom_boxplot(fill = "orange"))
+(yield.plot <- yield.plot + 
+    geom_boxplot(fill = "orange"))
 
 # Instead of all the boxplots having the same color, it will be interesting if we 
 # could color them according to the Treatment.
 
-(yield.plot <- yield.plot + geom_boxplot(fill = Treatment))
+(yield.plot <- yield.plot + 
+    geom_boxplot(fill = Treatment))
 
 # Oops! There was an error. It cannot recognize that we are talking about the 
 # Treatment column from our data set. This is because we have to use the function 
 # `aes()` whenever we are referring to our data set. 
 
-(yield.plot <- yield.plot + geom_boxplot(aes(fill = Treatment))) # This works!
+(yield.plot <- yield.plot + 
+    geom_boxplot(aes(fill = Treatment))) # This works!
 
 # To give a title to our plot, we can use `ggtitle()`. 
 
-(yield.plot <- yield.plot + ggtitle("Effect of Fungicides on Yield"))
+(yield.plot <- yield.plot + 
+    ggtitle("Effect of Fungicides on Yield"))
 
 # We now have a fully functional and informative plot using only few lines of
 # code! Producing a visualization of your data can be an extremely useful tool
-# for analysis because it can allow you to see if there are any strange patterns
+# for analysis, because it can allow you to see if there are any strange patterns
 # or spurious correlations in your variables. 
 # 
 # We can click on 'Zoom' to view a bigger version of this plot. 
@@ -154,9 +161,14 @@ yield.plot
 # ### Exercise 1: Create `new_plot` that is similar to `yield.plot`, but the 
 # ### geometry is a violin plot instead of a box plot.
 
-new_plot <- ggplot(fungicide, aes(x = Treatment, y = Yield_bu_per_acre)) +
+new_plot <- ggplot(fungicide, 
+                   aes(x = Treatment, 
+                       y = Yield_bu_per_acre)) +
+  
   geom_violin(aes(fill=Treatment)) +
+  
   ggtitle("Effect of Fungicides on Yield")
+
 new_plot
 
 # ### Exercise 2: Add another layer to the `new_plot` that flips the 
@@ -164,6 +176,7 @@ new_plot
 
 new_plot <- new_plot +
   coord_flip()
+
 new_plot
 
 # 
@@ -172,6 +185,7 @@ new_plot
 # This is easily done with `xlab()` and `ylab()`:
 
 (yield.plot <- yield.plot + xlab("Treatment Applied"))
+
 (yield.plot <- yield.plot + ylab("Yield (bu/acre)"))
 
 # The labels are now okay, but it's still not publication-ready. The font is too
@@ -183,7 +197,8 @@ new_plot
 # The first thing we can do is change the default theme from `theme_grey()` to
 # `theme_bw()`. We will simultaneously set the base size of the font to be 14pt.
 # 
-(yield.plot <- yield.plot + theme_bw(base_size = 14))
+(yield.plot <- yield.plot + 
+    theme_bw(base_size = 14))
 # 
 # There are many different default themes available for ggplot2 objects that
 # change many aspects of the look and feel. The *ggthemes* contains many popular
@@ -206,10 +221,17 @@ new_plot
 # to adjust several parameters to make our plot look acceptable:
 # 
 
-(yield.plot <- yield.plot + theme(aspect.ratio = 1)) # This looks the same
-(yield.plot <- yield.plot + theme(aspect.ratio = 2)) # This is too skinny
-(yield.plot <- yield.plot + theme(aspect.ratio = 1.25)) # I think this is perfect!
-(yield.plot <- yield.plot + theme(panel.grid = element_blank()))
+(yield.plot <- yield.plot + 
+    theme(aspect.ratio = 1)) # This looks the same
+
+(yield.plot <- yield.plot + 
+    theme(aspect.ratio = 2)) # This is too skinny
+
+(yield.plot <- yield.plot + 
+    theme(aspect.ratio = 1.25)) # I think this is perfect!
+
+(yield.plot <- yield.plot + 
+    theme(panel.grid = element_blank()))
 
 # 
 # 
@@ -217,7 +239,8 @@ new_plot
 # 'Google' how to remove the legend in ggplot2, you will find that you can use
 # `guides(fill=FALSE)`.
 # 
-(yield.plot <- yield.plot + guides(fill=FALSE))
+(yield.plot <- yield.plot + 
+    guides(fill = FALSE))
 # 
 # 
 # 
@@ -227,15 +250,24 @@ new_plot
 # Because we can add information to a plot with the `+` symbol, we can add all
 # of the elements in one go. Let's combine what we have above.
 # 
-yield.plot <- ggplot(fungicide, aes(x = Treatment, y = Yield_bu_per_acre)) +
+yield.plot <- ggplot(fungicide, 
+                     aes(x = Treatment, 
+                         y = Yield_bu_per_acre)) +
+  
   geom_boxplot(aes(fill = Treatment)) +
+  
   ggtitle("Effect of Fungicides on Yield") +
+  
   xlab("Treatment Applied") +
   ylab("Yield (bu/acre)") +
+  
   theme_bw(base_size = 14) +
+  
   theme(aspect.ratio = 1.25, # We can provide multiple arguments 
         panel.grid = element_blank()) +
+  
   guides(fill=FALSE)
+
 yield.plot
 
 # How can we show that the boxplot of Fungicide_B is significantly different?
@@ -246,20 +278,31 @@ yield.plot
 # ### Exercise 4: Unravel the working of `annotate` by pasting examples in the console.
 
 (yield.plot <- yield.plot +
-    annotate(geom="text", x=3, y=176.5, label="P < 0.05", color="red", size = 5))
+    annotate(geom = "text",
+             x = 3, 
+             y = 176.5, 
+             label = "P < 0.05",
+             color = "red", 
+             size = 5))
 
 # Congratulations! Your plot is ready for publishing!
 # 
 # We can now create a similar plot for Severity Data.
 
-severity.plot <- ggplot(fungicide, aes(x = Treatment, y = Severity)) +
+severity.plot <- ggplot(fungicide, 
+                        aes(x = Treatment, y = Severity)) +
+  
   geom_boxplot() +
+  
   ggtitle("Effect of Fungicides on Disease Severity") +
+  
   theme_bw(base_size = 14) +
   theme(aspect.ratio = 1.5,
         panel.grid = element_blank()) +
+  
   xlab("Treatment Applied") +
   ylab("Disease Severity")
+
 severity.plot
 
 # 
@@ -268,7 +311,8 @@ severity.plot
 # need to edit the text of the plot title, we need to specify 
 # `plot.title = element_text()`. 
 
-(severity.plot <- severity.plot + theme(plot.title = element_text(hjust = 0.5)))
+(severity.plot <- severity.plot + 
+    theme(plot.title = element_text(hjust = 0.5)))
 
 # 
 # Step 2: Saving our plot
