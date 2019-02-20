@@ -324,3 +324,64 @@ severity.plot
 # 
 ggsave(filename = "results/figure1.pdf", width = 88, units = "mm")
 
+#
+# Plot with mean and error bars
+# -----------------------------
+# 
+# One another type of plot that is very commong in applied agricultural data
+# sets is that has mean and standard errors for each treatment. Mean can be 
+# depicted in terms of bars or points on the plot. Let's practice this on
+# fungicide data.
+# 
+# Before we can plot mean and standard errors, we have to calculate them first,
+# by using techniques we learned in Part 2 of the workshop. We will need to install
+# and load a package called `plotrix`
+# 
+install.packages("plotrix", 
+                 repos = "http://cran.us.r-project.org")
+
+library("plotrix")
+
+fungicide_m_se <- fungicide %>%
+  
+  select(Treatment, Severity) %>%
+  
+  group_by(Treatment) %>%
+  
+  summarise(mean_sev = mean(Severity),
+            se_sev = std.error(Severity))
+
+# Now, we can create a plot with mean and standard error
+#
+m_se_plot <- ggplot(data = fungicide_m_se,
+                    aes(x = Treatment,
+                        y = mean_sev))
+m_se_plot  
+
+# Bar graph with standard errors
+# 
+(m_se_plot_bar <- m_se_plot + 
+    
+  geom_col(aes(fill = Treatment),
+           width = 0.5)) 
+  
+(m_se_plot_bar <- m_se_plot +
+    
+  geom_errorbar(aes(ymin = mean_sev - se_sev,
+                    ymax = mean_sev + se_sev),
+                width = 0.2)) 
+
+# Point plot with standard errors
+# 
+(m_se_plot_point <- m_se_plot + 
+
+  geom_point(aes(color = factor(Treatment)),
+             size = 3))
+
+(m_se_plot_point <- m_se_plot_point + 
+    
+  geom_errorbar(aes(ymin = mean_sev - se_sev,
+                    ymax = mean_sev + se_sev,
+                    color = factor(Treatment)),
+                width = 0.1))
+  
