@@ -384,4 +384,7 @@ m_se_plot
                     ymax = mean_sev + se_sev,
                     color = factor(Treatment)),
                 width = 0.1))
+
+# You can follow the same steps that we followed fro `yield.plot` to transform these
+# plots to publication quality.
   
