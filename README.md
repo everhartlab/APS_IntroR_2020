@@ -49,7 +49,7 @@ These scripts follow these conventions:
 
 
 
-The website located at https://github.com/everhartlab/IntroR_2019 can be build via the
+The website located at https://everhartlab.github.io/IntroR_2019/ can be build via the
 `make` program:
 
 ```make
