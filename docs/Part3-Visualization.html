@@ -354,6 +354,7 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Create a simple plot in ggplot2</li>
 <li>Save plots</li>
+<li>Plot with mean and error bars</li>
 </ol>
 <p>Again, since this is a four hour workshop, we do not expect mastery, but this at least should give you a starting point. With that in mind, let’s get started!</p>
 </div>
@@ -362,7 +363,7 @@ div.tocify {
 <pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmp7hHxH7/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpsKXuI0/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
 <p>Data for plotting with ggplot2 must be stored in a data frame</p>
 <pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;) # read.csv automatically outputs a data frame</code></pre>
@@ -569,6 +570,7 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 <p>Now that we have our plot finished, we can save it with the <code>ggsave()</code> function, which allows us to save it as a pdf, png, svg, eps, etc. file. Or, we can click on ‘Export’ (button just above the plot) and save it.</p>
 <pre class="r"><code>&gt; ggsave(filename = &quot;results/figure1.pdf&quot;, width = 88, units = &quot;mm&quot;)</code></pre>
 <pre><code>Saving 88 x 178 mm image</code></pre>
+<pre><code>Error in grDevices::pdf(file = filename, ..., version = version): cannot open file &#39;results/figure1.pdf&#39;</code></pre>
 </div>
 <div id="step-3-plot-with-mean-and-error-bars" class="section level2">
 <h2>Step 3: Plot with mean and error bars</h2>
@@ -578,7 +580,7 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 +                  repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmp7hHxH7/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpsKXuI0/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;plotrix&quot;)
 &gt; library(&quot;dplyr&quot;)</code></pre>
 <pre><code>Warning: package &#39;dplyr&#39; was built under R version 3.5.2</code></pre>
