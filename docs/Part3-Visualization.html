@@ -362,7 +362,7 @@ div.tocify {
 <pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpdsqwAn/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpmOneg7/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
 <p>Data for plotting with ggplot2 must be stored in a data frame</p>
 <pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;) # read.csv automatically outputs a data frame</code></pre>
@@ -571,15 +571,15 @@ we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</
 <pre><code>Saving 88 x 178 mm image</code></pre>
 <pre><code>Error in grDevices::pdf(file = filename, ..., version = version): cannot open file &#39;results/figure1.pdf&#39;</code></pre>
 </div>
-<div id="plot-with-mean-and-error-bars" class="section level2">
-<h2>Plot with mean and error bars</h2>
+<div id="step-3-plot-with-mean-and-error-bars" class="section level2">
+<h2>Step 3: Plot with mean and error bars</h2>
 <p>One another type of plot that is very common in applied agricultural data sets is that has mean and standard errors for each treatment. Mean can be depicted in terms of bars or points on the plot. Let’s practice this on fungicide data.</p>
 <p>Before we can plot mean and standard errors, we have to calculate them first, by using techniques we learned in Part 2 of the workshop. We will need to install and load a package called <code>plotrix</code></p>
 <pre class="r"><code>&gt; install.packages(&quot;plotrix&quot;, 
 +                  repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpdsqwAn/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpmOneg7/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;plotrix&quot;)
 &gt; library(&quot;dplyr&quot;)</code></pre>
 <pre><code>
@@ -604,12 +604,10 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div id="bar-graph-with-standard-errors" class="section level3">
 <h3>Bar graph with standard errors</h3>
 <pre class="r"><code>&gt; (m_se_plot_bar &lt;- m_se_plot + 
-+     
 +   geom_col(aes(fill = Treatment),
 +            width = 0.5)) </code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>&gt; (m_se_plot_bar &lt;- m_se_plot +
-+     
+<pre class="r"><code>&gt; (m_se_plot_bar &lt;- m_se_plot_bar +
 +   geom_errorbar(aes(ymin = mean_sev - se_sev,
 +                     ymax = mean_sev + se_sev),
 +                 width = 0.2)) </code></pre>
@@ -618,12 +616,10 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div id="point-plot-with-standard-errors" class="section level3">
 <h3>Point plot with standard errors</h3>
 <pre class="r"><code>&gt; (m_se_plot_point &lt;- m_se_plot + 
-+ 
 +   geom_point(aes(color = factor(Treatment)),
 +              size = 3))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (m_se_plot_point &lt;- m_se_plot_point + 
-+     
 +   geom_errorbar(aes(ymin = mean_sev - se_sev,
 +                     ymax = mean_sev + se_sev,
 +                     color = factor(Treatment)),
