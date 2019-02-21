@@ -37,6 +37,7 @@
 # 
 #  1. Create a simple plot in ggplot2
 #  2. Save plots
+#  3. Plot with mean and error bars
 # 
 # Again, since this is a four hour workshop, we do not expect mastery, but this
 # at least should give you a starting point. With that in mind, let's get 
