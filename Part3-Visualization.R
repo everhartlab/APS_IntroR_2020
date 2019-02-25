@@ -337,10 +337,6 @@ ggsave(filename = "results/figure1.pdf", width = 88, units = "mm")
 # by using techniques we learned in Part 2 of the workshop. We will need to install
 # and load a package called `plotrix`
 # 
-install.packages("plotrix", 
-                 repos = "http://cran.us.r-project.org")
-
-library("plotrix")
 
 fungicide_m_se <- fungicide %>%
   
@@ -348,14 +344,15 @@ fungicide_m_se <- fungicide %>%
   
   group_by(Treatment) %>%
   
-  summarise(mean_sev = mean(Severity),
-            se_sev = std.error(Severity))
+  summarise(m_se_sev = list(mean_se(Severity))) %>%
+  
+  unnest(m_se_sev)
 
 # Now, we can create a plot with mean and standard error
 #
 m_se_plot <- ggplot(data = fungicide_m_se,
                     aes(x = Treatment,
-                        y = mean_sev))
+                        y = y))
 m_se_plot  
 
 # Bar graph with standard errors
@@ -365,10 +362,10 @@ m_se_plot
   geom_col(aes(fill = Treatment),
            width = 0.5)) 
   
-(m_se_plot_bar <- m_se_plot +
+(m_se_plot_bar <- m_se_plot_bar +
     
-  geom_errorbar(aes(ymin = mean_sev - se_sev,
-                    ymax = mean_sev + se_sev),
+  geom_errorbar(aes(ymin = ymin,
+                    ymax = ymax),
                 width = 0.2)) 
 
 # Point plot with standard errors
@@ -380,8 +377,8 @@ m_se_plot
 
 (m_se_plot_point <- m_se_plot_point + 
     
-  geom_errorbar(aes(ymin = mean_sev - se_sev,
-                    ymax = mean_sev + se_sev,
+  geom_errorbar(aes(ymin = ymin,
+                    ymax = ymax,
                     color = factor(Treatment)),
                 width = 0.1))
 
