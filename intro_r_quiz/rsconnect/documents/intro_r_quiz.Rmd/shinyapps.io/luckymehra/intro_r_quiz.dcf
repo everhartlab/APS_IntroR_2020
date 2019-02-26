@@ -1,0 +1,12 @@
+name: intro_r_quiz
+title: intro_r_quiz
+username:
+account: luckymehra
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 740007
+bundleId: 1899935
+url: https://luckymehra.shinyapps.io/intro_r_quiz/
+when: 1551156486.97253
+asMultiple: FALSE
+asStatic: FALSE
