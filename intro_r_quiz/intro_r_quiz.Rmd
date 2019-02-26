@@ -1,0 +1,210 @@
+---
+title: "Intro R Workshop Quiz"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Test your knowledge of R  
+
+If you are unsure of an answer, try it out at the command line in RStudio or in the code chunk below.
+
+`x <- 1:10`
+
+```{r code_eval, exercise = TRUE}
+x <- 1:10
+
+```
+```{r Subsetting}
+
+quiz(
+  caption = "Subsetting",
+  
+  question("What is the result of x[c(TRUE, FALSE)]?",
+    answer("1, 3, 5, 7, 9", correct = TRUE),
+    answer("1"),
+    answer("2, 4, 6, 8, 10"),
+    answer("1, 3, 4, 5, 6, 7, 8, 9, 10"),
+    correct = "Great job!
+
+When you subset a vector with a logical vector, you select elements from the vector that correspond to the position of TRUE. In this case, the length of your 'subsetting logical vector' is smaller than x; therefore, logical vector will repeat itself to become the same length as x. 
+
+x[c(TRUE, FALSE)] will become x[c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)]. This will pick first element i.e. 1 from x, drop the second element i.e. 2, pick the third element i.e. 3, and so on....",
+  incorrect = "It is not correct, but here is some help:
+
+When you subset a vector with a logical vector, you select elements from the vector that correspond to the position of TRUE. In this case, the length of your 'subsetting logical vector' is smaller than x; therefore, logical vector will repeat itself to become the same length as x. 
+x[c(TRUE, FALSE)] will become x[c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)]. This will pick first element i.e. 1 from x, drop the second element i.e. 2, pick the third element i.e. 3, and so on....",
+  allow_retry = TRUE
+  ),
+
+  question("What is the result of x[x > 5]?",
+    answer("1, 2, 3, 4"),
+    answer("6, 7, 8, 9, 10", correct = TRUE),
+    answer("5, 6, 7, 8, 9, 10"),
+    answer("an error"),
+    correct = "You are right!
+    
+This is an example of subsetting using a logical expression. `x[x > 5]` will select all elements from `x` that are greater than 5.",
+    
+    incorrect = "Oops! here is a hint:
+    
+This is an example of subsetting using a logical expression. `x[x > 5]` will select all elements from `x` that are greater than 5.",
+    allow_retry = TRUE
+  ),
+
+  question("What is the result of x[-1]?",
+    answer("2, 3, 4, 5, 6, 7, 8, 9, 10", correct = TRUE),
+    answer("10"),
+    correct = "Exactly!,
+    
+`x[-1]` will return all the elements except the first one.",
+    
+    incorrect = "Hint = `x[-1]` will return all the elements except the first one.",
+    allow_retry = TRUE
+  ),
+
+  question("What is stored in x?",
+    answer("1, 10"),
+    answer("2, 3, 4, 5, 6, 7, 8, 9, 10"),
+    answer("1, 2, 3, 4, 5, 6, 7, 8, 9, 10", correct = TRUE),
+    answer("0.1"),
+    
+    correct = "Nice!",
+    
+    incorrect = "Hint = `x <- 1:10` will store all integers from 1 through 10 (both inclusive) in object named `x`",
+    allow_retry = TRUE
+  )
+)
+```
+
+```{r Vectors}
+
+quiz(
+  caption = "Vectors",
+  
+  question("What is the result of 1:10 * 5?",
+    answer("1, 2, 3, 4, 5, 6, 7, 8, 9, 100"),
+    answer("5, 10, 15, 20, 25, 30, 35, 40, 45, 50", correct = TRUE),
+    answer("1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,"),
+    
+    correct = "Yep!
+    
+Multiplication of a vector with scalar results in all elements being multiplied with that scalar.",
+    
+    incorrect = "Hint = Multiplication of a vector with scalar results in all elements being multiplied with that scalar.",
+    
+    allow_retry = TRUE
+  )
+)
+
+```
+
+```{r DataConversions}
+quiz(
+  caption = "Data Conversions",
+  
+  question("What is the result of as.integer(factor(7:5))?",
+    answer("7, 6, 5"),
+    answer("3, 2, 1", correct = TRUE),
+    answer("5, 6, 7"),
+    answer("NA, NA, NA"),
+    
+    correct = "Yay!
+    
+`factor(7:5)` is a factor with three levels:'5', '6', '7', if you check structure of `factor(7:5)` by using `str(factor(7:5))`, you will see that it has a value of 3 2 1, which indicates that R stored the value of `factor(7:5)` as c(3, 2, 1) with associated levels of c('7', '6', '5').",
+    
+    incorrect = "Hint:
+    
+`factor(7:5)` is a factor with three levels:'5', '6', '7', if you check structure of `factor(7:5)` by using `str(factor(7:5))`, you will see that it has a value of 3 2 1, which indicates that R stored the value of `factor(7:5)` as c(3, 2, 1) with associated levels of c('7', '6', '5').",
+    allow_retry = TRUE
+  ),
+  
+  question("What kind of vector will c(\"a\", 1, TRUE) become?",
+    answer("a logical vector"),
+    answer("a character vector", correct = TRUE),
+    answer("a numeric vector"),
+    
+    correct = "You answered it right!
+    
+If any of your vector element is a string, R will convert every other element to a string as well, which will end up with the resulting vector being a character vector",
+    
+    incorrect = "Hint:
+    
+If any of your vector element is a string, R will convert every other element to a string as well, which will end up with the resulting vector being a character vector",
+    allow_retry = TRUE
+  ),
+  
+  question("What is the result of sum(c(TRUE, TRUE, FALSE))?",
+    answer("0"),
+    answer("1"),
+    answer("2", correct = TRUE),
+    answer("3"),
+    answer("NA"),
+    
+    correct = "Great job!
+    
+R reads this logical vector as c(1, 1, 0); therefore, sum of 1, 1, and 0 will result in 2",
+    
+    incorrect = "Hint:
+    
+R reads this logical vector as c(1, 1, 0)",
+    allow_retry = TRUE
+  ),
+  
+  question("x <- c(3, pi, 4, T, F, 2 > 5). What type of data is stored in x?",
+    answer("numeric", correct = TRUE),
+    answer("character"),
+    answer("decimal"),
+    answer("logical"),
+    
+    correct = "Nicely done!
+
+Here is little more explanation:
+
+Character is incorrect because the word pi is interpreted in the mathematical sense and not as characters because there are no quotes around it. Only        words that have a mathematical interpretation and are included in the base package of R will be interpreted as numeric data.
+
+Decimal is incorrect because there is no data type \"decimal\" in R. It is either double (which is the equivalent of decimal) or numeric.
+
+Logical is incorrect because the resulting vector is not exclusively TRUE and FALSE, so results of logical expressions are converted to the numeric          equivalent (T = 1, F = 0).",
+    
+    incorrect = "This is a tricky question worth explaining.
+
+Character is incorrect because the word pi is interpreted in the mathematical sense and not as characters because there are no quotes around it. Only        words that have a mathematical interpretation and are included in the base package of R will be interpreted as numeric data.
+
+Decimal is incorrect because there is no data type \"decimal\" in R. It is either double (which is the equivalent of decimal) or numeric.
+
+Logical is incorrect because the resulting vector is not exclusively TRUE and FALSE, so results of logical expressions are converted to the numeric          equivalent (T = 1, F = 0).",
+    
+    allow_retry = TRUE
+  )
+)
+
+```
+
+```{r tables}
+
+quiz(
+  caption = "Tables",
+  
+  question("If I have a matrix \"M\" with 2 rows and 5 columns, what will M[ , 1] return?",
+    answer("a one row matrix with 5 columns"),
+    answer("a one column matrix with 2 rows"),
+    answer("a vector of length 2", correct = TRUE),
+    answer("a vector of length 5"),
+    
+    allow_retry = TRUE
+  ),
+  
+  question("If I have a matrix \"M\" with 2 rows and 5 columns, what will M[1, 2] give me?",
+    answer("entry in first row, second column", correct = TRUE),
+    answer("entry in first column, second row"),
+    allow_retry = TRUE
+  )
+)
+
+```
