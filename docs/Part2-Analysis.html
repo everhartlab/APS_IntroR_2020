@@ -353,12 +353,11 @@ default place where R will begin reading and writing files. For example, you<br 
 can use the function <code>list.files()</code> to view the files in your current working directory. These are the same files that we downloaded earlier. If you’re using Rstudio, you can compare the file list with the “Files” tab in the bottom right panel.</p>
 <p>In order to use <code>list.files()</code>, we should provide it with a file path. We can provide it a “.”, which means “here” to most computer programs.</p>
 <pre class="r"><code>&gt; list.files(&quot;.&quot;)</code></pre>
-<pre><code> [1] &quot;_config.yml&quot;           &quot;data&quot;                 
- [3] &quot;docs&quot;                  &quot;IntroR_2019.Rproj&quot;    
- [5] &quot;LICENSE&quot;               &quot;Makefile&quot;             
- [7] &quot;Part1-Introduction.R&quot;  &quot;Part2-Analysis.R&quot;     
- [9] &quot;Part3-Visualization.R&quot; &quot;README.md&quot;            
-[11] &quot;slides&quot;               </code></pre>
+<pre><code> [1] &quot;data&quot;                  &quot;docs&quot;                 
+ [3] &quot;IntroR_2019.Rproj&quot;     &quot;LICENSE&quot;              
+ [5] &quot;Makefile&quot;              &quot;Part1-Introduction.R&quot; 
+ [7] &quot;Part2-Analysis.R&quot;      &quot;Part3-Visualization.R&quot;
+ [9] &quot;README.md&quot;             &quot;slides&quot;               </code></pre>
 <p>You can see that the first entry in here is “data”. This is where we’ve placed the field_data example data.</p>
 <pre class="r"><code>&gt; list.files(&quot;data&quot;)</code></pre>
 <pre><code>[1] &quot;fungicide_dat.csv&quot; &quot;README.md&quot;        </code></pre>
@@ -487,9 +486,10 @@ can use the function <code>list.files()</code> to view the files in your current
 <pre class="r"><code>&gt; install.packages(&quot;dplyr&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpHCwkig/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpXQEvxv/downloaded_packages</code></pre>
 <p>To load this package, we can use the function <code>library()</code>.</p>
 <pre class="r"><code>&gt; library(&quot;dplyr&quot;)</code></pre>
+<pre><code>Warning: package &#39;dplyr&#39; was built under R version 3.5.2</code></pre>
 <pre><code>
 Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:stats&#39;:

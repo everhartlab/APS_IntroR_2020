@@ -37,6 +37,7 @@
 # 
 #  1. Create a simple plot in ggplot2
 #  2. Save plots
+#  3. Plot with mean and error bars
 # 
 # Again, since this is a four hour workshop, we do not expect mastery, but this
 # at least should give you a starting point. With that in mind, let's get 
@@ -321,67 +322,60 @@ severity.plot
 # Now that we have our plot finished, we can save it with the `ggsave()`
 # function, which allows us to save it as a pdf, png, svg, eps, etc. file.
 # Or, we can click on 'Export' (button just above the plot) and save it. 
-# 
+
 ggsave(filename = "results/figure1.pdf", width = 88, units = "mm")
 
-#
+# 
 # Step 3: Plot with mean and error bars
 # -------------------------------------
 # 
-# One another type of plot that is very commong in applied agricultural data
+# One another type of plot that is very common in applied agricultural data
 # sets is that has mean and standard errors for each treatment. Mean can be 
 # depicted in terms of bars or points on the plot. Let's practice this on
 # fungicide data.
 # 
 # Before we can plot mean and standard errors, we have to calculate them first,
-# by using techniques we learned in Part 2 of the workshop. We will need to install
-# and load a package called `plotrix`
-# 
+# by using techniques we learned in Part 2 of the workshop. We will need to load
+# `dplyr`
+
+library("dplyr")
 
 fungicide_m_se <- fungicide %>%
-  
   select(Treatment, Severity) %>%
-  
   group_by(Treatment) %>%
-  
   summarise(m_se_sev = list(mean_se(Severity))) %>%
-  
   unnest(m_se_sev)
 
 # Now, we can create a plot with mean and standard error
-#
+
 m_se_plot <- ggplot(data = fungicide_m_se,
                     aes(x = Treatment,
                         y = y))
 m_se_plot  
 
-# Bar graph with standard errors
-# 
+# ### Bar graph with standard errors
+
 (m_se_plot_bar <- m_se_plot + 
-    
   geom_col(aes(fill = Treatment),
            width = 0.5)) 
   
 (m_se_plot_bar <- m_se_plot_bar +
-    
-  geom_errorbar(aes(ymin = ymin,
+ geom_errorbar(aes(ymin = ymin,
                     ymax = ymax),
                 width = 0.2)) 
 
-# Point plot with standard errors
-# 
-(m_se_plot_point <- m_se_plot + 
+# ### Point plot with standard errors
 
-  geom_point(aes(color = factor(Treatment)),
+(m_se_plot_point <- m_se_plot + 
+ geom_point(aes(color = factor(Treatment)),
              size = 3))
 
 (m_se_plot_point <- m_se_plot_point + 
-    
-  geom_errorbar(aes(ymin = ymin,
+ geom_errorbar(aes(ymin = ymin,
                     ymax = ymax,
                     color = factor(Treatment)),
-                width = 0.1))
+               width = 0.1))
 
-# You can follow the same steps that we followed fro `yield.plot` to transform these
+# You can follow the same steps that we followed for `yield.plot` to transform these
 # plots to publication quality.
   
