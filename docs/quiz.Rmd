@@ -6,4 +6,6 @@ If you are already familiar with the basics of R, take this quiz to test your kn
 
 ### [Quiz Questions](https://luckymehra.shinyapps.io/intro_r_quiz/)
 
+Please note: It will take a few seconds to load.
+
 
