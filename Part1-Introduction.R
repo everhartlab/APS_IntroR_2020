@@ -516,6 +516,7 @@ spring[-c(1:31), "month"] # April
 # > Notice that we used `-c(1:31)`, what do you think this is doing? Why would 
 # > this give us the values for the month of April?
 #  
+# What if we want to replace '3' with 'March' and '4' with 'April'?
 # We can use the `ifelse()` function to replace the values in our column.  How 
 # do we use this function?  A good first step to figuring out how you can use a 
 # function is to look at its help page.  The way you can do that is by typing  
@@ -530,12 +531,12 @@ spring[-c(1:31), "month"] # April
 
 # In order to use `ifelse`, we will need to provide three things:
 # 
-#  1. A logical question about the elements of an object   : spring$month == 4
-#  2. Values for TRUE elements                             : "April"
-#  3. Values for FALSE elements                            : "March"
+#  1. A logical question about the elements of an object   : spring$month == 3
+#  2. Values for TRUE elements                             : "March"
+#  3. Values for FALSE elements                            : "April"
 
-ifelse(spring$month == 4, yes = "April", no = "March")
-spring$month <- ifelse(spring$month == 4, yes = "April", no = "March")
+ifelse(spring$month == 3, yes = "March", no = "April")
+spring$month <- ifelse(spring$month == 3, yes = "March", no = "April")
 
 # > Notice that we had to use `==` to indicate equality. This is so that R 
 # > doesn't get confused and assume we are using the argument assignment, `=`.

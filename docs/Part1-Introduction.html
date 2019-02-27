@@ -823,7 +823,7 @@ except for the 31st row and all the columns of that row.</p>
 <blockquote>
 <p>Notice that we used <code>-c(1:31)</code>, what do you think this is doing? Why would this give us the values for the month of April?</p>
 </blockquote>
-<p>We can use the <code>ifelse()</code> function to replace the values in our column. How do we use this function? A good first step to figuring out how you can use a function is to look at its help page. The way you can do that is by typing<br />
+<p>What if we want to replace ‘3’ with ‘March’ and ‘4’ with ‘April’? We can use the <code>ifelse()</code> function to replace the values in our column. How do we use this function? A good first step to figuring out how you can use a function is to look at its help page. The way you can do that is by typing<br />
 either <code>help(&quot;function_name&quot;)</code> or <code>?function_name</code>.</p>
 <pre class="r"><code>&gt; ?ifelse</code></pre>
 </div>
@@ -839,11 +839,11 @@ either <code>help(&quot;function_name&quot;)</code> or <code>?function_name</cod
 <h4>3. What does it return? (Value)</h4>
 <p>In order to use <code>ifelse</code>, we will need to provide three things:</p>
 <ol style="list-style-type: decimal">
-<li>A logical question about the elements of an object : spring$month == 4</li>
-<li>Values for TRUE elements : “April”</li>
-<li>Values for FALSE elements : “March”</li>
+<li>A logical question about the elements of an object : spring$month == 3</li>
+<li>Values for TRUE elements : “March”</li>
+<li>Values for FALSE elements : “April”</li>
 </ol>
-<pre class="r"><code>&gt; ifelse(spring$month == 4, yes = &quot;April&quot;, no = &quot;March&quot;)</code></pre>
+<pre class="r"><code>&gt; ifelse(spring$month == 3, yes = &quot;March&quot;, no = &quot;April&quot;)</code></pre>
 <pre><code> [1] &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot;
  [9] &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot;
 [17] &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot; &quot;March&quot;
@@ -852,7 +852,7 @@ either <code>help(&quot;function_name&quot;)</code> or <code>?function_name</cod
 [41] &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot;
 [49] &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot;
 [57] &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot; &quot;April&quot;</code></pre>
-<pre class="r"><code>&gt; spring$month &lt;- ifelse(spring$month == 4, yes = &quot;April&quot;, no = &quot;March&quot;)</code></pre>
+<pre class="r"><code>&gt; spring$month &lt;- ifelse(spring$month == 3, yes = &quot;March&quot;, no = &quot;April&quot;)</code></pre>
 <blockquote>
 <p>Notice that we had to use <code>==</code> to indicate equality. This is so that R doesn’t get confused and assume we are using the argument assignment, <code>=</code>. Now, let’s inspect spring.</p>
 </blockquote>
