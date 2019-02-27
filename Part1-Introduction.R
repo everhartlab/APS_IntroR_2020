@@ -494,9 +494,9 @@ tail(spring)
 # it to look like this:
 # ```
 #   day   month   year  
-#   1     "April"   2019  
-#   2     "April"   2019  
-#   3     "April"   2019
+#   1     "March"   2019  
+#   2     "March"   2019  
+#   3     "March"   2019
 #   ...
 # ```
 
@@ -505,8 +505,8 @@ tail(spring)
 
 spring$month
 
-# We want to specify only the cells in this list that are 4. We know that rows 1
-# to 30 contain 4's and the rest contain 3's, which means we can inspect
+# We want to specify only the cells in this list that are 3. We know that rows 1
+# to 31 contain 3's and the rest contain 4's, which means we can inspect
 # those rows in the object spring:
 
 spring[1:31, "month"]     # March
