@@ -20,7 +20,7 @@ everything up to date, UBC's [STAT545] page is an excellent resource.
  - [R]
  - [RStudio]
  - [Workshop Materials] (zip file; unzip to Desktop)
- - (Once you've installed R), install packages "[dplyr]" and "[ggplot2]"
+ - (Once you've installed R), install packages "[dplyr]", "[ggplot2]", and "[plotrix]"
 
 Verification
 ------------
@@ -77,3 +77,4 @@ install.packages(c("dplyr", "ggplot2"), repos = "https://cran.rstudio.com")
 [Workshop Materials]: https://github.com/everhartlab/IntroR_2019/archive/master.zip
 [dplyr]: https://dplyr.tidyverse.org
 [ggplot2]: https://ggplot2.tidyverse.org
+[plotrix]: https://crantastic.org/packages/plotrix
