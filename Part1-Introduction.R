@@ -98,7 +98,7 @@ c = 3   # we can also use `=` to assign 3 to c
 
 (a+b)/c
 
-# Avoid creating object names that start with a numnber because R will look at
+# Avoid creating object names that start with a number because R will look at
 # the first character and try to interpret the entire name as a mathematical
 # term.  Try this:
 
@@ -155,10 +155,11 @@ a & b > c
 # Is either `a` or `b` greater than c?
 a | b > c 
 
-# The examples above dealt with numeric values assigned to objects.  We can also
-# store character data in objects.  We need to place the character data (words,  
-# phrases, etc.) inside quotation marks, otherwise R will try to interpret the  
-# character data as an object and will produce an error.
+
+# The examples above dealt with numeric values assigned to objects. We can also
+# store character data in objects.  We need to place the character data (words,
+# phrases, etc.) inside quotation marks, otherwise R will try to interpret
+# the character data as an object and will produce an error.
 # 
 # Let's use my name for this exercise.  Let's create two objects, one for my
 # first name and another for my last name.  
@@ -508,13 +509,13 @@ spring$month
 # to 30 contain 4's and the rest contain 3's, which means we can inspect
 # those rows in the object spring:
 
-spring[1:30, "month"]     # April
-spring[-c(1:31), "month"] # March
+spring[1:31, "month"]     # March
+spring[-c(1:31), "month"] # April
 
 
 # > Notice that we used `-c(1:31)`, what do you think this is doing? Why would 
-# > this give us the values for the month of March?
- 
+# > this give us the values for the month of April?
+#  
 # We can use the `ifelse()` function to replace the values in our column.  How 
 # do we use this function?  A good first step to figuring out how you can use a 
 # function is to look at its help page.  The way you can do that is by typing  

@@ -348,16 +348,12 @@ div.tocify {
 <p>A working directory is the folder on your computer where you are currently working. You can find out your current working directory by typing <code>getwd()</code></p>
 <pre class="r"><code>&gt; getwd()</code></pre>
 <pre><code>[1] &quot;/Users/nikitagambhir/Desktop/IntroR_2019&quot;</code></pre>
-<p>If you’ve downloaded and un-zipped this directory to your desktop, you might see something like <code>/Users/&lt;yourname&gt;/Desktop/IntroR_2019</code>. This is the<br />
-default place where R will begin reading and writing files. For example, you<br />
-can use the function <code>list.files()</code> to view the files in your current working directory. These are the same files that we downloaded earlier. If you’re using Rstudio, you can compare the file list with the “Files” tab in the bottom right panel.</p>
+<p>If you’ve downloaded and un-zipped this directory to your desktop, you might see something like <code>/Users/&lt;yourname&gt;/Desktop/IntroR_2019</code>. This is the default place where R will begin reading and writing files. For example, you can use the function <code>list.files()</code> to view the files in your current working directory. These are the same files that we downloaded earlier. If you’re using Rstudio, you can compare the file list with the “Files” tab in the bottom right panel.</p>
 <p>In order to use <code>list.files()</code>, we should provide it with a file path. We can provide it a “.”, which means “here” to most computer programs.</p>
 <pre class="r"><code>&gt; list.files(&quot;.&quot;)</code></pre>
-<pre><code> [1] &quot;data&quot;                  &quot;docs&quot;                 
- [3] &quot;IntroR_2019.Rproj&quot;     &quot;LICENSE&quot;              
- [5] &quot;Makefile&quot;              &quot;Part1-Introduction.R&quot; 
- [7] &quot;Part2-Analysis.R&quot;      &quot;Part3-Visualization.R&quot;
- [9] &quot;README.md&quot;             &quot;slides&quot;               </code></pre>
+<pre><code>[1] &quot;data&quot;                  &quot;docs&quot;                  &quot;IntroR_2019.Rproj&quot;    
+[4] &quot;LICENSE&quot;               &quot;Makefile&quot;              &quot;Part1-Introduction.R&quot; 
+[7] &quot;Part2-Analysis.R&quot;      &quot;Part3-Visualization.R&quot; &quot;README.md&quot;            </code></pre>
 <p>You can see that the first entry in here is “data”. This is where we’ve placed the field_data example data.</p>
 <pre class="r"><code>&gt; list.files(&quot;data&quot;)</code></pre>
 <pre><code>[1] &quot;fungicide_dat.csv&quot; &quot;README.md&quot;        </code></pre>
@@ -435,7 +431,7 @@ can use the function <code>list.files()</code> to view the files in your current
 16 Fungicide_B            175.88      4.0
 17 Fungicide_B            175.68      4.1
 18 Fungicide_B            175.95      4.2</code></pre>
-<p>Now that we have these elements, we can read the data into an object, which we can call “field_data”. Once we do this, we can check the dimensions to make sure that we have all of the data.</p>
+<p>Now that we have these elements, we can read the data into an object, which we can call “field_data”. Once we do this, we can check the no. of rows and columns to make sure that we have all of the data.</p>
 <pre class="r"><code>&gt; field_data &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;)
 &gt; nrow(field_data)</code></pre>
 <pre><code>[1] 18</code></pre>
@@ -486,7 +482,7 @@ can use the function <code>list.files()</code> to view the files in your current
 <pre class="r"><code>&gt; install.packages(&quot;dplyr&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmpy46D3r/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmp48cDRn/downloaded_packages</code></pre>
 <p>To load this package, we can use the function <code>library()</code>.</p>
 <pre class="r"><code>&gt; library(&quot;dplyr&quot;)</code></pre>
 <pre><code>Warning: package &#39;dplyr&#39; was built under R version 3.5.2</code></pre>
@@ -561,7 +557,7 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 <div id="c-find-the-mean-yield" class="section level3">
 <h3>c) Find the mean yield</h3>
-<p>If we want to summarise multiple values to a single value, for example, mean, we can use the function <code>summarize()</code>.</p>
+<p>If we want to summarize multiple values to a single value, for example, mean, we can use the function <code>summarize()</code>.</p>
 <pre class="r"><code>&gt; summarize(yield_kg_ha, Mean_yield = mean(Yield_kg_per_ha))</code></pre>
 <pre><code>  Mean_yield
 1    10954.9</code></pre>
@@ -773,7 +769,8 @@ $Treatment
 Fungicide_A-Control     0.030000 -0.3557208 0.4157208 0.977785
 Fungicide_B-Control     1.933333  1.5476125 2.3190542 0.000000
 Fungicide_B-Fungicide_A 1.903333  1.5176125 2.2890542 0.000000</code></pre>
-<p>There is no difference between ‘Fungicide_A’ and ‘Control’ as the p-value is 0.978 (&gt;0.05). Let’s do similar analysis using the Severity data</p>
+<p>There is no difference between ‘Fungicide_A’ and ‘Control’ as the p-value is 0.978 (&gt;0.05).</p>
+<p>Let’s do a similar analysis using the Severity data.</p>
 <pre class="r"><code>&gt; fit_severity &lt;- aov(formula=Severity ~ Treatment, data=field_data)
 &gt; summary(fit_severity) # p-value is less than 0.05, so let&#39;s do Tukey&#39;s post-hoc test</code></pre>
 <pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)    

@@ -67,7 +67,7 @@ Installing Packages
 To install [dplyr] and [ggplot2] to your system, open R and type:
 
 ```{r, eval = FALSE}
-install.packages(c("dplyr", "ggplot2"), repos = "https://cran.rstudio.com")
+install.packages(c("dplyr", "ggplot2", "plotrix"), repos = "https://cran.rstudio.com")
 ```
 
 

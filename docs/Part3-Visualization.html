@@ -363,7 +363,7 @@ div.tocify {
 <pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmpum6kKT/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmpg3g0Hl/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
 <p>Data for plotting with ggplot2 must be stored in a data frame</p>
 <pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;) # read.csv automatically outputs a data frame</code></pre>
@@ -414,8 +414,7 @@ The downloaded binary packages are in
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + 
 +     geom_boxplot())</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>If we want to change the color of the boxplots from white (default) to orange,<br />
-we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</p>
+<p>If we want to change the color of the boxplots from white (default) to orange, we can do this by adding <code>geom_boxplot(fill = &quot;orange&quot;)</code>.</p>
 <pre class="r"><code>&gt; (yield.plot &lt;- yield.plot + 
 +     geom_boxplot(fill = &quot;orange&quot;))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /></p>
@@ -588,7 +587,7 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <pre class="r"><code>&gt; install.packages(&quot;plotrix&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmpum6kKT/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmpg3g0Hl/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;plotrix&quot;)
 &gt; 
 &gt; fungicide_m_se &lt;- fungicide %&gt;%
@@ -617,13 +616,13 @@ The downloaded binary packages are in
 <div id="point-plot-with-standard-errors" class="section level3">
 <h3>Point plot with standard errors</h3>
 <pre class="r"><code>&gt; (m_se_plot_point &lt;- m_se_plot + 
-+     geom_point(aes(color = factor(Treatment)),
++     geom_point(aes(color = Treatment),
 +                size = 3))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (m_se_plot_point &lt;- m_se_plot_point + 
 +     geom_errorbar(aes(ymin = mean_sev - se_sev,
 +                       ymax = mean_sev + se_sev,
-+                       color = factor(Treatment)),
++                       color = Treatment),
 +                   width = 0.1))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-26-2.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>You can follow the same steps that we followed for <code>yield.plot</code> to transform these plots to publication quality.</p>

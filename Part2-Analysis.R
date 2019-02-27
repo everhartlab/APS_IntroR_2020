@@ -18,11 +18,11 @@
 
 getwd()
 
-# If you've downloaded and un-zipped this directory to your desktop, you might 
-# see something like `/Users/<yourname>/Desktop/IntroR_2019`. This is the  
-# default place where R will begin reading and writing files. For example, you  
-# can use the function `list.files()` to view the files in your current working 
-# directory. These are the same files that we downloaded earlier. If you're 
+# If you've downloaded and un-zipped this directory to your desktop, you might
+# see something like `/Users/<yourname>/Desktop/IntroR_2019`. This is the
+# default place where R will begin reading and writing files. For example, you
+# can use the function `list.files()` to view the files in your current working
+# directory. These are the same files that we downloaded earlier. If you're
 # using Rstudio, you can compare the file list with the "Files" tab in the
 # bottom right panel. 
 # 
@@ -70,8 +70,8 @@ read.table("data/fungicide_dat.csv")
 read.table("data/fungicide_dat.csv", header = TRUE, sep = ",")
 
 # Now that we have these elements, we can read the data into an object, which we
-# can call "field_data". Once we do this, we can check the dimensions to make sure
-# that we have all of the data.
+# can call "field_data". Once we do this, we can check the no. of rows and columns
+# to make sure that we have all of the data.
 
 field_data <- read.csv("data/fungicide_dat.csv")
 nrow(field_data)
@@ -151,7 +151,7 @@ yield_kg_ha <- select(dat_kg_ha, Treatment, Yield_kg_per_ha)
 yield_kg_ha
 
 # ### c) Find the mean yield
-# If we want to summarise multiple values to a single value, for example, mean, 
+# If we want to summarize multiple values to a single value, for example, mean, 
 # we can use the function `summarize()`.
 
 summarize(yield_kg_ha, Mean_yield = mean(Yield_kg_per_ha))
@@ -314,8 +314,8 @@ summary(fit_yield) # This is what we want!
 TukeyHSD(fit_yield) 
 
 # There is no difference between 'Fungicide_A' and 'Control' as the p-value is 0.978 (>0.05).
-
-# Let's do similar analysis using the Severity data
+# 
+# Let's do a similar analysis using the Severity data.
 
 fit_severity <- aov(formula=Severity ~ Treatment, data=field_data)
 summary(fit_severity) # p-value is less than 0.05, so let's do Tukey's post-hoc test

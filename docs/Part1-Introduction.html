@@ -393,7 +393,7 @@ div.tocify {
 <p>Now we can execute our calculation using objects instead of numbers. Try it!</p>
 <pre class="r"><code>&gt; (a+b)/c</code></pre>
 <pre><code>[1] 2</code></pre>
-<p>Avoid creating object names that start with a numnber because R will look at the first character and try to interpret the entire name as a mathematical term. Try this:</p>
+<p>Avoid creating object names that start with a number because R will look at the first character and try to interpret the entire name as a mathematical term. Try this:</p>
 <pre class="r"><code>&gt; 2foxes &lt;- 1   </code></pre>
 <pre><code>Error: &lt;text&gt;:1:2: unexpected symbol
 1: 2foxes
@@ -434,9 +434,7 @@ logical operation (<code>&gt;</code>). So, we don’t need to use <code>(b+c) &g
 <p>Is either <code>a</code> or <code>b</code> greater than c?</p>
 <pre class="r"><code>&gt; a | b &gt; c </code></pre>
 <pre><code>[1] TRUE</code></pre>
-<p>The examples above dealt with numeric values assigned to objects. We can also store character data in objects. We need to place the character data (words,<br />
-phrases, etc.) inside quotation marks, otherwise R will try to interpret the<br />
-character data as an object and will produce an error.</p>
+<p>The examples above dealt with numeric values assigned to objects. We can also store character data in objects. We need to place the character data (words, phrases, etc.) inside quotation marks, otherwise R will try to interpret the character data as an object and will produce an error.</p>
 <p>Let’s use my name for this exercise. Let’s create two objects, one for my first name and another for my last name.</p>
 <pre class="r"><code>&gt; first.name &lt;- &quot;Sydney&quot;
 &gt; last.name &lt;- &#39;Everhart&#39;  # Single quotes work too!</code></pre>
@@ -818,14 +816,15 @@ except for the 31st row and all the columns of that row.</p>
 <pre><code> [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4
 [36] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4</code></pre>
 <p>We want to specify only the cells in this list that are 4. We know that rows 1 to 30 contain 4’s and the rest contain 3’s, which means we can inspect those rows in the object spring:</p>
-<pre class="r"><code>&gt; spring[1:30, &quot;month&quot;]     # April</code></pre>
-<pre><code> [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</code></pre>
-<pre class="r"><code>&gt; spring[-c(1:31), &quot;month&quot;] # March</code></pre>
+<pre class="r"><code>&gt; spring[1:31, &quot;month&quot;]     # March</code></pre>
+<pre><code> [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</code></pre>
+<pre class="r"><code>&gt; spring[-c(1:31), &quot;month&quot;] # April</code></pre>
 <pre><code> [1] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4</code></pre>
 <blockquote>
-<p>Notice that we used <code>-c(1:31)</code>, what do you think this is doing? Why would this give us the values for the month of March? We can use the <code>ifelse()</code> function to replace the values in our column. How do we use this function? A good first step to figuring out how you can use a function is to look at its help page. The way you can do that is by typing<br />
-either <code>help(&quot;function_name&quot;)</code> or <code>?function_name</code>.</p>
+<p>Notice that we used <code>-c(1:31)</code>, what do you think this is doing? Why would this give us the values for the month of April?</p>
 </blockquote>
+<p>We can use the <code>ifelse()</code> function to replace the values in our column. How do we use this function? A good first step to figuring out how you can use a function is to look at its help page. The way you can do that is by typing<br />
+either <code>help(&quot;function_name&quot;)</code> or <code>?function_name</code>.</p>
 <pre class="r"><code>&gt; ?ifelse</code></pre>
 </div>
 <div id="exercise-4-type-ifelse-and-answer-these-three-questions" class="section level3">

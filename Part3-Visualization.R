@@ -100,10 +100,10 @@ yield.plot
 # Now you should see a plot with nothing on it where the x and y axes are
 # labeled "Treatment" and "Yield_bu_per_acre", respectively.
 # 
-# To break down what the above function did, it first took in the data set 
+# To break down what the above function did, it first took in the data set
 # `fungicide` and then mapped the x and y aesthetics to the Treatment and
-# Yield_bu_per_acre columns. Effectively, this told ggplot how big our canvas 
-# needs to be in order to display our data, but currently, it doesn't know 
+# Yield_bu_per_acre columns. Effectively, this told ggplot how big our canvas
+# needs to be in order to display our data, but currently, it doesn't know
 # HOW we want to display our data; we need to give it a specific geometry.
 #  
 # 
@@ -123,20 +123,20 @@ yield.plot
 (yield.plot <- yield.plot + 
     geom_boxplot())
 
-# If we want to change the color of the boxplots from white (default) to orange,  
+# If we want to change the color of the boxplots from white (default) to orange,
 # we can do this by adding `geom_boxplot(fill = "orange")`.
 
 (yield.plot <- yield.plot + 
     geom_boxplot(fill = "orange"))
 
-# Instead of all the boxplots having the same color, it will be interesting if we 
+# Instead of all the boxplots having the same color, it will be interesting if we
 # could color them according to the Treatment.
 
 (yield.plot <- yield.plot + 
     geom_boxplot(fill = Treatment))
 
-# Oops! There was an error. It cannot recognize that we are talking about the 
-# Treatment column from our data set. This is because we have to use the function 
+# Oops! There was an error. It cannot recognize that we are talking about the
+# Treatment column from our data set. This is because we have to use the function
 # `aes()` whenever we are referring to our data set. 
 
 (yield.plot <- yield.plot + 
@@ -159,7 +159,7 @@ yield.plot
 # labels are displayed. But first, use the cheatsheet or 'Google' to do the
 # following exercises:
 # 
-# ### Exercise 1: Create `new_plot` that is similar to `yield.plot`, but the 
+# ### Exercise 1: Create `new_plot` that is similar to `yield.plot`, but the
 # ### geometry is a violin plot instead of a box plot.
 
 new_plot <- ggplot(fungicide, 
@@ -373,13 +373,13 @@ m_se_plot
 # ### Point plot with standard errors
 
 (m_se_plot_point <- m_se_plot + 
-    geom_point(aes(color = factor(Treatment)),
+    geom_point(aes(color = Treatment),
                size = 3))
 
 (m_se_plot_point <- m_se_plot_point + 
     geom_errorbar(aes(ymin = mean_sev - se_sev,
                       ymax = mean_sev + se_sev,
-                      color = factor(Treatment)),
+                      color = Treatment),
                   width = 0.1))
 
 # You can follow the same steps that we followed for `yield.plot` to transform these
