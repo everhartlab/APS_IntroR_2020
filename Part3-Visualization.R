@@ -326,8 +326,8 @@ severity.plot
 ggsave(filename = "results/figure1.pdf", width = 88, units = "mm")
 
 # 
-# Step 3: Plot with mean and error bars
-# -------------------------------------
+# Step 3: Plotting with mean and error bars
+# -----------------------------------------
 # 
 # One another type of plot that is very common in applied agricultural data
 # sets is that has mean and standard errors for each treatment. Mean can be 
