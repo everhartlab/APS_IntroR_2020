@@ -811,7 +811,7 @@ except for the 31st row and all the columns of that row.</p>
   2     &quot;April&quot;   2019  
   3     &quot;April&quot;   2019
   ...</code></pre>
-<p>Months need to be changed from the number 4 to “March” and from 3 to “March” in the second column. Let’s first look at the month column.</p>
+<p>Months need to be changed from the number 3 to “March” and from 4 to “April” in the second column. Let’s first look at the month column.</p>
 <pre class="r"><code>&gt; spring$month</code></pre>
 <pre><code> [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4
 [36] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4</code></pre>
@@ -823,7 +823,7 @@ except for the 31st row and all the columns of that row.</p>
 <blockquote>
 <p>Notice that we used <code>-c(1:31)</code>, what do you think this is doing? Why would this give us the values for the month of April?</p>
 </blockquote>
-<p>What if we want to replace ‘3’ with ‘March’ and ‘4’ with ‘April’? We can use the <code>ifelse()</code> function to replace the values in our column. How do we use this function? A good first step to figuring out how you can use a function is to look at its help page. The way you can do that is by typing<br />
+<p>We can use the <code>ifelse()</code> function to replace the values in our column. How do we use this function? A good first step to figuring out how you can use a function is to look at its help page. The way you can do that is by typing<br />
 either <code>help(&quot;function_name&quot;)</code> or <code>?function_name</code>.</p>
 <pre class="r"><code>&gt; ?ifelse</code></pre>
 </div>

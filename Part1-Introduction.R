@@ -500,7 +500,7 @@ tail(spring)
 #   ...
 # ```
 
-# Months need to be changed from the number 4 to "March" and from 3 to "March" in
+# Months need to be changed from the number 3 to "March" and from 4 to "April" in
 # the second column.  Let's first look at the month column.
 
 spring$month
@@ -515,8 +515,7 @@ spring[-c(1:31), "month"] # April
 
 # > Notice that we used `-c(1:31)`, what do you think this is doing? Why would 
 # > this give us the values for the month of April?
-#  
-# What if we want to replace '3' with 'March' and '4' with 'April'?
+# 
 # We can use the `ifelse()` function to replace the values in our column.  How 
 # do we use this function?  A good first step to figuring out how you can use a 
 # function is to look at its help page.  The way you can do that is by typing  
