@@ -2,7 +2,7 @@
 title: "Starting your own project"
 ---
 
-Now, that have introduced R to you. What next? How will you start working on your own research project in R? This part of the workshop is designed to help you give a kick-start 
+Now, that have introduced R to you. What next? How will you start working on your own research project in R? Worry not, this part of the workshop is designed to help you give a kick-start 
 
 
 ## Goals
@@ -19,5 +19,5 @@ In this part, you will learn how to:
 
 ## Dataset
 
-We will use this dataset for this part: https://drive.google.com/file/d/0ByVRhhevgqJgZjJRSmZrbmpzSFFacUZyZkVsTkpoZU12a0pv/view?usp=sharing
+Please download the dataset we will use for this part: https://drive.google.com/file/d/0ByVRhhevgqJgZjJRSmZrbmpzSFFacUZyZkVsTkpoZU12a0pv/view?usp=sharing
 
