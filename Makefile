@@ -30,4 +30,3 @@ clean :
 .PHONY : cleanjunk
 cleanjunk :
 	$(RM) -r results/
-	$(RM) -r data/FungicideTidy.csv

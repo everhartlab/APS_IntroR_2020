@@ -14,7 +14,9 @@ navbar:
         - text: "Part 2: Data Manipulation and Analysis"
           href: Part2-Analysis.html
         - text: "Part 3: Data Visualization"
-          href: Part3-Visualization.html
+          href: Part3-Visualization.html        
+        - text: "Part 4: Starting a Project"
+          href: Part4-Project.html
 #      menu:
 #        - text: "Data Sets"
 #          href: data.html

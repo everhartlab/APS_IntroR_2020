@@ -1,0 +1,23 @@
+---
+title: "Starting your own project"
+---
+
+Now, that we are done introducing R to you. What next? How will you start working on your own research project in R? This part of the workshop is designed to help you give a kick-start 
+
+
+## Goals
+
+In this part, you will learn how to:
+
+ - create a new RProj
+ - create an R script inside a "scripts" folder
+ - read in a data set
+ - move data into the "data" folder
+ - save the script and not the workspace image
+ - re-start the project
+
+
+## Dataset
+
+We will use this dataset for this part: https://drive.google.com/file/d/0ByVRhhevgqJgZjJRSmZrbmpzSFFacUZyZkVsTkpoZU12a0pv/view?usp=sharing
+
