@@ -45,7 +45,7 @@
 # 
 # ### Getting started
 
-install.packages("ggplot2", repos = "http://cran.us.r-project.org")
+install.packages("ggplot2")
 
 library("ggplot2")
 
@@ -342,7 +342,7 @@ ggsave(filename = "results/figure1.pdf", width = 88, units = "mm")
 
 library("dplyr")
 
-install.packages("plotrix", repos = "http://cran.us.r-project.org")
+install.packages("plotrix")
 
 library("plotrix")
 
