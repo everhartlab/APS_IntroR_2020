@@ -85,7 +85,8 @@ pi^2   # this does the same thing because ^ is, here, interpreted as "taken to t
 
 a <- 5  # assign the number 5 to a
 b <- 1  # assign number 1 to b
-c = 3   # we can also use `=` to assign 3 to c
+c = 3   # we can also use `=` to assign 3 to c. But `<-` is the preffered assignment
+        # operator as `=` is used inside functions.
 
 # As you are assigning these numbers to objects, they appear in your environment
 # (top right).  These objects are not being saved to a hard drive, they are
@@ -150,10 +151,10 @@ a == 7 # We need to put two '=' signs to check equality.
 a != 7 
 
 # Are both `a` and `b` greater than c?
-a & b > c 
+(a > c) & (b > c) 
 
 # Is either `a` or `b` greater than c?
-a | b > c 
+(a > c) | (b > c)
 
 
 # The examples above dealt with numeric values assigned to objects. We can also

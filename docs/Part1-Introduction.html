@@ -388,7 +388,8 @@ div.tocify {
 <p>Objects are like shortcuts. They are a way to store data without having to re-type them. By virtue, objects are only created once something has been assigned to them. Anything can be stored in an object, including figures! Let’s repeat our simple math calculation above, this time using objects. If we want to calculate (5+1)/3 using objects, it needs to look like this: (a+b)/c The objects a, b, and c do not exist yet, so we need to assign values to them in order to create them. R interprets the less than symbol and dash as “assign”. So we need to do the following:</p>
 <pre class="r"><code>&gt; a &lt;- 5  # assign the number 5 to a
 &gt; b &lt;- 1  # assign number 1 to b
-&gt; c = 3   # we can also use `=` to assign 3 to c</code></pre>
+&gt; c = 3   # we can also use `=` to assign 3 to c. But `&lt;-` is the preffered assignment
+&gt;         # operator as `=` is used inside functions.</code></pre>
 <p>As you are assigning these numbers to objects, they appear in your environment (top right). These objects are not being saved to a hard drive, they are stored in memory of your computer only.</p>
 <blockquote>
 <p><strong>NOTE</strong> if you assign something to an object that already exists, R will do what you tell it and overwrite that obect with the new assignment.</p>
@@ -432,10 +433,10 @@ logical operation (<code>&gt;</code>). So, we don’t need to use <code>(b+c) &g
 <pre class="r"><code>&gt; a != 7 </code></pre>
 <pre><code>[1] FALSE</code></pre>
 <p>Are both <code>a</code> and <code>b</code> greater than c?</p>
-<pre class="r"><code>&gt; a &amp; b &gt; c </code></pre>
+<pre class="r"><code>&gt; (a &gt; c) &amp; (b &gt; c) </code></pre>
 <pre><code>[1] FALSE</code></pre>
 <p>Is either <code>a</code> or <code>b</code> greater than c?</p>
-<pre class="r"><code>&gt; a | b &gt; c </code></pre>
+<pre class="r"><code>&gt; (a &gt; c) | (b &gt; c)</code></pre>
 <pre><code>[1] TRUE</code></pre>
 <p>The examples above dealt with numeric values assigned to objects. We can also store character data in objects. We need to place the character data (words, phrases, etc.) inside quotation marks, otherwise R will try to interpret the character data as an object and will produce an error.</p>
 <p>Let’s use my name for this exercise. Let’s create two objects, one for my first name and another for my last name.</p>
