@@ -85,8 +85,8 @@ pi^2   # this does the same thing because ^ is, here, interpreted as "taken to t
 
 a <- 5  # assign the number 5 to a
 b <- 1  # assign number 1 to b
-c = 3   # we can also use `=` to assign 3 to c. But `<-` is the preffered assignment
-        # operator as `=` is used inside functions.
+c = 3   # we can also use `=` to assign 3 to c. But `<-` is the preferred assignment
+        # operator as `=` is used to call arguments in function calls.
 
 # As you are assigning these numbers to objects, they appear in your environment
 # (top right).  These objects are not being saved to a hard drive, they are
