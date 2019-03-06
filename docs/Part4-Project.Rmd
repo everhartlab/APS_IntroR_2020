@@ -19,5 +19,7 @@ In this part, you will learn how to:
 
 ## Dataset
 
-Please download the dataset that we will use for this part: https://drive.google.com/file/d/0ByVRhhevgqJgZjJRSmZrbmpzSFFacUZyZkVsTkpoZU12a0pv/view?usp=sharing
+Please download the [dataset] that we will use for this part.
+
+[dataset]: https://drive.google.com/file/d/0ByVRhhevgqJgZjJRSmZrbmpzSFFacUZyZkVsTkpoZU12a0pv/view?usp=sharing
 
