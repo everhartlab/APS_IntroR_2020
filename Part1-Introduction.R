@@ -314,7 +314,7 @@ month
 
 length(month)
 
-# There are 30 elements in this vector and we can inspect individual elements in the
+# There are 31 elements in this vector and we can inspect individual elements in the
 # vector based on their ordered position using square brackets:
 
 day[11]  
@@ -378,7 +378,7 @@ length(March)
 
 dim(March)
 
-# This tells us that we have 30 rows and 3 columns. R also provides the `nrow()`
+# This tells us that we have 31 rows and 3 columns. R also provides the `nrow()`
 # and `ncol()` functions to make it easier to remember which is which:
 
 nrow(March)
