@@ -26,6 +26,8 @@ navbar:
       href: refs.html
     - text: "About"
       href: about.html
+    - text: "Feedback Survey"
+      href: https://drive.google.com/open?id=1ZLloL0iQk62oHf4Tpxbsyuf3Q8g1WX9knNw2aPOoaAs
 #      menu:
 #        - text: "Exit Survey"
 #          href: https://goo.gl/forms/oDBV8WPXg7DlsS4C3
