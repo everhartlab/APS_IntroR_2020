@@ -363,10 +363,8 @@ div.tocify {
 </div>
 <div id="getting-started" class="section level3">
 <h3>Getting started</h3>
-<pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
-<pre><code>
-The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmput0Y6A/downloaded_packages</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;)</code></pre>
+<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
 <p>Data for plotting with ggplot2 must be stored in a data frame</p>
 <pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;) # read.csv automatically outputs a data frame</code></pre>
@@ -445,9 +443,7 @@ The downloaded binary packages are in
 <pre class="r"><code>&gt; new_plot &lt;- ggplot(fungicide, 
 +                    aes(x = Treatment, 
 +                        y = Yield_bu_per_acre)) +
-+   
 +   geom_violin(aes(fill=Treatment)) +
-+   
 +   ggtitle(&quot;Effect of Fungicides on Yield&quot;)
 &gt; 
 &gt; new_plot</code></pre>
@@ -572,6 +568,7 @@ The downloaded binary packages are in
 <p>Now that we have our plot finished, we can save it with the <code>ggsave()</code> function, which allows us to save it as a pdf, png, svg, eps, etc. file. Or, we can click on ‘Export’ (button just above the plot) and save it.</p>
 <pre class="r"><code>&gt; ggsave(filename = &quot;results/figure1.pdf&quot;, width = 88, units = &quot;mm&quot;)</code></pre>
 <pre><code>Saving 88 x 178 mm image</code></pre>
+<pre><code>Error in grDevices::pdf(file = filename, ..., version = version): cannot open file &#39;results/figure1.pdf&#39;</code></pre>
 </div>
 <div id="step-3-plotting-with-mean-and-error-bars" class="section level2">
 <h2>Step 3: Plotting with mean and error bars</h2>
@@ -587,10 +584,8 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:base&#39;:
 
     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>&gt; install.packages(&quot;plotrix&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
-<pre><code>
-The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmput0Y6A/downloaded_packages</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;plotrix&quot;)</code></pre>
+<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
 <pre class="r"><code>&gt; library(&quot;plotrix&quot;)
 &gt; 
 &gt; fungicide_m_se &lt;- fungicide %&gt;%

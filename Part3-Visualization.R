@@ -165,9 +165,7 @@ yield.plot
 new_plot <- ggplot(fungicide, 
                    aes(x = Treatment, 
                        y = Yield_bu_per_acre)) +
-  
   geom_violin(aes(fill=Treatment)) +
-  
   ggtitle("Effect of Fungicides on Yield")
 
 new_plot
