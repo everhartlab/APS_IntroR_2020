@@ -230,7 +230,7 @@ test_summary
 
 filter(field_data, Treatment == "Control" | Treatment == "Fungicide_B")
 
-# The treatment column should either be equal (`==`) to Control OR (`|`) Fungicide_A.
+# The treatment column should either be equal (`==`) to Control OR (`|`) Fungicide_B.
 # We can also write the same expression as:
 
 filter(field_data, Treatment != "Fungicide_A")
