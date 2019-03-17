@@ -322,7 +322,7 @@ div.tocify {
   <a href="about.html">About</a>
 </li>
 <li>
-  <a href="https://drive.google.com/open?id=1ZLloL0iQk62oHf4Tpxbsyuf3Q8g1WX9knNw2aPOoaAs">Feedback Survey</a>
+  <a href="https://docs.google.com/forms/d/1RzOZBbHZ1kZEzpAcaATrD9bZZa2yea3fNF4J6a_0ioA">Feedback Survey</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -485,13 +485,12 @@ div.tocify {
 <div id="step-3-advanced-data-manipulation" class="section level2">
 <h2>Step 3: Advanced data manipulation</h2>
 <p>The package ‘dplyr’ provides functions for easy and advanced data manipulation. If we want to use it, we can download the package to our computer with the function <code>install.packages()</code>. This will install a package from CRAN and place it into your R <em>Library</em>.</p>
-<pre class="r"><code>&gt; install.packages(&quot;dplyr&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;dplyr&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmps7J79F/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpbRvnIM/downloaded_packages</code></pre>
 <p>To load this package, we can use the function <code>library()</code>.</p>
 <pre class="r"><code>&gt; library(&quot;dplyr&quot;)</code></pre>
-<pre><code>Warning: package &#39;dplyr&#39; was built under R version 3.5.2</code></pre>
 <pre><code>
 Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:stats&#39;:
@@ -669,7 +668,7 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 10 Fungicide_B            175.88      4.0
 11 Fungicide_B            175.68      4.1
 12 Fungicide_B            175.95      4.2</code></pre>
-<p>The treatment column should either be equal (<code>==</code>) to Control OR (<code>|</code>) Fungicide_A. We can also write the same expression as:</p>
+<p>The treatment column should either be equal (<code>==</code>) to Control OR (<code>|</code>) Fungicide_B. We can also write the same expression as:</p>
 <pre class="r"><code>&gt; filter(field_data, Treatment != &quot;Fungicide_A&quot;)</code></pre>
 <pre><code>     Treatment Yield_bu_per_acre Severity
 1      Control            173.82      5.5

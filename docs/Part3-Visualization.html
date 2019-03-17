@@ -322,7 +322,7 @@ div.tocify {
   <a href="about.html">About</a>
 </li>
 <li>
-  <a href="https://drive.google.com/open?id=1ZLloL0iQk62oHf4Tpxbsyuf3Q8g1WX9knNw2aPOoaAs">Feedback Survey</a>
+  <a href="https://docs.google.com/forms/d/1RzOZBbHZ1kZEzpAcaATrD9bZZa2yea3fNF4J6a_0ioA">Feedback Survey</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -366,10 +366,8 @@ div.tocify {
 </div>
 <div id="getting-started" class="section level3">
 <h3>Getting started</h3>
-<pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
-<pre><code>
-The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmp8Xj2Wd/downloaded_packages</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;)</code></pre>
+<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
 <p>Data for plotting with ggplot2 must be stored in a data frame</p>
 <pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;) # read.csv automatically outputs a data frame</code></pre>
@@ -579,7 +577,6 @@ The downloaded binary packages are in
 <p>One another type of plot that is very common in applied agricultural data sets is that has mean and standard errors for each treatment. Mean can be depicted in terms of bars or points on the plot. Let’s practice this on fungicide data.</p>
 <p>Before we can plot mean and standard errors, we have to calculate them first, by using techniques we learned in Part 2 of the workshop. We will need to load <code>dplyr</code> and <code>plotrix</code>. Base ‘R’ does not contain a function to calculate standard error, but the package <code>plotrix</code> does. Moreover, this package can has functions for creating specialized plots and other plotting accessories.</p>
 <pre class="r"><code>&gt; library(&quot;dplyr&quot;)</code></pre>
-<pre><code>Warning: package &#39;dplyr&#39; was built under R version 3.5.2</code></pre>
 <pre><code>
 Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:stats&#39;:
@@ -588,10 +585,10 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:base&#39;:
 
     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>&gt; install.packages(&quot;plotrix&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;plotrix&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmp8Xj2Wd/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmpa14hj5/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;plotrix&quot;)
 &gt; 
 &gt; fungicide_m_se &lt;- fungicide %&gt;%
