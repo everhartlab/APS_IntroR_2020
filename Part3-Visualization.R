@@ -303,15 +303,36 @@ severity.plot
 (severity.plot <- severity.plot + 
     geom_boxplot(fill = c("gray", "skyblue", "violet")))
 
-# We can also use the package "RColorBrewer" and use palettes of our choice. 
+# We can also use the package "RColorBrewer" and use palettes of our choice. Let's 
+# look for a palette that's colorblind friendly by using the following command and 
+# including `colorblindFriendly=TRUE`.
 
 install.packages("RColorBrewer")
 
 library("RColorBrewer")
 
+display.brewer.all(n=NULL, type="all", select=NULL, exact.n=TRUE,
+                   colorblindFriendly=TRUE)
+
+# Let's use Dark2.
+
 (severity.plot <- severity.plot + 
     geom_boxplot(aes(fill = Treatment)) +
-    scale_fill_brewer(palette = "Accent"))
+    scale_fill_brewer(palette = "Dark2"))
+
+# We can use the package `ggpubr` to automatically add p-values and significance 
+# levels to a ggplot. 
+
+install.packages("ggpubr")
+
+library("ggpubr")
+
+my_comparisons <- list( c("Control", "Fungicide_A"), c("Control", "Fungicide_B"), c("Fungicide_A", "Fungicide_B") )
+
+(severity.plot <- severity.plot + 
+    stat_compare_means(method = "anova", label.y = 6.5)+      # Add global p-value
+    stat_compare_means(comparisons = my_comparisons, label = "p.signif", method = "t.test")) #Add pairwise comparisons
+
 
 # Step 2: Saving our plot
 # -----------------------
