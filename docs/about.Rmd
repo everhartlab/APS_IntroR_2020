@@ -18,12 +18,12 @@ background to be able to learn more.
 Authors
 -------
 
-Dr. Sydney E. Everhart, Nikita Gambhir, Dr. Lucky Mehra, and Dr. Zhian N. Kamvar.
+Dr. Sydney E. Everhart, Nikita Gambhir, Dr. Kaitlin Gold, Dr. Lucky Mehra, and Dr. Zhian N. Kamvar.
 
 Website
 -------
 
 This website was built using R and Rmarkdown.
 
-Github: https://github.com/everhartlab/IntroR_2019
+Github: https://github.com/everhartlab/APS_IntroR_2019
 

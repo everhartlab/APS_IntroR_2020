@@ -512,19 +512,13 @@ div.tocify {
 <pre class="r"><code>&gt; yield.plot &lt;- ggplot(fungicide, 
 +                      aes(x = Treatment, 
 +                          y = Yield_bu_per_acre)) +
-+   
 +   geom_boxplot(aes(fill = Treatment)) +
-+   
 +   ggtitle(&quot;Effect of Fungicides on Yield&quot;) +
-+   
 +   xlab(&quot;Treatment Applied&quot;) +
 +   ylab(&quot;Yield (bu/acre)&quot;) +
-+   
 +   theme_bw(base_size = 14) +
-+   
 +   theme(aspect.ratio = 1.25, # We can provide multiple arguments 
 +         panel.grid = element_blank()) +
-+   
 +   guides(fill=FALSE)
 &gt; 
 &gt; yield.plot</code></pre>
@@ -542,19 +536,14 @@ div.tocify {
 +              color = &quot;red&quot;, 
 +              size = 5))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>Congratulations! Your plot is ready for publishing!</p>
-<p>We can now create a similar plot for Severity Data.</p>
+<p>Congratulations! Your plot is ready for publishing! We can now create a similar plot for Severity Data.</p>
 <pre class="r"><code>&gt; severity.plot &lt;- ggplot(fungicide, 
 +                         aes(x = Treatment, y = Severity)) +
-+   
 +   geom_boxplot() +
-+   
 +   ggtitle(&quot;Effect of Fungicides on Disease Severity&quot;) +
-+   
 +   theme_bw(base_size = 14) +
 +   theme(aspect.ratio = 1.5,
 +         panel.grid = element_blank()) +
-+   
 +   xlab(&quot;Treatment Applied&quot;) +
 +   ylab(&quot;Disease Severity&quot;)
 &gt; 
@@ -564,6 +553,19 @@ div.tocify {
 <pre class="r"><code>&gt; (severity.plot &lt;- severity.plot + 
 +     theme(plot.title = element_text(hjust = 0.5)))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We can also fill the boxplots with colors of our choice</p>
+<pre class="r"><code>&gt; (severity.plot &lt;- severity.plot + 
++     geom_boxplot(fill = c(&quot;gray&quot;, &quot;skyblue&quot;, &quot;violet&quot;)))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We can also use the package “RColorBrewer” and use palettes of our choice.</p>
+<pre class="r"><code>&gt; install.packages(&quot;RColorBrewer&quot;)</code></pre>
+<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
+<pre class="r"><code>&gt; library(&quot;RColorBrewer&quot;)
+&gt; 
+&gt; (severity.plot &lt;- severity.plot + 
++     geom_boxplot(aes(fill = Treatment)) +
++     scale_fill_brewer(palette = &quot;Accent&quot;))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="step-2-saving-our-plot" class="section level2">
@@ -585,10 +587,8 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:base&#39;:
 
     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>&gt; install.packages(&quot;plotrix&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
-<pre><code>
-The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmpa14hj5/downloaded_packages</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;plotrix&quot;)</code></pre>
+<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
 <pre class="r"><code>&gt; library(&quot;plotrix&quot;)
 &gt; 
 &gt; fungicide_m_se &lt;- fungicide %&gt;%
@@ -601,31 +601,31 @@ The downloaded binary packages are in
 +                     aes(x = Treatment,
 +                         y = mean_sev))
 &gt; m_se_plot  </code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <div id="bar-graph-with-standard-errors" class="section level3">
 <h3>Bar graph with standard errors</h3>
 <pre class="r"><code>&gt; (m_se_plot_bar &lt;- m_se_plot + 
 +     geom_col(aes(fill = Treatment),
 +              width = 0.5)) </code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (m_se_plot_bar &lt;- m_se_plot_bar +
 +     geom_errorbar(aes(ymin = mean_sev - se_sev,
 +                       ymax = mean_sev + se_sev),
 +                   width = 0.2)) </code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-25-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-27-2.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="point-plot-with-standard-errors" class="section level3">
 <h3>Point plot with standard errors</h3>
 <pre class="r"><code>&gt; (m_se_plot_point &lt;- m_se_plot + 
 +     geom_point(aes(color = Treatment),
 +                size = 3))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (m_se_plot_point &lt;- m_se_plot_point + 
 +     geom_errorbar(aes(ymin = mean_sev - se_sev,
 +                       ymax = mean_sev + se_sev,
 +                       color = Treatment),
 +                   width = 0.1))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-26-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-28-2.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>You can follow the same steps that we followed for <code>yield.plot</code> to transform these plots to publication quality.</p>
 </div>
 </div>

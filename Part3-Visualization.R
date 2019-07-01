@@ -232,39 +232,29 @@ new_plot
 (yield.plot <- yield.plot + 
     theme(panel.grid = element_blank()))
 
-# 
-# 
 # Since the information in the legend is repetitive, we can remove it. If you 
 # 'Google' how to remove the legend in ggplot2, you will find that you can use
 # `guides(fill=FALSE)`.
 # 
 (yield.plot <- yield.plot + 
     guides(fill = FALSE))
-# 
-# 
-# 
-# 
+
+
 # ### Putting it all together
-# 
+
 # Because we can add information to a plot with the `+` symbol, we can add all
 # of the elements in one go. Let's combine what we have above.
-# 
+
 yield.plot <- ggplot(fungicide, 
                      aes(x = Treatment, 
                          y = Yield_bu_per_acre)) +
-  
   geom_boxplot(aes(fill = Treatment)) +
-  
   ggtitle("Effect of Fungicides on Yield") +
-  
   xlab("Treatment Applied") +
   ylab("Yield (bu/acre)") +
-  
   theme_bw(base_size = 14) +
-  
   theme(aspect.ratio = 1.25, # We can provide multiple arguments 
         panel.grid = element_blank()) +
-  
   guides(fill=FALSE)
 
 yield.plot
@@ -285,26 +275,21 @@ yield.plot
              size = 5))
 
 # Congratulations! Your plot is ready for publishing!
-# 
+
 # We can now create a similar plot for Severity Data.
 
 severity.plot <- ggplot(fungicide, 
                         aes(x = Treatment, y = Severity)) +
-  
   geom_boxplot() +
-  
   ggtitle("Effect of Fungicides on Disease Severity") +
-  
   theme_bw(base_size = 14) +
   theme(aspect.ratio = 1.5,
         panel.grid = element_blank()) +
-  
   xlab("Treatment Applied") +
   ylab("Disease Severity")
 
 severity.plot
 
-# 
 # The text of the title is not in the center. To format text elements of the
 # plot, we can use the function `element_text()` inside `theme()`. Since we
 # need to edit the text of the plot title, we need to specify 
@@ -313,7 +298,21 @@ severity.plot
 (severity.plot <- severity.plot + 
     theme(plot.title = element_text(hjust = 0.5)))
 
-# 
+# We can also fill the boxplots with colors of our choice
+
+(severity.plot <- severity.plot + 
+    geom_boxplot(fill = c("gray", "skyblue", "violet")))
+
+# We can also use the package "RColorBrewer" and use palettes of our choice. 
+
+install.packages("RColorBrewer")
+
+library("RColorBrewer")
+
+(severity.plot <- severity.plot + 
+    geom_boxplot(aes(fill = Treatment)) +
+    scale_fill_brewer(palette = "Accent"))
+
 # Step 2: Saving our plot
 # -----------------------
 # 
