@@ -20,7 +20,7 @@ everything up to date, UBC's [STAT545] page is an excellent resource.
  - [R]
  - [RStudio]
  - [Workshop Materials] (zip file; unzip to Desktop)
- - (Once you've installed R), install packages "[dplyr]", "[ggplot2]", and "[plotrix]"
+ - (Once you've installed R), install packages "[dplyr]", "[ggplot2]", "[plotrix]", and "[RColorBrewer]"
 
 Verification
 ------------
@@ -67,14 +67,15 @@ Installing Packages
 To install [dplyr] and [ggplot2] to your system, open R and type:
 
 ```{r, eval = FALSE}
-install.packages(c("dplyr", "ggplot2", "plotrix"), repos = "https://cran.rstudio.com")
+install.packages(c("dplyr", "ggplot2", "plotrix", "RColorBrewer"), repos = "https://cran.rstudio.com")
 ```
 
 
 [stat545]: http://stat545.com/block000_r-rstudio-install.html
 [R]: https://cloud.r-project.org/
 [RStudio]: https://www.rstudio.com/products/rstudio/download/
-[Workshop Materials]: https://github.com/everhartlab/IntroR_2019/archive/master.zip
+[Workshop Materials]: https://github.com/everhartlab/APS_IntroR_2019/archive/master.zip
 [dplyr]: https://dplyr.tidyverse.org
 [ggplot2]: https://ggplot2.tidyverse.org
 [plotrix]: https://crantastic.org/packages/plotrix
+[RColorBrewer]: https://www.datanovia.com/en/blog/the-a-z-of-rcolorbrewer-palette/
