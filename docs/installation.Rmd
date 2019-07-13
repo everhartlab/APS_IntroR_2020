@@ -64,12 +64,11 @@ execute the code in these scripts to follow along.
 Installing Packages
 -------------------
 
-To install [dplyr] and [ggplot2] to your system, open R and type:
+To install [dplyr], [ggplot2], [plotrix], [RColorBrewer], and [ggpubr] to your system, open R and type:
 
 ```{r, eval = FALSE}
 install.packages(c("dplyr", "ggplot2", "plotrix", "RColorBrewer", "ggpubr"), 
                  repos = "https://cran.rstudio.com")
-
 ```
 
 
