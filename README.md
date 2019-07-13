@@ -1,4 +1,4 @@
-# IntroR_Workshop
+# APS_IntroR_Workshop
 <!--
 ---
 title: "R for Plant Pathologists"
