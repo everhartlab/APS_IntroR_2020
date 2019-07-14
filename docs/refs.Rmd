@@ -19,7 +19,6 @@ title: "References"
  - [Happy Git and GitHub for the useR] a long-form tutorial on working
    reproducibly in R and RStudio with Git and GitHub
  - [Sampling, Data Management and Visualization] UNL Course led by Dr. Drew Tyre
- - [Data Camp] Interactive courses on R (Some are free)
  
 # Twitter 
 
@@ -52,4 +51,3 @@ These accounts are great to follow to see what's going on in R
 [R style guide]: http://style.tidyverse.org/
 [RStudio Cheat Sheets]: https://www.rstudio.com/resources/cheatsheets/
 [R for Beginners]: https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf
-[Data Camp]: https://www.datacamp.com/onboarding/learn?technology=r
