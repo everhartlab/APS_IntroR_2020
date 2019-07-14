@@ -18,6 +18,10 @@ title: "References"
    Phylogenetics, Time Series, Experimental Design, etc.
  - [Happy Git and GitHub for the useR] a long-form tutorial on working
    reproducibly in R and RStudio with Git and GitHub
+ - [Add P-values and Significance Levels to ggplots] an article on creating 
+   publication ready plots using ggpubr
+ - [Create colorful graphs in R] an article on creating colorful ggplots using
+   RColorBrewer and plotly
  - [Sampling, Data Management and Visualization] UNL Course led by Dr. Drew Tyre
  
 # Twitter 
@@ -51,3 +55,5 @@ These accounts are great to follow to see what's going on in R
 [R style guide]: http://style.tidyverse.org/
 [RStudio Cheat Sheets]: https://www.rstudio.com/resources/cheatsheets/
 [R for Beginners]: https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf
+[Add P-values and Significance Levels to ggplots]: http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/76-add-p-values-and-significance-levels-to-ggplots/
+[Create colorful graphs in R]: https://moderndata.plot.ly/create-colorful-graphs-in-r-with-rcolorbrewer-and-plotly/
