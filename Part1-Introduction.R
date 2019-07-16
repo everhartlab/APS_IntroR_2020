@@ -545,6 +545,7 @@ Fall$month <- ifelse(Fall$month == 8, yes = "August", no = "September")
 
 str(Fall)
 head(Fall)
+tail(Fall)
 
 # Let's change first letter of every column name to uppercase i.e., replace  
 # "day" with "Day" and so on.  We can do this using `colnames()` function.
