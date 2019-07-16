@@ -317,10 +317,10 @@ length(month)
 # There are 31 elements in this vector and we can inspect individual elements in the
 # vector based on their ordered position using square brackets:
 
-day[3]  
 month[3] # the number inside the brackets corresponds to location of element in list, not value
+day[3] 
 
-# In this case, the 3rd element in `day` is 3, and the 3rd element in `month` is 8
+# In this case, the 3rd element in `month` is 8, and the 3rd element in `day` is 3
 # which confirms that we created this correctly.
 # 
 # > Type `day[32]` into your R console. What do you get? What does it mean? Ask

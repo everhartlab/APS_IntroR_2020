@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -73,9 +74,7 @@ h6 {
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -100,6 +99,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -114,7 +116,6 @@ body {
   padding-top: 59px;
   margin-top: -59px;
 }
-
 .section h2 {
   padding-top: 59px;
   margin-top: -59px;
@@ -134,6 +135,43 @@ body {
 .section h6 {
   padding-top: 59px;
   margin-top: -59px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -155,47 +193,65 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -244,8 +300,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -260,6 +314,16 @@ div.tocify {
 }
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -366,8 +430,10 @@ div.tocify {
 </div>
 <div id="getting-started" class="section level3">
 <h3>Getting started</h3>
-<pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;)</code></pre>
-<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
+<pre><code>
+The downloaded binary packages are in
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpId1Suh/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
 <p>Data for plotting with ggplot2 must be stored in a data frame</p>
 <pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;) # read.csv automatically outputs a data frame</code></pre>
@@ -523,19 +589,6 @@ div.tocify {
 &gt; 
 &gt; yield.plot</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>How can we show that the boxplot of Fungicide_B is significantly different? Hint:<code>annotate</code> it.</p>
-<pre class="r"><code>&gt; ?annotate</code></pre>
-</div>
-<div id="exercise-4-unravel-the-working-of-annotate-by-pasting-examples-in-the-console." class="section level3">
-<h3>Exercise 4: Unravel the working of <code>annotate</code> by pasting examples in the console.</h3>
-<pre class="r"><code>&gt; (yield.plot &lt;- yield.plot +
-+     annotate(geom = &quot;text&quot;,
-+              x = 3, 
-+              y = 176.5, 
-+              label = &quot;P &lt; 0.05&quot;,
-+              color = &quot;red&quot;, 
-+              size = 5))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Congratulations! Your plot is ready for publishing! We can now create a similar plot for Severity Data.</p>
 <pre class="r"><code>&gt; severity.plot &lt;- ggplot(fungicide, 
 +                         aes(x = Treatment, y = Severity)) +
@@ -548,39 +601,51 @@ div.tocify {
 +   ylab(&quot;Disease Severity&quot;)
 &gt; 
 &gt; severity.plot</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>The text of the title is not in the center. To format text elements of the plot, we can use the function <code>element_text()</code> inside <code>theme()</code>. Since we need to edit the text of the plot title, we need to specify <code>plot.title = element_text()</code>.</p>
 <pre class="r"><code>&gt; (severity.plot &lt;- severity.plot + 
 +     theme(plot.title = element_text(hjust = 0.5)))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>We can also fill the boxplots with colors of our choice</p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We can also fill the boxplots with colors of our choice. ### Exercise 4: Fill the boxplots with the colors gray, skyblue, and violet.</p>
 <pre class="r"><code>&gt; (severity.plot &lt;- severity.plot + 
 +     geom_boxplot(fill = c(&quot;gray&quot;, &quot;skyblue&quot;, &quot;violet&quot;)))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>If you have a hard time selecting color combinations, don’t worry! The package “RColorBrewer” has a number of palettes that you can choose from.</p>
+<pre class="r"><code>&gt; install.packages(&quot;RColorBrewer&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
+<pre><code>
+The downloaded binary packages are in
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpId1Suh/downloaded_packages</code></pre>
+<pre class="r"><code>&gt; library(&quot;RColorBrewer&quot;)</code></pre>
+<p>The function ’display.brewer.all’shows a list of available palettes. Let’s look for a palette that’s colorblind friendly.</p>
+<pre class="r"><code>&gt; display.brewer.all(colorblindFriendly=TRUE)</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>We can also use the package “RColorBrewer” and use palettes of our choice. Let’s look for a palette that’s colorblind friendly by using the following command and including <code>colorblindFriendly=TRUE</code>.</p>
-<pre class="r"><code>&gt; install.packages(&quot;RColorBrewer&quot;)</code></pre>
-<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
-<pre class="r"><code>&gt; library(&quot;RColorBrewer&quot;)
-&gt; 
-&gt; display.brewer.all(n=NULL, type=&quot;all&quot;, select=NULL, exact.n=TRUE,
-+                    colorblindFriendly=TRUE)</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>Let’s use Dark2.</p>
+<p>Wow, isn’t that an awesome list! Let’s use Dark2.</p>
 <pre class="r"><code>&gt; (severity.plot &lt;- severity.plot + 
 +     geom_boxplot(aes(fill = Treatment)) +
 +     scale_fill_brewer(palette = &quot;Dark2&quot;))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>We can use the package <code>ggpubr</code> to automatically add p-values and significance levels to a ggplot.</p>
-<pre class="r"><code>&gt; install.packages(&quot;ggpubr&quot;)</code></pre>
-<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The graph looks great, but does not tell us about the statistics. How can we show which treatments are significantly different? We can use the package <code>ggpubr</code> to automatically add p-values and significance levels to a ggplot.</p>
+<pre class="r"><code>&gt; install.packages(&quot;ggpubr&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
+<pre><code>
+The downloaded binary packages are in
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpId1Suh/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggpubr&quot;)</code></pre>
 <pre><code>Loading required package: magrittr</code></pre>
-<pre class="r"><code>&gt; my_comparisons &lt;- list( c(&quot;Control&quot;, &quot;Fungicide_A&quot;), c(&quot;Control&quot;, &quot;Fungicide_B&quot;), c(&quot;Fungicide_A&quot;, &quot;Fungicide_B&quot;) )
-&gt; 
-&gt; (severity.plot &lt;- severity.plot + 
-+     stat_compare_means(method = &quot;anova&quot;, label.y = 6.5)+      # Add global p-value
-+     stat_compare_means(comparisons = my_comparisons, label = &quot;p.signif&quot;, method = &quot;t.test&quot;)) #Add pairwise comparisons</code></pre>
+<p>Let’s add a global p-value to see if there is any global difference.</p>
+<pre class="r"><code>&gt; (severity.plot &lt;- severity.plot + 
++     stat_compare_means(method = &quot;anova&quot;, 
++                        label.y = 6.5))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Since the p-value is significantly different, let’s do pairwise comparisons to see which treatments are significantly different.</p>
+<pre class="r"><code>&gt; my_comparisons &lt;- list(c(&quot;Control&quot;, &quot;Fungicide_A&quot;),
++                        c(&quot;Control&quot;, &quot;Fungicide_B&quot;), 
++                        c(&quot;Fungicide_A&quot;, &quot;Fungicide_B&quot;))
+&gt; 
+&gt; (severity.plot &lt;- severity.plot +
++     stat_compare_means(comparisons = my_comparisons, 
++                        label = &quot;p.signif&quot;, 
++                        method = &quot;t.test&quot;))</code></pre>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="step-2-saving-our-plot" class="section level2">
@@ -602,8 +667,10 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:base&#39;:
 
     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>&gt; install.packages(&quot;plotrix&quot;)</code></pre>
-<pre><code>Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;plotrix&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
+<pre><code>
+The downloaded binary packages are in
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpId1Suh/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;plotrix&quot;)
 &gt; 
 &gt; fungicide_m_se &lt;- fungicide %&gt;%
@@ -616,31 +683,31 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 +                     aes(x = Treatment,
 +                         y = mean_sev))
 &gt; m_se_plot  </code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <div id="bar-graph-with-standard-errors" class="section level3">
 <h3>Bar graph with standard errors</h3>
 <pre class="r"><code>&gt; (m_se_plot_bar &lt;- m_se_plot + 
 +     geom_col(aes(fill = Treatment),
 +              width = 0.5)) </code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (m_se_plot_bar &lt;- m_se_plot_bar +
 +     geom_errorbar(aes(ymin = mean_sev - se_sev,
 +                       ymax = mean_sev + se_sev),
 +                   width = 0.2)) </code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-29-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-30-2.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="point-plot-with-standard-errors" class="section level3">
 <h3>Point plot with standard errors</h3>
 <pre class="r"><code>&gt; (m_se_plot_point &lt;- m_se_plot + 
 +     geom_point(aes(color = Treatment),
 +                size = 3))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-31-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>&gt; (m_se_plot_point &lt;- m_se_plot_point + 
 +     geom_errorbar(aes(ymin = mean_sev - se_sev,
 +                       ymax = mean_sev + se_sev,
 +                       color = Treatment),
 +                   width = 0.1))</code></pre>
-<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-30-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-31-2.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>You can follow the same steps that we followed for <code>yield.plot</code> to transform these plots to publication quality.</p>
 </div>
 </div>
@@ -668,6 +735,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

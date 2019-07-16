@@ -259,21 +259,6 @@ yield.plot <- ggplot(fungicide,
 
 yield.plot
 
-# How can we show that the boxplot of Fungicide_B is significantly different?
-# Hint:`annotate` it.
-
-?annotate
-
-# ### Exercise 4: Unravel the working of `annotate` by pasting examples in the console.
-
-(yield.plot <- yield.plot +
-    annotate(geom = "text",
-             x = 3, 
-             y = 176.5, 
-             label = "P < 0.05",
-             color = "red", 
-             size = 5))
-
 # Congratulations! Your plot is ready for publishing!
 
 # We can now create a similar plot for Severity Data.
@@ -298,40 +283,56 @@ severity.plot
 (severity.plot <- severity.plot + 
     theme(plot.title = element_text(hjust = 0.5)))
 
-# We can also fill the boxplots with colors of our choice
+# We can also fill the boxplots with colors of our choice.
+
+# ### Exercise 4: Fill the boxplots with the colors gray, skyblue, and violet.
 
 (severity.plot <- severity.plot + 
     geom_boxplot(fill = c("gray", "skyblue", "violet")))
 
-# We can also use the package "RColorBrewer" and use palettes of our choice. Let's 
-# look for a palette that's colorblind friendly by using the following command and 
-# including `colorblindFriendly=TRUE`.
+# If you have a hard time selecting color combinations, don't worry! The package 
+# "RColorBrewer" has a number of palettes that you can choose from. 
 
 install.packages("RColorBrewer")
 
 library("RColorBrewer")
 
-display.brewer.all(n=NULL, type="all", select=NULL, exact.n=TRUE,
-                   colorblindFriendly=TRUE)
+# The function 'display.brewer.all'shows a list of available palettes. Let's look 
+# for a palette that's colorblind friendly. 
 
-# Let's use Dark2.
+display.brewer.all(colorblindFriendly=TRUE)
+
+# Wow, isn't that an awesome list! Let's use Dark2.
 
 (severity.plot <- severity.plot + 
     geom_boxplot(aes(fill = Treatment)) +
     scale_fill_brewer(palette = "Dark2"))
 
-# We can use the package `ggpubr` to automatically add p-values and significance 
-# levels to a ggplot. 
+# The graph looks great, but does not tell us about the statistics. How can we
+# show which treatments are significantly different? We can use the package 
+# `ggpubr` to automatically add p-values and significance levels to a ggplot. 
 
 install.packages("ggpubr")
 
 library("ggpubr")
 
-my_comparisons <- list( c("Control", "Fungicide_A"), c("Control", "Fungicide_B"), c("Fungicide_A", "Fungicide_B") )
+# Let's add a global p-value to see if there is any global difference.
 
 (severity.plot <- severity.plot + 
-    stat_compare_means(method = "anova", label.y = 6.5)+      # Add global p-value
-    stat_compare_means(comparisons = my_comparisons, label = "p.signif", method = "t.test")) #Add pairwise comparisons
+    stat_compare_means(method = "anova", 
+                       label.y = 6.5))
+
+# Since the p-value is significantly different, let's do pairwise comparisons 
+# to see which treatments are significantly different.
+
+my_comparisons <- list(c("Control", "Fungicide_A"),
+                       c("Control", "Fungicide_B"), 
+                       c("Fungicide_A", "Fungicide_B"))
+
+(severity.plot <- severity.plot +
+    stat_compare_means(comparisons = my_comparisons, 
+                       label = "p.signif", 
+                       method = "t.test"))
 
 
 # Step 2: Saving our plot
