@@ -6,8 +6,7 @@ title: "Before the Workshop"
 Again, because this is a four hour workshop, we ask that you come prepared with
 a laptop that has the most recent versions of [R] and [RStudio] installed, and
 our [workshop materials] downloaded to your Desktop. **We cannot provide service
-for installation the day of the workshop. Those who are not prepared for the 
-workshop may be asked to give up their seat to those on the waitlist**.
+for installation the day of the workshop.**
 
 Installation
 ------------

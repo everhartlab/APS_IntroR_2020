@@ -776,8 +776,16 @@ logical operation (<code>&gt;</code>). So, we don’t need to use <code>(b+c) &g
 <p>Now, we need to create two vectors for the 30th and 31st days of March</p>
 <pre class="r"><code>&gt; March_30 &lt;- c(30, 3, 2020)
 &gt; March_31 &lt;- c(31, 3, 2020)</code></pre>
-<p>Great! Let’s add these vectors to the above table. The function <code>rbind()</code> can combine dataframes and vectors by rows (one below the other).</p>
-<pre class="r"><code>&gt; rbind(March, March_30, March_31)</code></pre>
+<p>Great! Let’s add these vectors to the above table. R provides two functions <code>rbind()</code> and <code>cbind()</code>, which bind a data frame with a vector (or another data frame) by rows and columns, respectively. Which one should we use? If you’re unsure, try both!</p>
+<div id="exercise-3-use-cbind-and-rbind-to-figure-out-the-correct" class="section level3">
+<h3>Exercise 3: Use <code>cbind()</code> and <code>rbind()</code> to figure out the correct</h3>
+</div>
+<div id="function-to-stack-the-two-vectors-below-the-table." class="section level3">
+<h3>function to stack the two vectors below the table.</h3>
+<pre class="r"><code>&gt; cbind(March, March_30, March_31) # Do you think it will work?</code></pre>
+<pre><code>Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 29, 3</code></pre>
+<p>We have an error! R is trying to stack them side by side and is failing to do so because of different number of rows.</p>
+<pre class="r"><code>&gt; rbind(March, March_30, March_31) # This works!</code></pre>
 <pre><code>   day month year
 1    1     3 2020
 2    2     3 2020
@@ -845,77 +853,7 @@ logical operation (<code>&gt;</code>). So, we don’t need to use <code>(b+c) &g
 29  29     3 2020
 30  30     3 2020
 31  31     3 2020</code></pre>
-<p>Let’s combine both of these tables into one. R provides two functions that can help us with that called <code>rbind()</code> and <code>cbind()</code>, which bind a data frame with a vector (or another data frame) by rows and columns, respectively. Which one should we use? If you’re unsure, try both!</p>
-<div id="exercise-3-use-cbind-and-rbind-to-figure-out-the-correct" class="section level3">
-<h3>Exercise 3: Use <code>cbind()</code> and <code>rbind()</code> to figure out the correct</h3>
-</div>
-<div id="function-to-stack-the-tables-one-below-the-other." class="section level3">
-<h3>function to stack the tables one below the other.</h3>
-<pre class="r"><code>&gt; cbind(February, March) # Do you think it will work?</code></pre>
-<pre><code>Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 29, 31</code></pre>
-<p>We have an error! R is trying to stack them side by side and is failing to do so because of different number of rows.</p>
-<pre class="r"><code>&gt; rbind(February, March) # This works!</code></pre>
-<pre><code>   day month year
-1    1     2 2020
-2    2     2 2020
-3    3     2 2020
-4    4     2 2020
-5    5     2 2020
-6    6     2 2020
-7    7     2 2020
-8    8     2 2020
-9    9     2 2020
-10  10     2 2020
-11  11     2 2020
-12  12     2 2020
-13  13     2 2020
-14  14     2 2020
-15  15     2 2020
-16  16     2 2020
-17  17     2 2020
-18  18     2 2020
-19  19     2 2020
-20  20     2 2020
-21  21     2 2020
-22  22     2 2020
-23  23     2 2020
-24  24     2 2020
-25  25     2 2020
-26  26     2 2020
-27  27     2 2020
-28  28     2 2020
-29  29     2 2020
-30   1     3 2020
-31   2     3 2020
-32   3     3 2020
-33   4     3 2020
-34   5     3 2020
-35   6     3 2020
-36   7     3 2020
-37   8     3 2020
-38   9     3 2020
-39  10     3 2020
-40  11     3 2020
-41  12     3 2020
-42  13     3 2020
-43  14     3 2020
-44  15     3 2020
-45  16     3 2020
-46  17     3 2020
-47  18     3 2020
-48  19     3 2020
-49  20     3 2020
-50  21     3 2020
-51  22     3 2020
-52  23     3 2020
-53  24     3 2020
-54  25     3 2020
-55  26     3 2020
-56  27     3 2020
-57  28     3 2020
-58  29     3 2020
-59  30     3 2020
-60  31     3 2020</code></pre>
+<p>Let’s combine both of these tables into an object called ‘Spring’. You know what function to use, right?</p>
 <pre class="r"><code>&gt; Spring &lt;- rbind(February, March)</code></pre>
 <p>Inspect this object to ensure it was made correctly.</p>
 <pre class="r"><code>&gt; str(Spring)</code></pre>

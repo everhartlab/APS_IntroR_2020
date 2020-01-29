@@ -472,29 +472,27 @@ str(March)
 March_30 <- c(30, 3, 2020)
 March_31 <- c(31, 3, 2020)
 
-# Great! Let's add these vectors to the above table. The function `rbind()` can combine
-# dataframes and vectors by rows (one below the other).
+# Great! Let's add these vectors to the above table. R provides two functions `rbind()` 
+# and `cbind()`, which bind a data frame with a vector (or another data frame) by rows
+# and columns, respectively. Which one should we use? If you’re unsure, try both!
+# 
+# ### Exercise 3: Use `cbind()` and `rbind()` to figure out the correct  
+# ### function to stack the two vectors below the table.
 
-rbind(March, March_30, March_31)
+cbind(March, March_30, March_31) # Do you think it will work?
+
+# We have an error! R is trying to stack them side by side and is failing to do so because 
+# of different number of rows.
+
+rbind(March, March_30, March_31) # This works!
 March <- rbind(March, March_30, March_31) 
 
 # We overwrote March by creating another object with the same name
 March
 
-# Let's combine both of these tables into one.  R provides two functions that can help 
-# us with that called `rbind()` and `cbind()`, which bind a data frame with a vector 
-# (or another data frame) by rows and columns, respectively. Which one should we use? 
-# If you’re unsure, try both!
-# 
-# ### Exercise 3: Use `cbind()` and `rbind()` to figure out the correct  
-# ### function to stack the tables one below the other.
+# Let's combine both of these tables into an object called 'Spring'. You know what 
+# function to use, right?  
 
-cbind(February, March) # Do you think it will work?
-
-# We have an error! R is trying to stack them side by side and is failing to do so because 
-# of different number of rows.
-
-rbind(February, March) # This works!
 Spring <- rbind(February, March)
 
 # Inspect this object to ensure it was made correctly. 
