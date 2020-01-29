@@ -30,7 +30,7 @@ Once you have installed [R], we should verify that you have the correct version.
  1. Open R (or RStudio) on your computer
  2. Enter the following in the R console after the `>`    
         
-        R.version.string == "R version 3.6.1 (2019-07-05)"
+        R.version.string == "R version 3.6.2 (2019-12-12)"
         
  3. Make sure the result is **`[1] TRUE`**    
     (If the result is `[1] FALSE`, please quit R and try the installation again)
@@ -40,11 +40,11 @@ Workshop Materials
 ------------------
 
 Our [workshop materials] is a zip file that contains a folder called 
-`APS_IntroR_2019-master/` with the folowing structure:
+`APS_IntroR_2020-master/` with the folowing structure:
 
 ```
 .
-├── APS_IntroR_2019.Rproj
+├── APS_IntroR_2020.Rproj
 ├── LICENSE
 ├── Makefile
 ├── Part1-Introduction.R

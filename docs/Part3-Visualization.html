@@ -12,7 +12,7 @@
 
 
 
-<title></title>
+<title>Part3-Visualization.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -386,7 +386,7 @@ div.tocify {
   <a href="about.html">About</a>
 </li>
 <li>
-  <a href="https://docs.google.com/forms/d/1RzOZBbHZ1kZEzpAcaATrD9bZZa2yea3fNF4J6a_0ioA">Feedback Survey</a>
+  <a href="https://docs.google.com/forms/d/19bsPB9oDURiWim19vg9gR-rtsrQGeo2wz6KsTAvi9mw/edit">Feedback Survey</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -430,10 +430,11 @@ div.tocify {
 </div>
 <div id="getting-started" class="section level3">
 <h3>Getting started</h3>
-<pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;ggplot2&quot;, 
++                  repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpId1Suh/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpsYAwRa/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggplot2&quot;)</code></pre>
 <p>Data for plotting with ggplot2 must be stored in a data frame</p>
 <pre class="r"><code>&gt; fungicide &lt;- read.csv(&quot;data/fungicide_dat.csv&quot;) # read.csv automatically outputs a data frame</code></pre>
@@ -611,10 +612,11 @@ The downloaded binary packages are in
 +     geom_boxplot(fill = c(&quot;gray&quot;, &quot;skyblue&quot;, &quot;violet&quot;)))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>If you have a hard time selecting color combinations, don’t worry! The package “RColorBrewer” has a number of palettes that you can choose from.</p>
-<pre class="r"><code>&gt; install.packages(&quot;RColorBrewer&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;RColorBrewer&quot;, 
++                  repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpId1Suh/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpsYAwRa/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;RColorBrewer&quot;)</code></pre>
 <p>The function ’display.brewer.all’shows a list of available palettes. Let’s look for a palette that’s colorblind friendly.</p>
 <pre class="r"><code>&gt; display.brewer.all(colorblindFriendly=TRUE)</code></pre>
@@ -625,10 +627,11 @@ The downloaded binary packages are in
 +     scale_fill_brewer(palette = &quot;Dark2&quot;))</code></pre>
 <p><img src="Part3-Visualization_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>The graph looks great, but does not tell us about the statistics. How can we show which treatments are significantly different? We can use the package <code>ggpubr</code> to automatically add p-values and significance levels to a ggplot.</p>
-<pre class="r"><code>&gt; install.packages(&quot;ggpubr&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;ggpubr&quot;, 
++                  repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpId1Suh/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpsYAwRa/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;ggpubr&quot;)</code></pre>
 <pre><code>Loading required package: magrittr</code></pre>
 <p>Let’s add a global p-value to see if there is any global difference.</p>
@@ -667,10 +670,11 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:base&#39;:
 
     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>&gt; install.packages(&quot;plotrix&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;plotrix&quot;, 
++                  repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpId1Suh/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpsYAwRa/downloaded_packages</code></pre>
 <pre class="r"><code>&gt; library(&quot;plotrix&quot;)
 &gt; 
 &gt; fungicide_m_se &lt;- fungicide %&gt;%

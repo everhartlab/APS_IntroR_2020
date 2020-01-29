@@ -12,7 +12,7 @@
 
 
 
-<title></title>
+<title>Part2-Analysis.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -386,7 +386,7 @@ div.tocify {
   <a href="about.html">About</a>
 </li>
 <li>
-  <a href="https://docs.google.com/forms/d/1RzOZBbHZ1kZEzpAcaATrD9bZZa2yea3fNF4J6a_0ioA">Feedback Survey</a>
+  <a href="https://docs.google.com/forms/d/19bsPB9oDURiWim19vg9gR-rtsrQGeo2wz6KsTAvi9mw/edit">Feedback Survey</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -417,11 +417,11 @@ div.tocify {
 <h2>Step 1: Working Directories</h2>
 <p>A working directory is the folder on your computer where you are currently working. You can find out your current working directory by typing <code>getwd()</code></p>
 <pre class="r"><code>&gt; getwd()</code></pre>
-<pre><code>[1] &quot;/Users/nikitagambhir/Desktop/APS_IntroR_2019&quot;</code></pre>
+<pre><code>[1] &quot;/Users/nikitagambhir/Desktop/APS_IntroR_2020&quot;</code></pre>
 <p>If you’ve downloaded and un-zipped this directory to your desktop, you might see something like <code>/Users/&lt;yourname&gt;/Desktop/APS_IntroR_2019</code>. This is the default place where R will begin reading and writing files. For example, you can use the function <code>list.files()</code> to view the files in your current working directory. These are the same files that we downloaded earlier. If you’re using Rstudio, you can compare the file list with the “Files” tab in the bottom right panel.</p>
 <p>In order to use <code>list.files()</code>, we should provide it with a file path. We can provide it a “.”, which means “here” to most computer programs.</p>
 <pre class="r"><code>&gt; list.files(&quot;.&quot;)</code></pre>
-<pre><code>[1] &quot;APS_IntroR_2019.Rproj&quot; &quot;data&quot;                  &quot;docs&quot;                 
+<pre><code>[1] &quot;APS_IntroR_2020.Rproj&quot; &quot;data&quot;                  &quot;docs&quot;                 
 [4] &quot;LICENSE&quot;               &quot;Makefile&quot;              &quot;Part1-Introduction.R&quot; 
 [7] &quot;Part2-Analysis.R&quot;      &quot;Part3-Visualization.R&quot; &quot;README.md&quot;            </code></pre>
 <p>You can see that the first entry in here is “data”. This is where we’ve placed the field_data example data.</p>
@@ -479,7 +479,7 @@ div.tocify {
 <p>This has two issues:</p>
 <ol style="list-style-type: decimal">
 <li>The column names are treated as the first row. This is because the default for header is FALSE in <code>read.table()</code>. We should change to header = TRUE.</li>
-<li>The data is presented as one column, ‘V1’. This is because the separator for each cell in the data is a “,” and not “” (space). We should change to sep = “,”.</li>
+<li>The data is presented as one column, ‘V1’. This is because the separator for each cell in the data is a “,” and not &quot;&quot; (space). We should change to sep = “,”.</li>
 </ol>
 <pre class="r"><code>&gt; read.table(&quot;data/fungicide_dat.csv&quot;, header = TRUE, sep = &quot;,&quot;)</code></pre>
 <pre><code>     Treatment Yield_bu_per_acre Severity
@@ -549,10 +549,11 @@ div.tocify {
 <div id="step-3-advanced-data-manipulation" class="section level2">
 <h2>Step 3: Advanced data manipulation</h2>
 <p>The package ‘dplyr’ provides functions for easy and advanced data manipulation. If we want to use it, we can download the package to our computer with the function <code>install.packages()</code>. This will install a package from CRAN and place it into your R <em>Library</em>.</p>
-<pre class="r"><code>&gt; install.packages(&quot;dplyr&quot;, repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
+<pre class="r"><code>&gt; install.packages(&quot;dplyr&quot;, 
++                  repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpC8bCbI/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmpv23IsL/downloaded_packages</code></pre>
 <p>To load this package, we can use the function <code>library()</code>.</p>
 <pre class="r"><code>&gt; library(&quot;dplyr&quot;)</code></pre>
 <pre><code>

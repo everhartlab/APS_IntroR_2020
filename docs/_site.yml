@@ -1,4 +1,4 @@
-name: "APS_IntroR_2019"
+name: "APS_IntroR_2020"
 output_dir: "."
 navbar:
   title: "Intro to R"
@@ -27,7 +27,7 @@ navbar:
     - text: "About"
       href: about.html
     - text: "Feedback Survey"
-      href: https://docs.google.com/forms/d/1RzOZBbHZ1kZEzpAcaATrD9bZZa2yea3fNF4J6a_0ioA
+      href: https://docs.google.com/forms/d/19bsPB9oDURiWim19vg9gR-rtsrQGeo2wz6KsTAvi9mw/edit
 #      menu:
 #        - text: "Exit Survey"
 #          href: https://goo.gl/forms/oDBV8WPXg7DlsS4C3

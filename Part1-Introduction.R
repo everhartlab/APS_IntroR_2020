@@ -237,11 +237,11 @@ length(name)
 
 # Let's compare this to a vector that contains only numeric data. For this 
 # example, let's create three objects to represent today's date in numbers for
-# the month (08), day (03), and year (2019).
+# the month (02), day (19), and year (2020).
 
-month <- 08
-day <- 03
-year <- 2019
+month <- 02
+day <- 19
+year <- 2020
 
 # combine those three objects using the *combine* function:
 today <- c(month, day, year)
@@ -256,11 +256,11 @@ str(today)
 # You'll notice that the vector has three elements [1:3] and it contains only 
 # numeric data.
 # 
-# Let's do the same thing using the name August for month and see how that changes
+# Let's do the same thing using the name February for month and see how that changes
 # our vector. Notice that we are not modifying the object *month*, we are simply
-# combining our two existing objects with the word "August".
+# combining our two existing objects with the word "February".
 
-c("August", day, year)   
+c("February", day, year)   
 
 # In this case we didn't re-assign the object named `today`. To inspect the 
 # structure of this vector, we can wrap the statement within the str() function,
@@ -268,8 +268,8 @@ c("August", day, year)
 # character) using the function class().  Don't forget to use the up-arrow to
 # access the last like that you ran!
 
-str(c("August", day, year)) # this shows us the structure of the object
-class(c("August", day, year))
+str(c("February", day, year)) # this shows us the structure of the object
+class(c("February", day, year))
 
 # Notice how R is trying to keep our data organized according to type.  Rather
 # than coding this vector as containing numbers and characters, it has decided
@@ -280,59 +280,59 @@ class(c("August", day, year))
 # 
 # ```
 #   day   month   year
-#   1     3       2019
-#   2     3       2019
-#   3     3       2019
+#   1     2       2020
+#   2     2       2020
+#   3     2       2020
 #   ...
 # ```
 # 
-# We know there are 31 days in the month, so we can modify the object day to
-# contain all of the 31 days in this month. Instead of typing each number out by
-# hand, we can place a colon (`:`) between 1 and 31, which is a shortcut in R
+# We know there are 29 days in the month (it's a leap year!), so we can modify the object day to
+# contain all of the 29 days in this month. Instead of typing each number out by
+# hand, we can place a colon (`:`) between 1 and 29, which is a shortcut in R
 # for creating sequences of numbers.
 
-1:31
+1:29
 
-# You see at in the console that this created a sequence of 31 numbers from 1 to
-# 31. Let's go ahead and assign this to the object `day`.
+# You see at in the console that this created a sequence of 29 numbers from 1 to
+# 29. Let's go ahead and assign this to the object `day`.
 
-day <- 1:31
+day <- 1:29
 
 # For the objects month and year, we don't need to modify them, however, we want
-# to repeat each of them a total of 31 times because we need to repeat each, 
+# to repeat each of them a total of 29 times because we need to repeat each, 
 # once for each day.
 # 
-# We can easily repeat the number 8 a total of 31 times using the function 
+# We can easily repeat the number 2 a total of 29 times using the function 
 # `rep()`, specifying how many `times` we should repeat this object. Let's
-# assign `8` to `month` and modify the object month to contain 31 copies.
+# assign `2` to `month` and modify the object month to contain 29 copies.
 
-month <- 8
-month <- rep(month, times = 31)
+month <- 2
+month <- rep(month, times = 29)
 month
 
 # Let's check to make sure that month is correct using the function `length()`:
 
 length(month)
 
-# There are 31 elements in this vector and we can inspect individual elements in the
+# There are 29 elements in this vector and we can inspect individual elements in the
 # vector based on their ordered position using square brackets:
 
-month[3] # the number inside the brackets corresponds to location of element in list, not value
-day[3] 
+month[19] # the number inside the brackets corresponds to location of element in list, not value
+day[19] 
 
-# In this case, the 3rd element in `month` is 8, and the 3rd element in `day` is 3
+# In this case, the 19th element in `month` is 2, and the 19th element in `day` is 19
 # which confirms that we created this correctly.
 # 
 # > Type `day[32]` into your R console. What do you get? What does it mean? Ask
 # > yourself the question, "Are there any months with 32 days?"
 # 
-# We can create the object `year` to contain 31 repeats of 2019, however, this 
+# We can create the object `year` to contain 29 repeats of 2020, however, this 
 # time, let's say we wanted to make sure that this object was always the same
-# length as the number of days we have in a month. Instead of specifying `31`,
+# length as the number of days we have in a month. Instead of specifying `29`,
 # we can simply get that information using the `length()` function. Here, we'll
-# replace `31` with `length(day)`, which is equivalent.
+# replace `29` with `length(day)`, which is equivalent.
 
-year <- rep(2019, times = length(day))
+year <- rep(2020, times = length(day))
 year
 length(year)
 
@@ -351,9 +351,9 @@ length(year)
 # 
 # ```
 #   day   month   year
-#   1     3       2019
-#   2     3       2019
-#   3     3       2019
+#   1     2       2020
+#   2     2       2020
+#   3     2       2020
 #   ...
 # ```
 # 
@@ -362,39 +362,39 @@ length(year)
 # the function, we just have to specify name of the column and populate it with
 # vector data.
 
-August <- data.frame(day = day, month = month, year = year)
+February <- data.frame(day = day, month = month, year = year)
 
 # Let's inspect this new object in the same way as vectors:
 
-August
-length(August)
+February
+length(February)
 
-# Using the `length()` function, we see it says 3. This is because `August` has three
+# Using the `length()` function, we see it says 3. This is because `February` has three
 # columns: day, month, and year. A data frame is a two-dimensional object which
 # stores its information in rows and columns. 
 # 
 # Because this is a 2-dimensional object, we can inspect the dimensions using
 # the `dim()` function:
 
-dim(August)
+dim(February)
 
-# This tells us that we have 31 rows and 3 columns. R also provides the `nrow()`
+# This tells us that we have 29 rows and 3 columns. R also provides the `nrow()`
 # and `ncol()` functions to make it easier to remember which is which:
 
-nrow(August)
-ncol(August)
+nrow(February)
+ncol(February)
 
 # What happens when we use the `str()` function?
 
-str(August)
+str(February)
 
 # We can see that it's listing the columns we have in our table and showing us
 # how they are represented. Notice the `$` to the left of each column name, 
 # this is how we access the columns of the data frame:
 
-August$day
-August$month
-August$year
+February$day
+February$month
+February$year
 
 # You can see that these are the same as the vectors we created earlier.
 # 
@@ -402,30 +402,30 @@ August$year
 # obect.  A quick way to look at the top of the object is with the `head()`
 # function and if we wanted to look at the bottom, we would use `tail()`.
 
-head(August)  # if this didn't work, double-check that you spelled the object name correctly
+head(February)  # if this didn't work, double-check that you spelled the object name correctly
 
 # Now that we have our table, the question becomes, how do we inspect different elements?
 # 
-# Just like we can inspect the 3rd element in the `day` vector using `day[3]`,
+# Just like we can inspect the 19th element in the `day` vector using `day[19]`,
 # we can also use the brackets to subset a table, the only catch is that we have
 # to use the coordinates of the row(s) and the column(s) we want. We can do this
 # by specifying `[row, column]`. These are analagous to X and Y Cartesian 
-# coordinates. Let's take a look at the elements in the 3rd row, separately:
+# coordinates. Let's take a look at the elements in the 19th row, separately:
 
-August[3, 1] # day
-August[3, "month"] # you can use characters when the elements are named!
-August[3, 3] # year
-August[3, -3] # here `-` means all columns except the third (year)
-August[3, -2] # day and year
+February[19, 1] # day
+February[19, "month"] # you can use characters when the elements are named!
+February[19, 3] # year
+February[19, -3] # here `-` means all columns except the third (year)
+February[19, -2] # day and year
 
 # If we don't specify a dimension, R will give us the entire contents of that
 # dimension. Let's look at the row that contains today's date:
 
-August[3, ]
+February[19, ]
 
 # You can also use this to access just one column of the matrix.  Let's look at month:
 
-August[, 2]
+February[, 2]
 
 # Notice, however that this result now appears to be a a vector! This is because
 # of a sneaky default option called `drop = TRUE`. R tries to "help" by removing
@@ -433,40 +433,53 @@ August[, 2]
 # to keep this as a data frame, you can turn off this option *inside the 
 # brackets*:
 
-August[, 2, drop = FALSE]
+February[, 2, drop = FALSE]
 
-# Now that we've inspected the object `August`, let's create the same thing for
-# the month of September. How should we do this?
+# Now that we've inspected the object `February`, let's create the same thing for
+# the month of March. How should we do this?
 
 # One option would be to create new obects for day, month, and year and combine
-# them just like we did for August.  What is the simplest method to do this, using
+# them just like we did for February.  What is the simplest method to do this, using
 # the fewest number of steps? 
 
-# We can simply make a copy of `August` and delete a vector with information about
-# the 31st day.  Now that we have two dimensions, we can subset everything in August  
-# except for the 31st row and all the columns of that row.
+# We can simply make a copy of `February` and add two vectors with information about
+# the 30th and 31st days. Let's do this step by step.
 
-September <- August[-31,]
+March <- February
 
 # Inspect what we have now:
 
-str(September)  # we have an extra column
-tail(September) # we don't have 31 days
+str(March)  # we have an extra column
+tail(March) # we only have 29 days
 
-# We need to change the month column so that it says 9 instead of 8, how can we
+# We need to change the month column so that it says 3 instead of 2, how can we
 # do this?  Let's just look at the column first:
 
-September$month
+March$month
 
 # We need to add 1 to each of these values, so let's try that!
 
-September$month + 1
+March$month + 1
 
-# This worked, so now we just need to replace values in September[,2] with the new
+# This worked, so now we just need to replace values in March[,2] with the new
 # expression:
 
-September$month <- September$month + 1    # Did it work?
-str(September)
+March$month <- March$month + 1    # Did it work?
+str(March)
+
+# Now, we need to create two vectors for the 30th and 31st days of March 
+
+March_30 <- c(30, 3, 2020)
+March_31 <- c(31, 3, 2020)
+
+# Great! Let's add these vectors to the above table. The function `rbind()` can combine
+# dataframes and vectors by rows (one below the other).
+
+rbind(March, March_30, March_31)
+March <- rbind(March, March_30, March_31) 
+
+# We overwrote March by creating another object with the same name
+March
 
 # Let's combine both of these tables into one.  R provides two functions that can help 
 # us with that called `rbind()` and `cbind()`, which bind a data frame with a vector 
@@ -476,46 +489,46 @@ str(September)
 # ### Exercise 3: Use `cbind()` and `rbind()` to figure out the correct  
 # ### function to stack the tables one below the other.
 
-cbind(August, September) # Do you think it will work?
+cbind(February, March) # Do you think it will work?
 
 # We have an error! R is trying to stack them side by side and is failing to do so because 
 # of different number of rows.
 
-rbind(August, September) # This works!
-Fall <- rbind(August, September)
+rbind(February, March) # This works!
+Spring <- rbind(February, March)
 
 # Inspect this object to ensure it was made correctly. 
 
-str(Fall)
-head(Fall)
-tail(Fall)
+str(Spring)
+head(Spring)
+tail(Spring)
 
-# We now have a new object Fall that contains only numeric data. Let's revise
+# We now have a new object Spring that contains only numeric data. Let's revise
 # this object so that it uses names for the month instead of numbers.  We want
 # it to look like this:
 # ```
 #   day   month   year  
-#   1     "August"   2019  
-#   2     "August"   2019  
-#   3     "August"   2019
+#   1     "February"   2020  
+#   2     "February"   2020  
+#   3     "February"   2020
 #   ...
 # ```
 
-# Months need to be changed from the number 3 to "August" and from 4 to "September" in
+# Months need to be changed from the number 2 to "February" and from 3 to "March" in
 # the second column.  Let's first look at the month column.
 
-Fall$month
+Spring$month
 
-# We want to specify only the cells in this list that are 3. We know that rows 1
-# to 31 contain 3's and the rest contain 4's, which means we can inspect
-# those rows in the object Fall:
+# We want to specify only the cells in this list that are 2. We know that rows 1
+# to 29 contain 2's and the rest contain 3's, which means we can inspect
+# those rows in the object Spring:
 
-Fall[1:31, "month"]     # August
-Fall[-c(1:31), "month"] # September
+Spring[1:29, "month"]     # February
+Spring[-c(1:29), "month"] # March
 
 
-# > Notice that we used `-c(1:31)`, what do you think this is doing? Why would 
-# > this give us the values for the month of September?
+# > Notice that we used `-c(1:29)`, what do you think this is doing? Why would 
+# > this give us the values for the month of March?
 # 
 # We can use the `ifelse()` function to replace the values in our column.  How 
 # do we use this function?  A good first step to figuring out how you can use a 
@@ -531,30 +544,30 @@ Fall[-c(1:31), "month"] # September
 
 # In order to use `ifelse`, we will need to provide three things:
 # 
-#  1. A logical question about the elements of an object   : Fall$month == 8
-#  2. Values for TRUE elements                             : "August"
-#  3. Values for FALSE elements                            : "September"
+#  1. A logical question about the elements of an object   : Spring$month == 2
+#  2. Values for TRUE elements                             : "February"
+#  3. Values for FALSE elements                            : "March"
 
-ifelse(Fall$month == 8, yes = "August", no = "September")
-Fall$month <- ifelse(Fall$month == 8, yes = "August", no = "September")
+ifelse(Spring$month == 2, yes = "February", no = "March")
+Spring$month <- ifelse(Spring$month == 2, yes = "February", no = "March")
 
 # > Notice that we had to use `==` to indicate equality. This is so that R 
 # > doesn't get confused and assume we are using the argument assignment, `=`.
 
-# Now, let's inspect Fall. 
+# Now, let's inspect Spring. 
 
-str(Fall)
-head(Fall)
-tail(Fall)
+str(Spring)
+head(Spring)
+tail(Spring)
 
 # Let's change first letter of every column name to uppercase i.e., replace  
 # "day" with "Day" and so on.  We can do this using `colnames()` function.
 
-colnames(Fall) # Current column names
+colnames(Spring) # Current column names
 
-colnames(Fall) <- c("Day", "Month", "Year") # New column names
+colnames(Spring) <- c("Day", "Month", "Year") # New column names
 
-# Let's inspect Fall again. 
-str(Fall)
-head(Fall)
+# Let's inspect Spring again. 
+str(Spring)
+head(Spring)
 
