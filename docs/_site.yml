@@ -40,7 +40,7 @@ output:
       collapsed: false
     toc_depth: 2
     theme: flatly
-    highlight: textmate
+    highlight: flatly
     include:
       after_body: footer.html
     css: styles.css
