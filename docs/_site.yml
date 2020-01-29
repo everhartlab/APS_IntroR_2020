@@ -11,12 +11,12 @@ navbar:
       menu:
         - text: "Part 1: Introduction to R"
           href: Part1-Introduction.html
-        - text: "Part 2: Data Manipulation and Analysis"
-          href: Part2-Analysis.html
-        - text: "Part 3: Data Visualization"
-          href: Part3-Visualization.html        
-        - text: "Part 4: Starting a Project"
-          href: Part4-Project.html
+        - text: "Part 2 (a): Data Manipulation and Analysis"
+          href: Part2a-Analysis.html
+        - text: "Part 2 (b): Data Visualization"
+          href: Part2b-Visualization.html        
+        - text: "Part 2 (c): Starting a Project"
+          href: Part2c-Project.html
 #      menu:
 #        - text: "Data Sets"
 #          href: data.html
