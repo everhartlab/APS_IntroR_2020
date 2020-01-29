@@ -12,7 +12,7 @@
 
 
 
-<title>Part2-Analysis.utf8.md</title>
+<title>Part2a-Analysis.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -366,13 +366,13 @@ div.tocify {
       <a href="Part1-Introduction.html">Part 1: Introduction to R</a>
     </li>
     <li>
-      <a href="Part2-Analysis.html">Part 2: Data Manipulation and Analysis</a>
+      <a href="Part2a-Analysis.html">Part 2 (a): Data Manipulation and Analysis</a>
     </li>
     <li>
-      <a href="Part3-Visualization.html">Part 3: Data Visualization</a>
+      <a href="Part2b-Visualization.html">Part 2 (b): Data Visualization</a>
     </li>
     <li>
-      <a href="Part4-Project.html">Part 4: Starting a Project</a>
+      <a href="Part2c-Project.html">Part 2 (c): Starting a Project</a>
     </li>
   </ul>
 </li>
@@ -421,9 +421,11 @@ div.tocify {
 <p>If you’ve downloaded and un-zipped this directory to your desktop, you might see something like <code>/Users/&lt;yourname&gt;/Desktop/APS_IntroR_2019</code>. This is the default place where R will begin reading and writing files. For example, you can use the function <code>list.files()</code> to view the files in your current working directory. These are the same files that we downloaded earlier. If you’re using Rstudio, you can compare the file list with the “Files” tab in the bottom right panel.</p>
 <p>In order to use <code>list.files()</code>, we should provide it with a file path. We can provide it a “.”, which means “here” to most computer programs.</p>
 <pre class="r"><code>&gt; list.files(&quot;.&quot;)</code></pre>
-<pre><code>[1] &quot;APS_IntroR_2020.Rproj&quot; &quot;data&quot;                  &quot;docs&quot;                 
-[4] &quot;LICENSE&quot;               &quot;Makefile&quot;              &quot;Part1-Introduction.R&quot; 
-[7] &quot;Part2-Analysis.R&quot;      &quot;Part3-Visualization.R&quot; &quot;README.md&quot;            </code></pre>
+<pre><code>[1] &quot;APS_IntroR_2020.Rproj&quot;  &quot;data&quot;                  
+[3] &quot;docs&quot;                   &quot;LICENSE&quot;               
+[5] &quot;Makefile&quot;               &quot;Part1-Introduction.R&quot;  
+[7] &quot;Part2a-Analysis.R&quot;      &quot;Part2b-Visualization.R&quot;
+[9] &quot;README.md&quot;             </code></pre>
 <p>You can see that the first entry in here is “data”. This is where we’ve placed the field_data example data.</p>
 <pre class="r"><code>&gt; list.files(&quot;data&quot;)</code></pre>
 <pre><code>[1] &quot;fungicide_dat.csv&quot; &quot;README.md&quot;        </code></pre>
@@ -553,7 +555,7 @@ div.tocify {
 +                  repos = &quot;https://cran.rstudio.com&quot;)</code></pre>
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//Rtmp9kIXpS/downloaded_packages</code></pre>
+    /var/folders/y1/z82xd0b501193md_9_d3vs9r0000gn/T//RtmpZNVHgK/downloaded_packages</code></pre>
 <p>To load this package, we can use the function <code>library()</code>.</p>
 <pre class="r"><code>&gt; library(&quot;dplyr&quot;)</code></pre>
 <pre><code>
