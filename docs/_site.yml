@@ -39,7 +39,7 @@ output:
     toc_float:
       collapsed: false
     toc_depth: 2
-    theme: lumen
+    theme: flatly
     highlight: textmate
     include:
       after_body: footer.html
