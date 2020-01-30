@@ -45,7 +45,7 @@
 # 
 # ### Getting started
 
-install.packages("ggplot2")
+# install.packages("ggplot2")
 
 library("ggplot2")
 
@@ -293,7 +293,7 @@ severity.plot
 # If you have a hard time selecting color combinations, don't worry! The package 
 # "RColorBrewer" has a number of palettes that you can choose from. 
 
-install.packages("RColorBrewer")
+# install.packages("RColorBrewer")
 
 library("RColorBrewer")
 
@@ -312,7 +312,7 @@ display.brewer.all(colorblindFriendly=TRUE)
 # show which treatments are significantly different? We can use the package 
 # `ggpubr` to automatically add p-values and significance levels to a ggplot. 
 
-install.packages("ggpubr")
+# install.packages("ggpubr")
 
 library("ggpubr")
 
@@ -361,7 +361,7 @@ ggsave(filename = "results/figure1.pdf", width = 88, units = "mm")
 
 library("dplyr")
 
-install.packages("plotrix")
+# install.packages("plotrix")
 
 library("plotrix")
 
