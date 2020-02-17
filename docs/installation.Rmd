@@ -67,7 +67,7 @@ To install [dplyr], [ggplot2], [plotrix], [RColorBrewer], and [ggpubr] to your s
 
 ```{r, eval = FALSE}
 install.packages(c("dplyr", "ggplot2", "plotrix", "RColorBrewer", "ggpubr"), 
-                 repos = "https://cran.rstudio.com")
+                 repos = "https://cloud.r-project.org/")
 ```
 
 
