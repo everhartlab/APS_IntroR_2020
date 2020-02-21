@@ -70,6 +70,11 @@ install.packages(c("dplyr", "ggplot2", "plotrix", "RColorBrewer", "ggpubr"),
                  repos = "https://cloud.r-project.org/")
 ```
 
+Presentation Files
+-------------------
+
+The presentation that was used during Part 1 of the workshop can be  
+downloaded from [Slides_IntroR_2020_Webinar_Part1]
 
 [stat545]: http://stat545.com/block000_r-rstudio-install.html
 [R]: https://cloud.r-project.org/
@@ -80,3 +85,4 @@ install.packages(c("dplyr", "ggplot2", "plotrix", "RColorBrewer", "ggpubr"),
 [plotrix]: https://crantastic.org/packages/plotrix
 [RColorBrewer]: https://www.datanovia.com/en/blog/the-a-z-of-rcolorbrewer-palette/
 [ggpubr]: https://rpkgs.datanovia.com/ggpubr/
+[Slides_IntroR_2020_Webinar_Part1]: https://github.com/everhartlab/APS_IntroR_2020/blob/master/docs/slides/IntroR_2020_Webinar_Part1_2-19-2020.pdf
