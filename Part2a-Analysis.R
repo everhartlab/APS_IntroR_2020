@@ -19,7 +19,7 @@
 getwd()
 
 # If you've downloaded and un-zipped this directory to your desktop, you might
-# see something like `/Users/<yourname>/Desktop/APS_IntroR_2019`. This is the
+# see something like `/Users/<yourname>/Desktop/APS_IntroR_2020`. This is the
 # default place where R will begin reading and writing files. For example, you
 # can use the function `list.files()` to view the files in your current working
 # directory. These are the same files that we downloaded earlier. If you're
